@@ -133,7 +133,7 @@ int Binary_Search_Recursive_Method(int vector[],int low, int high, int key)
     else if(key < vector[mid])
     {
         // Recursive call to search in left space
-        Binary_Search_Recursive_Method(vector, low, mid - 1, key);
+       return  Binary_Search_Recursive_Method(vector, low, mid - 1, key);
 
     }
     /*
@@ -143,7 +143,7 @@ int Binary_Search_Recursive_Method(int vector[],int low, int high, int key)
     else
     {
         // Recursive call to search in right space
-        Binary_Search_Recursive_Method(vector, mid + 1, high, key);
+       return  Binary_Search_Recursive_Method(vector, mid + 1, high, key);
     }
 
     /**
