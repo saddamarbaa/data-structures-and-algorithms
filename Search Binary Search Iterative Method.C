@@ -1,15 +1,12 @@
-
 /**
-    Binary Search Iterative Method
-
+       Binary Search Iterative Method
+  
    [AUTHOR] :  Saddam Arbaa
-
    [Email]  :  <saddamarbaas@gmail.com>
 
     Iterative implementation of Binary Search using  C  */
 
 #include <stdio.h>
-
 #include <stdlib.h>
 
 int main()
@@ -28,18 +25,17 @@ int main()
     printf("the size of Vector[] is %d\n",n);
 
     printf("Vector contain the flowing values  : \n");
-
      // printing elements of an array
      for (int i = 0; i <= n - 1; i++)
      {
          printf("%d\t",vector[i]);
      }
-
+	
      // asking user to input element for searching
      printf("\nEnter key to be search : ");
      scanf("%d",&key);
 
-    //call Binary_Search_Iterative_Method() function
+    // call Binary_Search_Iterative_Method() function
     int index = Binary_Search_Iterative_Method(vector,n,key);
     if(index == -1)
     {
@@ -70,9 +66,8 @@ int main()
       (2)  If key is equal to value at middle element index, we return the mid index.
       (3)  Else If key is greater than the mid element,
            then key can only lie in right half subarray after the mid element. So we recur for right half.
-      (4)  Else (key is smaller)search in the left.
+      (4)  Else (key is smaller)search in the left.  */
 
-*/
 
 int Binary_Search_Iterative_Method(int vector[], int N, int key)
 {
@@ -128,7 +123,6 @@ int Binary_Search_Iterative_Method(int vector[], int N, int key)
         so let just return -1 mean that the key is not found */
 
        return -1;//key is not found in the array
-
 
     /**
        Time Complexity:
