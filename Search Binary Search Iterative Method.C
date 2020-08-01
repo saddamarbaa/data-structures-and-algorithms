@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Iterative implementation of Binary Search
+int Binary_Search_Iterative_Method(int vector[], int N, int key);
+
 int main()
 {
     printf("Binary Search implementation Iterative Method :\n");
@@ -79,8 +82,7 @@ int Binary_Search_Iterative_Method(int vector[], int N, int key)
     while(low <= high)
     {
         // calculate mid index
-        mid = (low + high)/2; //(low + high) may lead to overflow cindition
-        int mid = (low + high)/2;
+        mid = (low + high)/2; //(low + high) may lead to overflow condition
 
         // to avoid integer overflow is better to use on of this conditions flowing blow
 		//  mid = low + (high - low)/2;
