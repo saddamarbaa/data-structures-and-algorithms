@@ -1,5 +1,5 @@
 /**
-   [PROG]   : Linear Search Algorithm with example
+   [PROG]   : Linear Search Algorithm with example (functions approach)
    
    [AUTHOR] :  Saddam Arbaa
    
@@ -27,6 +27,7 @@ int  Linear_Search(int vector[], int key);
 // the  Driver Code
 int main()
 {
+    printf("Linear Search implementation(functions approach) :\n\n");
     // key to store the key element and
     //index for index of the key in array
     int key = 0, index;
