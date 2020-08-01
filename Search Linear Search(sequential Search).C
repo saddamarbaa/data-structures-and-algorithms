@@ -1,13 +1,12 @@
-
 /**
+   [PROG]   : Linear Search Algorithm with example
+   
+   [AUTHOR] :  Saddam Arbaa
+   
+   [Email]  :  <saddamarbaas@gmail.com>
+   
+    Linear Search(sequential search) Algorithm implementation using  C */
 
-[PROG]		:  Linear Search Algorithm with example
-
-[AUTHOR]   :   Saddam Arbaa
-
-[Email]    :  <saddamarbaas@gmail.com>
-
-          Linear Search(sequential search) implementation using  C */
 
 
 #include <stdio.h>
