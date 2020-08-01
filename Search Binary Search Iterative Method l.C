@@ -10,8 +10,6 @@
       if the key is not found print "UNSUCCESSFUL SEARCH"
   */
 
-
-
 #include <stdio.h>
 
 #include <stdlib.h>
