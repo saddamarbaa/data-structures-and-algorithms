@@ -5,7 +5,7 @@
    
    [Email]  :  <saddamarbaas@gmail.com>
    
-    Linear Search(sequential search) Algorithm implementation using  C  */
+    Linear Search(sequential search) Algorithm implementation using  C */
 
 #include <stdio.h>
 
