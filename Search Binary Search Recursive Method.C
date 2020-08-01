@@ -1,4 +1,3 @@
-
 /**
        Binary Search Recursive Method
 
