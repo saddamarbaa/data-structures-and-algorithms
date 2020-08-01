@@ -7,8 +7,6 @@
    
     Linear Search(sequential search) Algorithm implementation using  C */
 
-
-
 #include <stdio.h>
 
 #include <stdlib.h>
@@ -50,9 +48,9 @@ int main()
     index = Linear_Search(vector, key);// call search(vector) function
     // now check and inform the user found or not found
     if(index != -1)
-    printf("\nYes %d is found at index : %d\n",key, index + 1);
+    printf("Yes %d is found at index : %d\n",key, index + 1);
     else
-    printf("\nNO %d is not found!\n",key);
+    printf("NO %d is not found!\n",key);
 
   return 0;// signal to operating system everything works fine
 
@@ -90,8 +88,6 @@ void traverse(int vector[])
      } /** End of for loop */
 
 }/** End of traverse() */
-
-
 
 
  /**
@@ -153,7 +149,4 @@ int Linear_Search(int vector[] , int key)
     return -1;//key is not found in the array
 
 }/** End of Linear_Search() */
-
-
-
 
