@@ -1,5 +1,5 @@
 /**
-   [PROG]   : Linear Search Algorithm with example( loop approach)
+   [PROG]   : Linear Search Algorithm with example(loop approach)
 
    [AUTHOR] :  Saddam Arbaa
 
