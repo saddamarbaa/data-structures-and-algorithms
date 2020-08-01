@@ -65,7 +65,7 @@ int main()
     /*
      I use flag variable and give value zero after search for given
      key if flag value is still 0 then mean number is not found else
-    if flag value is change to 1 then number is found */
+    if flag value is change to 1 then number is found  */
 
      int flag = 0;
 
