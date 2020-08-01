@@ -16,7 +16,7 @@ int MAXSIZE = 10; // maximum Array size
 // the  Driver Code
 int main()
 {
-     printf("Linear Search implementation loop Method :\n\n");
+     printf("Linear Search implementation loop approach :\n\n");
 
     // key to store the key element and index for index of
     // the key in array and size for array size(will be entered by user)
