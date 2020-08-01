@@ -1,4 +1,3 @@
-
 /**
        Binary Search Iterative Method loop approach
 
@@ -51,17 +50,15 @@ int main()
 
      } /** End of for loop */
 
-
-
     // ask user to enter value to be search and store in key
     printf("Enter the key to be search : ");
     scanf("%d",&key);
 
-    /** searching process begins from here */
+    /**  searching process begins from here */
     low = 0;
     high =(size - 1);
 
-    // iterate till search base case (low <= high)
+    // iterate till  base case (low <= high)
     while(low <= high)
     {
         // calculate mid index
