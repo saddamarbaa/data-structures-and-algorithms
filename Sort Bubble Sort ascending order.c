@@ -5,7 +5,7 @@
   [Email]  :  <saddamarbaas@gmail.com>
 
    C program to sort an array of N numbers in ascending order
-   using Bubble Sort Algorithm  */
+   using Bubble Sort Algorithm   */
 
 #include <stdio.h>
 #include <stdlib.h>
