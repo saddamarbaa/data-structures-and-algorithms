@@ -203,7 +203,7 @@ void optimizedBubbleSort(int array[])
     and the array is in descending order
     Best Case Complexity:O(n)
     Best case occurs when array is already sorted.
-    becauseIf the array is already sorted, then there is no need for sorting.
+    because If the array is already sorted, then there is no need for sorting.
 
     Space Complexity:
     Space complexity is O(1) because an extra variable temp is used for swapping in swap function.
