@@ -80,5 +80,7 @@ int main()
 
       // print ith element of the array
       //printf("%d", grade[i -1]);
-}
+ 
+   return 0;// signal to operating system everything works fine
 
+}/** End of main function */
