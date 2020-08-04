@@ -18,7 +18,6 @@
    (6)  Print the elements stored in the array C
 
     (size must be bigger than 0)
-
 */
 
 
