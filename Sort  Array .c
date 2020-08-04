@@ -87,5 +87,7 @@ int main()
      {
          printf("vector[ %d ] :  %d\n", i +1 ,vector[i]);
      }
-    return 0;
-}
+   
+   return 0;// signal to operating system everything works fine
+
+}/** End of main function */
