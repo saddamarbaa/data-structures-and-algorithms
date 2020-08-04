@@ -1,6 +1,6 @@
 /**
 
-[PROG]		:  Array  implementation
+[PROG]	   :  Array  implementation
 
 [AUTHOR]   :   Saddam Arbaa
 
