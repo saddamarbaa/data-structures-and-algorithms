@@ -1,4 +1,4 @@
-/**
+/** 
      [AUTHOR]: Saddam Arbaa
      [Email] : <saddamarbaas@gmail.com>
 
@@ -13,9 +13,7 @@
 
     (4) find the sum of n numbers which entered by user
 
-    (5) print the sum
-
-  */
+    (5) print the sum */
 
 #include <stdio.h>
 #include <stdlib.h>
