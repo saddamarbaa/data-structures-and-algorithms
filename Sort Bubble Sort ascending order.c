@@ -118,7 +118,6 @@ void printArray(int array[])
  } /** End of printArray() */
 
 
-
 /**
     Bubble Sort Algorithm
 
@@ -150,7 +149,6 @@ How Bubble Sort Works?
                 swap(A[j], A[j+1])
     ( user should pass the array as parameter) */
 
-
 void bubble_Sort(int array[])
 {
     // i,j are counters
@@ -177,7 +175,6 @@ void bubble_Sort(int array[])
     printf("\nArray is been sorted in ascending order\n");
 
 }/** Bubble sorting End */
-
 
 
 /**
