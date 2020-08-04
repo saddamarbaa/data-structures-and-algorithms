@@ -20,7 +20,6 @@ int main()
 {
     // size of the array
     int N;
-
     // variables  sum and average
     float sum = 0.0;
     double  average;
