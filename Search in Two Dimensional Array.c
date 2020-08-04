@@ -1,5 +1,4 @@
-
- /**
+/**
     [AUTHOR]: Saddam Arbaa
     [Email] : <saddamarbaas@gmail.com>
 
@@ -25,7 +24,6 @@
 
  (5)  Print message to user and inform if the given key is found
      in the array or not  */
-
 
 
 #include <stdio.h>
