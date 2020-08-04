@@ -173,6 +173,20 @@ void bubble_Sort(int array[])
 
     }/** End outer loop */
     printf("\nArray is been sorted in descending order\n");
+   
+    /*
+    Time Complexities:
+
+    Worst and Average Case Time Complexity: O(n2)
+    Worst case occurs If we want to sort in ascending order and the array is in descending order
+    Best Case Complexity:O(n)
+    Best case occurs when array is already sorted.
+    because If the array is already sorted, then there is no need for sorting.
+
+    Space Complexity:
+    Space complexity is O(1) because an extra variable temp is used for swapping in swap function.
+
+     */
 
 }/** Bubble sorting End */
 
