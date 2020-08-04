@@ -1,4 +1,3 @@
-
 /*
 [AUTHOR]: Saddam Arbaa
 [Email] : <saddamarbaas@gmail.com>
@@ -41,7 +40,7 @@ int main()
          };
 
      //traversing 2D array
-      // access rows of the array
+     // access rows of the array
      for(int i = 0; i < 4; i++)
      {
          // access columns of the array
