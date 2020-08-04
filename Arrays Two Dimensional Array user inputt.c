@@ -3,7 +3,7 @@
      [Email] : <saddamarbaas@gmail.com>
 
      Program of  Two Dimensional Array in C
-     declaration  and initialization */
+     declaration  and initialization  */
 
 
 #include <stdio.h>
