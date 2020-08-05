@@ -25,7 +25,7 @@ void Display(int vector[]);
 //traverse Array get me largest and second largest element
 void  two_largest_element(int vector[]);
 
-// the  Driver Code
+// the  Driver Code 
 int main()
 {
     // Array declaration
