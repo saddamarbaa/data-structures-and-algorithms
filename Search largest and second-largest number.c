@@ -1,4 +1,3 @@
-
 /**
    [PROG]   : Linear Search Algorithm with example (functions approach)
 
@@ -6,13 +5,10 @@
 
    [Email]  :  <saddamarbaas@gmail.com>
 
-
      C program to read elements into an array and find the
-     largest two elements in a given array.
+     largest two elements in a given array. */
 
-     */
-
-
+ 
 #include <stdio.h>
 #include <stdlib.h>
 
