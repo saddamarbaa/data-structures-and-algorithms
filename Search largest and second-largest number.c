@@ -1,5 +1,5 @@
 /**
-   [PROG]   : Linear Search Algorithm with example (functions approach) 
+   [PROG]   : Search for largest and second-largest number in Array
 
    [AUTHOR] :  Saddam Arbaa
 
@@ -24,6 +24,9 @@ void Display(int vector[]);
 
 //traverse Array get me largest and second largest element
 void  two_largest_element(int vector[]);
+
+// function to swap values of two variables
+void swap(int *a, int *b);
 
 // the  Driver Code 
 int main()
@@ -107,7 +110,7 @@ void Display(int vector[])
 
 /**
     function to search in the given vector array
-    and get largest and second number in the array
+    and get largest and second largest number in the array
 
     here are the steps
 
