@@ -1,4 +1,3 @@
-
 /**
    [PROG]   : Search for largest number in Array
 
