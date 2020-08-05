@@ -132,12 +132,12 @@ int largest(int vector[])
      largest = vector[0];
 
      // search loop start from the second value until size -1
-     for (int i = 2; i <= size - 1; i++)
+     for (int i = 1; i <= size - 1; i++)
      {
          // if the value at vector[i] index  bigger than largest
          if (vector[i] > largest)
          {
-             // update
+             // update largest
              largest = vector[i];
          }
     }/** End of for loop */
