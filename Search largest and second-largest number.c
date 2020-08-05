@@ -1,5 +1,5 @@
 /**
-   [PROG]   : Linear Search Algorithm with example (functions approach)
+   [PROG]   : Linear Search Algorithm with example (functions approach) 
 
    [AUTHOR] :  Saddam Arbaa
 
