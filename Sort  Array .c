@@ -1,6 +1,6 @@
 /**
 [AUTHOR]: Saddam Arbaa
-[Email] : <saddamarbaas@gmail.com>
+[Email] : <saddamarbaas@gmail.com> 
 
    C Arrays Examples
    write Program that take array size from user and create array with
