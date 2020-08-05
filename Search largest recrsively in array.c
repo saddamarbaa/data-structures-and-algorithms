@@ -8,7 +8,6 @@
      C Program to find the Biggest Number in an Array of Numbers
      using Recursion*/
 
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -42,7 +41,7 @@ int main()
 
     if (size == 0)
     {
-        printf("array is empty noe\n");
+        printf("array is empty \n");
     }
     else
     {
