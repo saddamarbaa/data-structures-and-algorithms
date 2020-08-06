@@ -1,4 +1,3 @@
-
 /**
        Count occurrences of a number in a sorted array with
        duplicates using Binary Search
@@ -11,7 +10,6 @@
    Expected time complexity is O(Logn)  */
 
 #include <stdio.h>
-
 #include <stdlib.h>
 
 //  Function to Count occurrences of a number in a sorted
@@ -79,7 +77,6 @@ int main()
     return 0;// signal to operating system everything works fine
 
 }/** End of main function */
-
 
 
  /**
@@ -187,7 +184,6 @@ int modified_Binary_Search(int vector[], int N, int key, int flag_Search_First)
        /** Time Complexity : log(n)  */
 
    }/** modified_Binary_Search() */
-
 
 
 /**
