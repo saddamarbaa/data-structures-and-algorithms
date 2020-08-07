@@ -5,7 +5,10 @@
    [Email]  :  <saddamarbaas@gmail.com>
 
    C program to find number of rotation in a circular sorted
-   array using Binary search of Binary Search  */
+   array using Binary search of Binary Search  
+   
+   for Reference
+   https://youtu.be/4qjprDkJrjY  */
 
 #include <stdio.h>
 #include <stdlib.h>
