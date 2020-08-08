@@ -4,7 +4,7 @@
   [AUTHOR] :  Saddam Arbaa
   [Email]  :  <saddamarbaas@gmail.com>
 
-    Sorting an array using insertion sort in C
+    Sorting an array using insertion sort in C 
 
     for reference in future :->
     (1) https://youtu.be/i-SKeOcBwko
