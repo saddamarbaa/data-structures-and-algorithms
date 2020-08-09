@@ -1,11 +1,11 @@
 /**
-   Selection Sort Sort Algorithm implementation
+   Selection Sort Algorithm implementation
 
   [AUTHOR] :  Saddam Arbaa
   [Email]  :  <saddamarbaas@gmail.com>
 
     C program to sort an array of N numbers in descending order
-    using Selection Sort Sort Algorithm
+    using Selection Sort Algorithm
 
     for reference in future :->
     (1) https://youtu.be/3hH8kTHFw2A
