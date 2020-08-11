@@ -27,7 +27,7 @@ void printArray(int array[]);
 /* Divide and Conquer algorithms Implementation   */
 void Divide_And_Conquer(int array[], int start, int end);
 
-/* Driver program to Divide and Conquer */
+/* Driver program to Divide and Conquer  */
 int main()
 {
     printf("Divide and Conquer algorithms Implementation \n\n");
