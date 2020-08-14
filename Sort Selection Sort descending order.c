@@ -7,7 +7,7 @@
     C program to sort an array of N numbers in descending order
     using Selection Sort Algorithm
 
-    for reference in future  :->
+    for reference in future   :->
     (1) https://youtu.be/3hH8kTHFw2A
     (2) https://youtu.be/GUDLRan2DWM
     (3) https://youtu.be/qSRHW32sHow
