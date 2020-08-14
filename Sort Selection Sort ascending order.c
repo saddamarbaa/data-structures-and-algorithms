@@ -34,7 +34,7 @@ void Selection_Sort(int array[]);
 // function to swap values of two variables
 void swap(int *a, int *b);
 
-/* Driver program to test insertion sort */
+/* Driver program to test insertion sort  */
 int main()
 {
     printf("Selection Sort Algorithm implementation \n\n");
