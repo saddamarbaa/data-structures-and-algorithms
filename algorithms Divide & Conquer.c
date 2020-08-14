@@ -1,5 +1,5 @@
 /**
-    Divide and Conquer algorithms Implementation
+    Divide and Conquer algorithms Implementation 
 
    [AUTHOR] :  Saddam Arbaa
    [Email]  :  <saddamarbaas@gmail.com>
