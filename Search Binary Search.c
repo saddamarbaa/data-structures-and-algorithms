@@ -8,7 +8,7 @@
      C program accept an array of N elements and sorted in ascending
      order using Bubble sort after that search for a given number using
      Binary Search.If the search is successful,
-      it displays "SUCCESSFUL SEARCH and print the index of key ".
+      it displays "SUCCESSFUL SEARCH and print the index of key  ".
       if the key is not found print "UNSUCCESSFUL SEARCH"
   */
 
