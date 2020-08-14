@@ -31,7 +31,7 @@ void printArray(int array[]);
 /* Insertion Sort Algorithm  */
 void insertion_Sort(int array[]);
 
-/* Driver program to test insertion sort */
+/* Driver program to test insertion sort  */
 int main()
 {
     printf("Insertion Sort Algorithm implementation \n\n");
