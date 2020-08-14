@@ -1,5 +1,5 @@
 /**
-   Selection Sort Algorithm implementation
+   Selection Sort Algorithm implementation 
 
   [AUTHOR] :  Saddam Arbaa
   [Email]  :  <saddamarbaas@gmail.com>
