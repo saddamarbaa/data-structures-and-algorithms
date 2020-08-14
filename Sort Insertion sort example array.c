@@ -1,7 +1,7 @@
 /** 
    Insertion Sort Algorithm implementation 
 
-  [AUTHOR] :  Saddam Arbaa
+  [AUTHOR] :   Saddam Arbaa
   [Email]  :  <saddamarbaas@gmail.com>
 
     Sorting an array using insertion sort in C 
