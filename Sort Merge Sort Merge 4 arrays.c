@@ -1,4 +1,3 @@
-
 /**
     [PROGRAM] :  Merge 4 Sorted Arrays
     [AUTHOR]  :  Saddam Arbaa
