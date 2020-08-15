@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* define the maximum Array size */
+/* define the maximum Array size  */
 #define MAXSIZE 25
 
 /* global array size which will be entered by user */
