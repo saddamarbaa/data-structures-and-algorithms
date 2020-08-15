@@ -1,4 +1,3 @@
-
 /**
     [PROGRAM] :  Merge two Sorted Array
     [AUTHOR]  :  Saddam Arbaa
