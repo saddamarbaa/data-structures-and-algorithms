@@ -18,7 +18,7 @@
    (3)  Print the elements stored in the array A
    (5)  Print the elements stored in the array B
    (6)  Print the elements stored in the array C
-     (size must be bigger than 0)  */
+     (size must be bigger than 0)   */
 
 #include <stdio.h>
 #include <stdlib.h>
