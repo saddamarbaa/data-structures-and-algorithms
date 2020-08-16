@@ -2,7 +2,7 @@
 [AUTHOR]: Saddam Arbaa
 [Email] : <saddamarbaas@gmail.com> 
 
-   C Arrays Examples
+   C Arrays Examples 
    write Program that take array size from user and create array with
    the size given by user and ask user to enter all the array
    element and store them in an array.
