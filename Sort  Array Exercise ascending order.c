@@ -21,7 +21,7 @@
 // the  Driver Code
 int main()
 {
-    // N size of the array , i,j are counters
+    // N size of the array ,i,j are counters
     // temp for swapping element in sorting process
     int N , temp ,i,j;
 
