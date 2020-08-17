@@ -1,4 +1,3 @@
-
 /**
     [PROGRAM] : Sort names in an alphabetical order
     [AUTHOR]  :  Saddam Arbaa
