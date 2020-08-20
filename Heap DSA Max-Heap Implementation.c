@@ -6,7 +6,7 @@
     Heap is Tree-based data structure in which the tree is a complete
     binary tree so A Max-Heap is a complete binary tree that satisfies the
     heap property. It is also called as a binary heap.
-
+ 
     A complete binary tree is a binary tree in which every level,
     except possibly the last level,is completely filled, and all nodes
     are as far left as possible.
