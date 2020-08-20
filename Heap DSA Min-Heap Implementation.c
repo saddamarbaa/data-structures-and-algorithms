@@ -470,7 +470,7 @@ int isEmpty()
 
 /**
     utility function to traverse the given array
-    and print all elements Accept */
+     and print all the element */
 
 void print_heap(int array [], int size)
 {
