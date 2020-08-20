@@ -17,7 +17,7 @@
       of node is less than or equal to the value of its parent ,
       Except the root node because root node does not have parent
       A[Parent[i]] ≥ A[i] for all nodes i>1.
-  (2) For A Max-Heap the property is that for every node i the value
+  (2) For A Min-Heap the property is that for every node i the value
       of node is greater than or equal to the value of its parent.
       Except the root node that is also because root does not have parent
       A[Parent[i]] ≤A [i] for all nodes i>1.
