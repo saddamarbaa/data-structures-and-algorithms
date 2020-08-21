@@ -23,7 +23,7 @@
       Except the root node that is also because root does not have parent
       A[Parent[i]] ≤A [i] for all nodes i>1.
 
-     Reference in future :---->
+     Reference in future : ---->
     (1) https://youtu.be/hfFxxC30jKc
     (2) https://youtu.be/WfbCZ7RTSyM
     (3) https://youtu.be/B7hVxCmfPtM
