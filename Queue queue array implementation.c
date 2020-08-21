@@ -3,7 +3,7 @@
     [AUTHOR]  :  Saddam Arbaa
     [Email]   :  <saddamarbaas@gmail.com>
 
-    C Program to implementation Queue data structure using array
+    C Program to implementation Queue data structure using array 
     Queue flow FIFO rule first in first out
      Reference in future :---->
      1. https://youtu.be/PGWZUgzDMYI
