@@ -173,10 +173,10 @@ void print_heap(int heap [], int size)
     set i as largest
     leftChild = 2 * i + 1
     rightChild = 2 * i + 2
-    if leftChild <= size && A[leftChild] > A[largest])
+    if leftChild < size && A[leftChild] > A[largest])
        set leftChildIndex as largest
     END IF
-   if rightChild <=  size && A[rightChild] > A[largest])
+   if rightChild <  size && A[rightChild] > A[largest])
       set rightChildIndex as largest
   END IF
   if largest != i)
