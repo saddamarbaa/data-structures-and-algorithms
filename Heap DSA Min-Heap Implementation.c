@@ -182,11 +182,11 @@ int main()
 
    Algorithm for insertion in A Min-Heap
    insert(A, value)
-   2. if heap is empty add the newNode as first node in beginning
-   3. else (heap is not empty)
+   1. if heap is empty add the newNode as first node in beginning
+   2. else (heap is not empty)
       insert the newNode at the end (last node from left to right.)
      End If
-   4. A Min_Heapify the tree(so that the minimum node always be at the root)
+   3. A Min_Heapify the tree(so that the minimum node always be at the root)
     End insert
 **/
 
@@ -311,7 +311,7 @@ int find_Min(int array[])
 {
      if(isEmpty())    // A Min-Heap is empty condition
       return 0;
-    return array[0];  // else case return the maximum
+    return array[0];  // else case return the maimum
 
 } /** End of find_Min() */
 
