@@ -180,11 +180,11 @@ int main()
 
    Algorithm for insertion in A Max-Heap
    insert(A, value)
-   2. if A Max-Heap is empty add the newNode as first node in beginning
-   3. else (A Max-Heap is not empty)
+   1. if A Max-Heap is empty add the newNode as first node in beginning
+   2. else (A Max-Heap is not empty)
       insert the newNode at the end (last node from left to right.)
      End If
-   4. Max-Heapify the tree(so that the maximum node always be at the root)
+   3. Max-Heapify the tree(so that the maximum node always be at the root)
     End insert
 **/
 
