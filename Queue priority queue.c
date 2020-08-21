@@ -171,11 +171,11 @@ int main()
 
    Algorithm for insertion in a priority queue (max-heap)
    insert(A, value)
-   2. if queue is empty add the newNode as first node in beginning
-   3. else (queue is not empty)
+   1. if queue is empty add the newNode as first node in beginning
+   2. else (queue is not empty)
       insert the newNode at the end (last node from left to right.)
      End If
-   4. Max-Heapify the tree(so that the maximum node always be at the root)
+   3. Max-Heapify the tree(so that the maximum node always be at the root)
     End insert()
 **/
 
