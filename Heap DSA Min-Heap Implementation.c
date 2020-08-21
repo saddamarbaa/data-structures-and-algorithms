@@ -4,7 +4,7 @@
     [Email]   :  <saddamarbaas@gmail.com>
 
     Heap is Tree-based data structure in which the tree is a complete
-    binary tree so A Min-Heap is a complete binary tree that satisfies the
+    binary tree . so Heap is a complete binary tree that satisfies the
     heap property. It is also called as a binary heap.
 
     A complete binary tree is a binary tree in which every level,
@@ -16,12 +16,12 @@
   (1) For A Min-Heap the property is that for every node i the value
       of node is greater than or equal to the value of its parent.
       Except the root node because root does not have parent
-      A[Parent[i]] ≤ A[i] for all nodes i>1.
+      A[Parent[i]] ≤ A[i] for all nodes i > 1.
 
   (2) For A Max-Heap the property is that for every node i the value
       of node is less than or equal to the value of its parent ,
       Except the root node also  because root node does not have parent
-      A[Parent[i]] ≥ A[i] for all nodes i>1.
+      A[Parent[i]] ≥ A[i] for all nodes i > 1.
 
     Reference in future :--->
     (1) https://youtu.be/hfFxxC30jKc
@@ -41,8 +41,9 @@
 // define the maximum Min-Heap size
 #define MIN_HEAP_SIZE 50
 
-/* define Global A Min-Heap size start by zero */
-int SIZE = 0; /* the number of element are currently in A Min-Heap */
+/* define Global A Min-Heap size initialize by zero */
+// zero is number of element currently in A Min-Heap
+int SIZE = 0; 
 
 // Function to find the A Min-Heap size
 void find_Size();
@@ -246,18 +247,19 @@ void insert(int array[], int newValue)
        then set leftChildIndex as smallest.
       If rightChild is smaller than element in smallest variable
       then set rightChildIndex as smallest
-   6. Swap smallest with currentElement
-   7. Repeat steps 3-7 until the subtrees are also Min heapified.
+  6. if smallest != i  then
+  7. Swap smallest with currentElement
+  8. Repeat steps 3-8 until the subtrees are also Min heapified.
 
    Pseudo code for Min_Heapify
    Min_Heapify(A[], size,  i)
     set i as smallest
-    leftChild = 2 * i + 1
+    leftChild   = 2 * i + 1
     rightChild = 2 * i + 2
-    if leftChild <= size && A[leftChild] < A[smallest])
+    if leftChild < size && A[leftChild] < A[smallest])
        set leftChildIndex as smallest
     END IF
-   if rightChild <=  size && A[rightChild] < A[smallest])
+   if rightChild < size && A[rightChild] < A[smallest])
       set rightChildIndex as smallest
   END IF
   if smallest != i
@@ -279,7 +281,7 @@ void Min_Heapify(int array[], int size, int i)
     int rightChild  = 2 * i + 2;      /* calculate right Child = 2*i + 2*/
 
     /*  If left child is smaller than the smallest */
-    if (leftChild <= size && array[leftChild] < array[smallest])
+    if (leftChild < size && array[leftChild] < array[smallest])
          smallest = leftChild;  /* set leftChildIndex as smallest */
 
     /* If right child is smaller than left child which the smallest right now  */
@@ -297,6 +299,8 @@ void Min_Heapify(int array[], int size, int i)
 
         Min_Heapify(array, size, smallest); /* Recursively  Min_Heapify  call*/
     }
+   
+    /** Time complexity of Min_Heapify is O(Logn). */
 
 } /** END OF Min_Heapify() */
 
