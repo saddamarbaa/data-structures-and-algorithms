@@ -36,7 +36,7 @@ int main()
 {
     printf("A Max-Heap Sort Algorithm Implementation(Iterative) \n\n");
 
-    int heap[MAXSIZE]; /*  heap array declaration */
+    int heap[MAXSIZE];  /*  heap array declaration */
 
     /* traverse Array and insert All the values at once */
     traverse(heap); /* call traverse()*/
