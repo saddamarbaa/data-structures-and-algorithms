@@ -173,7 +173,7 @@ int isEmpty()
 
 /**
    Utility function to Check if the queue is full or not here
-   Am saying that queue is empty if and only if (last == CAPCITY) */
+   Am saying that queue is full if and only if (last == CAPCITY) */
 
 int isFull()
 {
