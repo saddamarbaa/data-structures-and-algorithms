@@ -1,4 +1,3 @@
-
 /**
     [PROGRAM] :  Merge Sort Algorithm
     [AUTHOR]  :  Saddam Arbaa
