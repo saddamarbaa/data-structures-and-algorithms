@@ -140,7 +140,7 @@ void enqueue(int element)
      utility function to dequeue(remove)first
      element in queue (first in first out)
      Reference in future :---->
-     https://youtu.be/dn01XST9-bI*/
+     https://youtu.be/dn01XST9-bI */
 
 void dequeue()
 {
