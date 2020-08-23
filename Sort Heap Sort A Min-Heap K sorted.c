@@ -47,7 +47,6 @@ void swap(int *a, int *b);
 // function to Check if the queue is empty or not
 int isEmpty();
 
-
 // the  Driver Code
 int main()
 {
