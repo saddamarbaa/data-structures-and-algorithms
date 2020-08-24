@@ -62,7 +62,7 @@ int main()
     printf("Elements in array after Count Sort are :\n");
     print_Array(input_array); /* call printArray() */
 
-    return 0;// signal to operating system everything works fine
+    return 0;  // signal to operating system everything works fine
 
 }/** End of main function */
 
