@@ -99,7 +99,6 @@ void traverse(int array[])
 
 } /** End of traverse()  */
 
-
 /**
     function to traverse the given array and print all elements
     Accept one parameters (user should pass the array as parameter) */
