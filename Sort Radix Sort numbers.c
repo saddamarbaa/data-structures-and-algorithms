@@ -1,6 +1,3 @@
-
-   
-   
 /**
     [PROGRAM] :  Radix Sort Algorithm
     [AUTHOR]  :  Saddam Arbaa
@@ -180,7 +177,7 @@ void Radix_Sort(int array[], int size)
 } /** END of Radix_Sort() */
 
 
-/** A utility function to get maximum value in arr[] */
+/** A utility function to get maximum value in array[] */
 int getMax(int array[], int siz)
 {
     int i, max;                  /* variables declarations */
