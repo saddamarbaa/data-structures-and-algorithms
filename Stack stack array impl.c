@@ -143,7 +143,6 @@ int main(int argc, char* argv[])
                   printf("Stack is not Full\n");
             break;
 
-
             // case 8 peek element at given position
             case 8:
                 // get position from user
