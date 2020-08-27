@@ -47,7 +47,6 @@ void print_Array(int[]);
 /* Shell Sort Algorithm  */
 void Shell_Sort(int[], int);
 
-
 // the  Driver Code
 int main()
 {
