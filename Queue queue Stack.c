@@ -7,21 +7,22 @@
    Queue flow FIFO rule first in first
 
    to implement queue using stack and flow all queue data structure
-   rules(FIFO)first in first out we need two stack because stack flow
-   different rule Last In First Out(LIFO,FILO) but one things to remember
-   we are implementing queue here so we use two stack first stack for enqueue
-   but when we want dequeue stack one give us first element but we need the last
-   element so for that first we pop all element from stack one to stack two by now
-   element which was last in stack one its on top(first) now in stack two then is easy
-   to dequeue . with that been said enqueue operation will be done from stack one
+   rules(FIFO)first in first out we need two stack for that because
+   stack flow different rule Last In First Out(LIFO,FILO)one things
+   to remember we are implementing queue here so we use two stack first
+   stack for enqueue operation but when we want dequeue stack one give us
+   the first element but we need the last element so for that we first pop
+   all element from stack one to stack two by now element which was last in
+   stack one its on top(first) in stack two then is easy to dequeue .
+   with that been said enqueue operation will be done from stack one
    and dequeue operation will be done from stack 2.
-   in this case enqueue operation take Big(O1) and dequeue operation big(On)
+   in this case enqueue operation take Big(O1)and dequeue operation big(On)
 
    for reference i will back to (Jenny's lectures CS/IT NET&JRF) channel
    very well explained
    1. https://youtu.be/9crZRd8GPWM
    Reference in future :---->
-   1. https://youtu.be/9crZRd8GPWM  */
+   1. https://youtu.be/9crZRd8GPWM   */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -62,7 +63,7 @@ void printQueue();
 //function to traverse queue and clear all it element
 void clearQueue();
 
-// function to Check if the Stack1 is full or not
+// function to Check if the Stack1(queue)is full or not
 int isFull1();
 
 // function to Check if the Stack2 is full or not
@@ -87,30 +88,25 @@ int main(int argc, char* argv[])
         printf("6 : count()                             :\n");
         printf("7 : clear queue                         :\n");
         printf("0 : Enter 0 to exit (quit)              :\n");
-
         // asking user to enter choice
         printf("input your choice                       :");
         scanf("%d",&option);
 
-         switch(option)
-         {
+        switch(option)
+        {
             // case 1 enqueue new element to queue
             case 1:
                 printf("Enter an item to enqueue to queue : ");
                 scanf("%d",&element);
                 enqueue(element); // call enqueue function
             break;
-
             // case 2 dequeue element from queue
             case 2:
                 dequeue(); // call dequeue function
-            break;
-
-             // case 3 traverse queue
+            break;             // case 3 traverse queue
             case 3:
                 printQueue(); // call printQueue function
             break;
-
             // case 4 Check if the Queue is empty or not
             case 4:
                 if (isEmpty())    // call isEmpty function
@@ -118,7 +114,6 @@ int main(int argc, char* argv[])
                else
                    printf("Queue is not Empty\n");
             break;
-
             // case 5 Check if the Queue is full or not
             case 5 :
               if (isFull1())    // call isFull function
@@ -126,37 +121,33 @@ int main(int argc, char* argv[])
               else
                   printf("Queue is not Full\n");
             break;
-
             // case 6 Get the number of items in the Queue
             case 6 :
-
                if (isEmpty()) // if Queue is empty
                    printf ("Queue Underflow \n");
                else
-                printf("number of element in Queue are : %d \n", count);
+                  printf("number of element in Queue are : %d \n", count);
             break;
-
             // case 7 clear all the element in Queue
             case 7 :
                 clearQueue(); // call clear_Queue function
             break;
 
-            case 0:  // case 0 Exit case
-            printf("time to exit thanks\n");
-            _Exit(0);
+           case 0:  // case 0 Exit case
+              printf("time to exit thanks\n");
+           _Exit(0);
 
-            default: // default case
+           default: // default case
               printf("invalid input\n");
             break; // no need break after default case I use it only for readability
 
          }/** END of switch */
 
-    } while(1); /** END of  do while loop */
+    } while(1); /** END OF DO WHILE LOOP */
 
     return 0;// signal to operating system everything works fine
 
 }/** End of main function */
-
 
 
 /**
@@ -170,21 +161,20 @@ void enqueue(int element)
     if (isFull1()) // queue is full condition
        printf("Queue is Full!!(Queue is in overflow)\n");
 
-    else /* now we are sure queue is not full so so  let call push1 and given the element to add */
+    else /* now we are sure queue is not full so let call push1 and given the element to add */
     {
         push1(element); // push element to satck1
-
-        count++;  // i will  use count in dequeue operation in loop latter
+        count++;  // i will use count in dequeue operation in loop latter
     }
-}
+} /** END OF enqueue() */
 
-/*
+/**
  utility function to dequeue(remove) first element in queue
  (first in first out).
   first pop all the element from stack1 and push  to stack2 until
   stack1 became empty.
- hen pop the first element from stack2 to be dequeue after that push
- the remaining element back to satck1  */
+  hen pop the first element from stack2 to be dequeue after that push
+  the remaining element back to satck1  */
 
 void dequeue()
 {
@@ -204,12 +194,12 @@ void dequeue()
 
         // pop from the stac2 only one element which last element to be dequeue
         dequeue_element =  pop2();
-        printf("%d  been dequeue out \n", dequeue_element);
+        printf("%d  been dequeue out \n", dequeue_element);//inform user the job is done
 
         // after pop element now count should be decremented be by one
         count = count - 1;
 
-        // after you pop one element  push the reaming element back to stack 1
+        // after you dequeued one element push the reaming element back to stack 1
         for(i = 0; i < count; i++)
         {
             temp = pop2();              // pop from stack2
@@ -294,7 +284,7 @@ void push2(int element)
 /**
  utility function to pop(remove)top1 element from stack1(last in first out)*/
 
-int  pop1()
+int pop1()
 {
     // no need to check for if queue is empty
     // because if queue is empty this function will not be called
@@ -307,7 +297,7 @@ int  pop1()
 /**
  utility function to pop(remove)top element from stack2(last in first out)*/
 
-int  pop2()
+int pop2()
 {
     // no need to check for if queue is empty
     // because if queue is empty this function will not be called
@@ -323,7 +313,7 @@ int  pop2()
 
 int isFull1()
 {
-    if(top1 == CAPCITY - 1)
+    if(top1 == CAPCITY - 1) // queue is full condition
        return 1;
     else
       return 0;
@@ -337,7 +327,7 @@ int isFull1()
 
 int isFull2()
 {
-    if(top2 == CAPCITY - 1)
+    if(top2 == CAPCITY - 1) // stack2 is full condition
        return 1;
     else
       return 0;
@@ -351,7 +341,7 @@ int isFull2()
 
 int isEmpty()
 {
-    if (top1 == - 1 && top2 == -1) // if queue is empty
+    if (top1 == - 1 && top2 == -1) // queue is empty condition
         return 1;
     else
      return 0;
