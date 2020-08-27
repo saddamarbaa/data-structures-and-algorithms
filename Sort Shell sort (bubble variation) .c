@@ -1,4 +1,3 @@
-
 /**
     [PROGRAM] :  Shell Sort Algorithm (bubble sort variation)
     [AUTHOR]  :  Saddam Arbaa
