@@ -44,10 +44,10 @@ int front = -1;  //front of queue
 int rear = -1;  // real or tail of queue
 
 //Function to push(add) elements into Front of queue
-void enqueueFront(int element);
+void enqueueFront(int);
 
 //Function to push(add) elements into rear of queue
-void enqueueRear(int element);
+void enqueueRear(int);
 
 //Function to dequeue(Delete an item from front of dequeue)
 void dequeueFront();
@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
         printf("1 : enqueueFront : (push from front)          :\n");  // push from rear
         printf("2 : enqueueRear  : (push from Rear)           :\n");
         printf("3 : dequeueFront : (delete from front)        :\n");  // dequeue from front
-        printf("4 : dequeueRear  : (ddelete from rear)        :\n");   // dequeue from rear
+        printf("4 : dequeueRear  : (delete from rear)         :\n");   // dequeue from rear
         printf("5 : print all element in queue                :\n");
         printf("6 : getFront : (Gets front item in queue)     :\n");      //Gets the front item from queue.
         printf("7 : getRear  : (Gets last item in queue)      :\n");      // Gets the last item from queue.
