@@ -79,15 +79,15 @@ int main(int argc, char* argv[])
     int option, element; /* variable declarations */
     do
     {
-        printf("Double ended Queue implementation             :\n"); // push from front
+        printf("Double ended Queue Implementation             :\n"); // push from front
         printf("1 : enqueueFront : (push from front)          :\n");  // push from rear
         printf("2 : enqueueRear  : (push from Rear)           :\n");
-        printf("3 : dequeueFront : (dequeue from front)       :\n");  // dequeue from front
-        printf("4 : dequeueRear  : (dequeue from rear)        :\n");   // dequeue from rear
+        printf("3 : dequeueFront : (delete from front)        :\n");  // dequeue from front
+        printf("4 : dequeueRear  : (ddelete from rear)        :\n");   // dequeue from rear
         printf("5 : print all element in queue                :\n");
         printf("6 : getFront : (Gets front item in queue)     :\n");      //Gets the front item from queue.
         printf("7 : getRear  : (Gets last item in queue)      :\n");      // Gets the last item from queue.
-        printf("8 :clear queue:(delete all itrm in queue)     :\n");      //delete all the element in queue
+        printf("8 : clear queue:(delete all item in queue)    :\n");      //delete all the element in queue
         printf("0 : Enter 0 to exit (quit)                    :\n");
 
         // asking user to enter choice
@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
 
              // case 4 dequeue element from Rear of queue
              case 4:
-                 enqueueRear(element); // call enqueueRrear function
+                 dequeueRear(); // call dequeueRear function
              break;
 
              // case 5 traverse Queue and print it value
@@ -127,18 +127,25 @@ int main(int argc, char* argv[])
 
              // case 6 Gets the front item in queue
              case 6 :
-               element = getFront(); // call getFront()
-               if(element != -990)
-                  printf("the front element in Queue is -->  %d\n",element);
+                if (isEmpty()) // if queue is empty
+                     printf ("Queue Underflow!!!  \n");
+                else
+                {
+                    element = getFront(); // call getFront()
+                    printf("front element in is -->  %d\n",element);
+                }
               break;
 
               // case 7 Gets the Rear item in queue
               case 7 :
-
-               element = getRear(); // call getRear()
-               if(element != -990)
-                   printf("the Rear element in  Queue is -->  %d\n",element);
-              break;
+                if (isEmpty()) // if queue  empty
+                     printf ("Queue Underflow!!! \n");
+                else
+                {
+                    element = getRear(); // call getRear()
+                    printf("Rear element in is -->  %d\n",element);
+                }
+               break;
 
               // case 8 clear all the element in queue
               case 8:
@@ -171,12 +178,12 @@ void enqueueFront(int  element)
     //  if( (front == 0 && rear ==  CAPCITY - 1 ) ||( front == rear +1 ) )
     if(isFull()) // queue is full condition
     {
-        printf("Queue is Full!!(Queue Underflow)\n");
+        printf("Queue Overflow!!!\n");
         return;
     }
     // second cause if both front and rear == -1 is mean queue
     // is empty  move both of them to zero then add from front
-    if(isEmpty()) // queue is is empty condition
+    else if(isEmpty()) // queue is is empty condition
     {
         front = rear = 0;  // move both to = 0
         // now add from front
@@ -212,12 +219,12 @@ void enqueueRear(int element)
     //  if( (front == 0 && rear ==  CAPCITY - 1 ) ||( front == rear +1 ) )
     if(isFull()) // queue is full condition
     {
-        printf("Queue is Full!!(Queue Underflow)\n");
+        printf("Queue Overflow!!!\n");
         return;
     }
     // second cause if both front and rear == -1 is mean queue
     // is empty  move both of them to zero then add from Rear
-    if(isEmpty()) // queue is is empty condition
+    else if(isEmpty()) // queue is is empty condition
     {
         front = rear = 0;  // move both to = 0
         // now add from Rear
@@ -253,7 +260,7 @@ void dequeueFront()
     //if queue is empty then we dont have any element to dequeue
     if(isEmpty()) // queue is empty condition
     {
-       printf ("Queue is empty!!(Queue Underflow) \n");
+       printf ("Queue Underflow!!!  \n");
        return;
     }
 
@@ -294,7 +301,7 @@ void dequeueRear()
     //if queue is empty then we dont have any element to dequeue
     if(isEmpty()) // queue is empty condition
     {
-       printf ("Queue is empty!!(Queue Underflow) \n");
+       printf ("Queue Underflow!!! \n");
        return;
     }
 
@@ -356,7 +363,7 @@ int isEmpty()
 
 int isFull()
 {
-    if((front == 0 && rear ==  CAPCITY - 1 ) ||( front == rear +1 ))
+    if((front == 0 && rear ==  CAPCITY - 1 ) ||( front == rear + 1 ))
     //if ((rear + 1 ) % CAPCITY == front) // Circular Queue full case
         return 1;
     else // is not full
@@ -371,13 +378,11 @@ void printQueue()
 {
     if (isEmpty()) // if queue is already empty
     {
-        printf ("Queue is empty(Queue Underflow) \n");
+        printf ("Queue Underflow!!!  \n");
         return;
     }
-    
 
-    
-    int  i = front; // declare counter i at let start from front
+    int i = front; // declare counter i at let start from front
 
     /*
      while we dont reach rear print all element but this not include rear
@@ -389,13 +394,12 @@ void printQueue()
 
         // to make it circular we cant just do i = i + 1
         // we must set i = (i + 1) %  CAPCITY;
-        i = i + 1  % CAPCITY;
+         i = (i + 1) % CAPCITY;
     }
 
     /* after while loop now i == rear but we have one
        element left at last index let printed */
-
-    printf("%d\t\n", dequeue[rear]);  // also can be queue[front]
+     printf("%d\n",dequeue[rear]);  // also can be queue[front]
 
 } /**END of printQueue()*/
 
@@ -407,7 +411,7 @@ void clearQueue()
 {
     if (isEmpty()) // if queue is already empty
     {
-        printf ("Queue is empty(Queue Underflow) \n");
+        printf ("Queue Underflow!!!  \n");
         return;
     }
     else
@@ -429,9 +433,9 @@ int getFront()
 
 
 /** Utility function to return the Rear item from queue. */
+
 int getRear()
 {
+    return dequeue[rear]; // return Rear element in queue
 
-    return dequeue[front]; // return Rear element in queue
-
-} /** End of fron()() */
+} /** End of rear()() */
