@@ -27,14 +27,20 @@ void insert_At_Position(int, int);
 /* Function to add new node just before the given position */
 void insert_Before_Position(int, int);
 
-/* Function to add new node just aftere the given position */
+/* Function to add new node just after the given position */
 void insert_After_Position(int, int);
+
+/* Function to Delete node from the Beginning of linked list */
+void Delete_from_Beginning(void);
+
+/* Function to Delete node from the end of linked list */
+void Delete_from_End(void);
 
 /* function to traverse linked list and Print all element */
 void Traverse(void);
 
 /* function to find the length of linked list*/
-int length();
+int length(void);
 
 int main(int argc, char* argv[])    /* the river Code */
 {
@@ -48,7 +54,9 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("3 : Insert at position : insert new node to a specific position :\n");
         printf("4 : Insert after position : insert after a specific position    :\n");
         printf("5 : Insert Before position : insert Before a specific position  :\n");
-        printf("6 : Print all the element in linked list using loop             :\n");
+        printf("6 : Delete node from the Beginning of linked list               :\n");
+        printf("7 : Delete node from the End of linked list                     :\n");
+        printf("10 : Print all the element in linked list using loop             :\n");
         printf("11 : length of the linked list                                  :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
         // asking user to enter choice
@@ -97,14 +105,22 @@ int main(int argc, char* argv[])    /* the river Code */
                 insert_Before_Position(element, position);  // call insert_Before_Possition function
             break;
 
-            // case 6 traverse linked list and print it value using loop
+            // case 6 Delete node from the Beginning of linked list
             case 6 :
+                Delete_from_Beginning(); // call Delete_from_Beginning function
+            break;
+
+            // case 7 Delete node from the end of linked list
+            case 7 :
+                Delete_from_End(); // call Delete_from_End function
+            break;
+
+            // case 10 traverse linked list and print it value using loop
+            case 10 :
                  Traverse(); // call  Traverse function
             break;
 
-            case 7 :
 
-            break;
 
             case 8 :
 
@@ -169,10 +185,10 @@ void Append(int value)
 {
     // local variables of type struct node declaration */
     struct node *newNode, *temp;
-    
+
     // first step create the node
     newNode = CreateNewNode(value); // call function to create new nod (now node is ready to add)
-    
+
     if (first == NULL) /* check if list is empty then this node is the first node */
     {
         // insert as the first node in list
@@ -193,9 +209,9 @@ void Append(int value)
          temp -> next = newNode; // add at end of list
          printf("%d : is been inserted at end of list\n",value); // inform user the element is been inserted
     }
-    
+
     /** Time complexity of Append() is : O(N) */
-    
+
 } /** End of Append() */
 
 
@@ -216,9 +232,9 @@ void insert_At_Beginning(int value)
     }
     else
     {
-        /* if already some element are in the linked list we 
+        /* if already some element are in the linked list we
            have to add the new node at the Beginning of the list */
-         
+
          /** link changes */
          newNode -> next = first;   // right side connection first
          first = newNode;           // left side connection second
@@ -250,7 +266,7 @@ void insert_At_Position(int value, int position)
 
     else if(position > len || position <= 0) // invalid position case
     {
-        printf("invalid location\n");
+        printf("invalid location!!!\n");
         return; // we are done
     }
     else if(first != NULL && position == 1) /* case if list is not empty and position == 1 */
@@ -299,12 +315,12 @@ void insert_After_Position(int value, int position)
 
     if(position > len || position < 0) // invalid position case
     {
-        printf("invalid location\n");
+        printf("invalid location!!!\n");
         return; // we are done
     }
     else if(first == NULL) /* linked is empty Case */
     {
-        printf("linked list is empty\n");
+        printf("linked list is Empty!!!\n");
         return; // we are done
     }
 
@@ -345,10 +361,10 @@ void insert_Before_Position(int value, int position)
 
     if(position > len || position < 2) // invalid position case
     {
-        printf("invalid location\n");
+        printf("invalid location!!!\n");
         return; // we are done
     }
-    
+
     /*
     if already some element are in the linked list we have to first
     loop throw the linked list until position - 2 then add the new
@@ -358,7 +374,7 @@ void insert_Before_Position(int value, int position)
         temp = temp -> next;   // move temp to next node
         i++;                   // increment counter i by one
     }
-    /** link changes*/
+    /** link changes */
     newNode -> next = temp -> next; // right side connection first
     temp -> next = newNode;         // left side connection  second
     printf("%d : is been inserted at %d position \n",value, position - 1); // inform user the element is been inserted
@@ -366,6 +382,76 @@ void insert_Before_Position(int value, int position)
     /** Time complexity of insert_Before_Possition() is O(n) */
 
 } /** END of insert_Before_Possition() */
+
+
+/** A utility function to Delete node from the Beginning of linked list */
+
+void Delete_from_Beginning()
+{
+    struct node *temp; // local variables of type struct node declaration */
+    temp = first;      // temp is now point to head node
+    if (first == NULL) /*linked is empty Case*/
+    {
+        printf("linked list is Empty!!!\n");
+        return; // we are done
+    }
+
+    /** link changes */
+    printf("node --> %d is Will be Deleted\n",temp -> data); // inform user the job is about to done
+    first = temp -> next;      // right side connection first
+    temp -> next = NULL;        // connect temp -> next to NULL
+    free(temp);                 // now Delete temp using free() C function
+
+    /** Time complexity of Delete_from_Beginning() is : O(1) */
+
+} /** End of Delete_from_Beginning() */
+
+
+/** A utility function to Delete node from the end of linked list */
+
+void Delete_from_End()
+{
+    struct node *temp, *prves; // local variables of type struct node declaration */
+    temp  = first;             // temp is now point to head node
+
+    if (first == NULL) /*linked is empty Case*/
+    {
+        printf("linked list is Empty!!!\n");
+        return; // we are done
+    }
+     /*
+     by now we are sure list is not empty
+     so while we not yet reach NULL just go head and loop */
+     while(temp -> next != NULL)
+     {
+         // temp is only to uses in free memory proccess
+         prves = temp;          // save temp in prves
+         temp = temp -> next;    // move temp to next node
+     }
+      /*
+      after while loop if temp still equal to first(head node)
+      that is mean we have only node in list which is head its
+      self let just deleted */
+     if(temp == first) /* Case when we have only one node in the list */
+     {
+         /** link changes */
+         printf("node --> %d is Will be Deleted\n",temp -> data);
+         first = NULL; // right side connection first
+         free(temp);  // now Delete temp using free() C function
+     }
+     else   // we have more than one node in list
+     {
+         /** link changes */
+         printf("node --> %d is Will be Deleted\n",temp -> data);
+         prves -> next =  NULL;  // right side connection first
+         temp -> next = NULL;    // connect temp -> next to NULL
+         free(temp);           // now Delete temp using free() C function
+     }
+
+    /** Time complexity of Delete_from_End() is : O(N) */
+
+} /** End of Delete_from_End() */
+
 
 
 /** Utility function to traverse the linked list and print all the element */
@@ -376,7 +462,7 @@ void Traverse()
     temp = first;      // temp is now point to head node
     if(first == NULL) /* linked is empty Case */
     {
-        printf("linked list is empty\n");
+        printf("linked list is Empty!!!\n");
         return; // we are done
     }
      /*
@@ -389,7 +475,7 @@ void Traverse()
          temp = temp -> next;              // move temp to next node
      }
      printf("\n");
-    
+
     /** Time complexity of Traverse() is O(n) */
 
 } /** End of Traverse */
@@ -410,7 +496,7 @@ int length()
         temp = temp -> next;  // move temp to next node
     }
     return count; // return the number of node in list
-    
+
     /** Time complexity of length() is O(n) */
 
 } /** End of length */
