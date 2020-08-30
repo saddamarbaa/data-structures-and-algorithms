@@ -33,7 +33,7 @@ void insert_After_Position(int, int);
 /* Function to Delete node from the Beginning of linked list */
 void Delete_from_Beginning(void);
 
-/* Function to Delete node from the end of linked list */
+/* Function to Delete node from the end of linked list  */
 void Delete_from_End(void);
 
 /* Function to Delete node from a specific in linked list */
