@@ -1,3 +1,33 @@
+/**
+    [PROGRAM] :  A linked list Data Structure Complete Implementation
+                 (Singly Linked List)
+    [AUTHOR]  :  Saddam Arbaa
+    [Email]   :  <saddamarbaas@gmail.com>
+
+    C Program for Complete implementation of Singly Linked List data structure.
+
+    A linked list is a linear data structure, in which the elements
+    are not stored at contiguous memory locations.
+    The elements in a linked list are linked using pointers
+    (entity that point to the next element)
+
+     Reference in future :---->
+     1. https://youtu.be/dgRSvgW3wnM
+     2. https://youtu.be/PGWZUgzDMYI
+     3. https://youtu.be/HdFG8L1sajw
+     4. https://youtu.be/NobHlGUjV3g
+     4. https://youtu.be/lC-yYCOnN8Q
+     5. https://youtu.be/vcQIFT79_50
+     6. https://youtu.be/IJrQCCmuaqc
+     7. https://youtu.be/dmb1i4oN5oE
+     8. https://youtu.be/DWpVGpNfDmM
+     9. https://youtu.be/qauEA64G1Ds
+     10. https://youtu.be/6wXZ_m3SbEs
+     11. https://youtu.be/dq3F3e9o2DM
+     12. https://youtu.be/ClvYytk5Rlg
+     13. https://youtu.be/SbGRuk38MvI
+     14. https://youtu.be/Tk_fi5l8cag  */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -33,7 +63,7 @@ void insert_After_Position(int, int);
 /* Function to Delete node from the Beginning of linked list */
 void Delete_from_Beginning(void);
 
-/* Function to Delete node from the end of linked list  */
+/* Function to Delete node from the end of linked list */
 void Delete_from_End(void);
 
 /* Function to Delete node from a specific in linked list */
@@ -68,7 +98,7 @@ void Reverse_print_using_recursion(struct node* temp);
 int length(void);
 
 /* function to Reverse a linked list(Iterative method)*/
-void Reverse();
+void Reverse(void);
 
 /* function to Reverse a linked list(Recursive method)*/
 void Reverse_using_recursion(struct node* p);
@@ -95,7 +125,7 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("13: Traverse : Print all the element in list (Recursive method) :\n");
         printf("14: Traverse : Print element in Reverse order(Recursive method) :\n");
         printf("15: Reverse  : Reverse linked list(Iterative method)            :\n");
-         printf("15: Reverse  : Reverse linked list(Recursive method)           :\n");
+        printf("16: Reverse : Reverse linked list(Recursive method)             :\n");
         printf("17: length   : find length of the linked list                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
         // asking user to enter choice
