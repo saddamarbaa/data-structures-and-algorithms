@@ -56,8 +56,9 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("5 : Insert Before position : insert Before a specific position  :\n");
         printf("6 : Delete node from the Beginning of linked list               :\n");
         printf("7 : Delete node from the End of linked list                     :\n");
-        printf("10 : Print all the element in linked list using loop             :\n");
-        printf("11 : length of the linked list                                  :\n");
+        printf("8 : Delete node from a specific position                        :\n");
+        printf("10: Print all the element in linked list using loop             :\n");
+        printf("11: length of the linked list                                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
         // asking user to enter choice
         printf("input your choice                                               :");
@@ -115,15 +116,16 @@ int main(int argc, char* argv[])    /* the river Code */
                 Delete_from_End(); // call Delete_from_End function
             break;
 
+            // case 8 Delete node from specific position in list
+            case 8 :
+                printf("Enter the position to be deleted :");
+                scanf("%d",&position);
+                Delete_node_at_possition(position); // call Delete_node_at_possition function
+            break;
+
             // case 10 traverse linked list and print it value using loop
             case 10 :
                  Traverse(); // call  Traverse function
-            break;
-
-
-
-            case 8 :
-
             break;
 
             // case 11 length of the  linked list
@@ -368,7 +370,7 @@ void insert_Before_Position(int value, int position)
     /*
     if already some element are in the linked list we have to first
     loop throw the linked list until position - 2 then add the new
-    node at just abefore given position */
+    node at just before given position */
     while(i < position - 2)
     {
         temp = temp -> next;   // move temp to next node
@@ -451,6 +453,63 @@ void Delete_from_End()
     /** Time complexity of Delete_from_End() is : O(N) */
 
 } /** End of Delete_from_End() */
+
+
+/**
+   A utility function to Delete node from a specific
+   given position in linked list.(delete node in the middle
+    or last or even in first of the linked list */
+
+void Delete_node_at_possition(int position)
+{
+    int i, len;                  // local variable declaration
+    struct node *temp, *prves;   // local variables of type struct node declaration */
+    temp  = first;               // temp is now point to head node
+    len = length();              // call length() to get length of list
+    i = 1;                       // initialize counter i to one
+
+    if(position > len || position < 1) // invalid position case
+    {
+        printf("invalid location!!!\n");
+        return; // we are done
+    }
+    if (first == NULL)  /*linked is empty Case*/
+    {
+        printf("linked list is Empty!!!\n");
+        return; // we are done
+    }
+    /*
+    if given position is equal to one this mean at deleting node
+    at first position so we call Delete_from_Beginning() function
+    for help which always delete beginning node  */
+    if(position == 1)
+    {
+        Delete_from_Beginning(); // call Delete_from_Beginning() function for help
+
+    }
+    /*
+    if given position is equal to length this mean at deleting
+    node at last position so we call Delete_from_End() function
+    for help which always delete at end node  */
+    else if(position == len)
+    {
+        Delete_from_End(); // call  Delete_from_End() function for help
+
+    }
+    else
+    {
+        /*
+        by now we are sure node to be deleted is not at the
+        beginning and not at end of list its somewhere in the
+        middle so let loop first to find then is easy to delete */
+
+    }
+
+
+    /** Time complexity of Delete_node_at_possition() is : O(N) */
+
+} /** End of Delete_node_at_possition() */
+
 
 
 
