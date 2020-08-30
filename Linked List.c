@@ -494,7 +494,6 @@ void Delete_node_at_possition(int position)
     else if(position == len)
     {
         Delete_from_End(); // call  Delete_from_End() function for help
-
     }
     else
     {
@@ -502,9 +501,20 @@ void Delete_node_at_possition(int position)
         by now we are sure node to be deleted is not at the
         beginning and not at end of list its somewhere in the
         middle so let loop first to find then is easy to delete */
+        while(i < position)
+        {
+           // temp is only to uses in free memory proccess
+            prves = temp;          // save temp in prves
+            temp = temp -> next;   // move temp to next node
+            i++;                   // increment counter i by one
+        }
 
+        /** link changes */
+        printf("node --> %d is Will be Deleted\n",temp -> data);
+        prves -> next = temp -> next ;  // right side connection first
+        temp -> next = NULL;            // connect temp -> next to NULL
+        free(temp);                     // now Delete temp using free() C function
     }
-
 
     /** Time complexity of Delete_node_at_possition() is : O(N) */
 
