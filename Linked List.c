@@ -70,6 +70,9 @@ int length(void);
 /* function to Reverse a linked list(Iterative method)*/
 void Reverse();
 
+/* function to Reverse a linked list(Recursive method)*/
+void Reverse_using_recursion(struct node* p);
+
 int main(int argc, char* argv[])    /* the river Code */
 {
     int option, len, position, element;  /* variable declarations */
@@ -92,6 +95,7 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("13: Traverse : Print all the element in list (Recursive method) :\n");
         printf("14: Traverse : Print element in Reverse order(Recursive method) :\n");
         printf("15: Reverse  : Reverse linked list(Iterative method)            :\n");
+         printf("15: Reverse  : Reverse linked list(Recursive method)           :\n");
         printf("17: length   : find length of the linked list                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
         // asking user to enter choice
@@ -200,6 +204,11 @@ int main(int argc, char* argv[])    /* the river Code */
                  Reverse(); // call Reverse function
             break;
 
+            // case 16 Reverse linked list(Iterative method)
+            case 16 :
+                 Reverse_using_recursion(first); // callReverse_using_recursion function
+            break;
+
             // case 17 length of the  linked list
             case 17 :
                 len = length();  // call length function
@@ -219,9 +228,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
         } /** END of switch */
 
-
     }while(1);  /** END OF DO WHILE LOOP */
-
 
     return 0;// signal to operating system everything works fine
 
@@ -310,6 +317,7 @@ void insert_At_Beginning(int value)
            have to add the new node at the Beginning of the list */
 
          /** link changes */
+
          newNode -> next = first;   // right side connection first
          first = newNode;           // left side connection second
          printf("%d : is been inserted at the Beginning of list\n",value); // inform user the element is been inserted
@@ -363,6 +371,7 @@ void insert_At_Position(int value, int position)
         }
 
          /** link changes */
+
          newNode -> next = temp -> next; // right side connection first
          temp -> next = newNode;         // left side connection  second
          printf("%d : is been inserted at %d position \n",value, position); // inform user the element is been inserted
@@ -409,6 +418,7 @@ void insert_After_Position(int value, int position)
     }
 
     /** link changes*/
+
     newNode -> next = temp -> next; // right side connection first
     temp -> next = newNode;         // left side connection  second
     printf("%d : is been inserted at %d position \n",value, position + 1); // inform user the element is been inserted
@@ -815,6 +825,36 @@ void Reverse()
    /** Time complexity of Reverse() is O(n) */
 
 } /** End of Reverse */
+
+
+/** A utility function to Reverse a linked list using Recursion
+   (Recursive method)
+    Reference in Future
+   1. https://youtu.be/KYH83T4q6Vs */
+
+void Reverse_using_recursion(struct node* p)
+{
+    if(first == NULL)
+    {
+        printf("linked list is empty\n");
+        return ;
+    }
+
+    if(p -> next == NULL)//Exit condition
+    {
+        first = p; // Reverse first(head pointer) to point to last node
+        return ;
+    }
+
+    Reverse_using_recursion(p -> next); // Recursive call to move to next node  first
+                                        // until you reach last node
+    /** link changes */
+
+    struct  node * q = p -> next;  // Reverse process
+    q -> next = p;                // Reverse process
+    p -> next = NULL;            // Reverse process
+
+} /** End of Reverse_using_recursion */
 
 
 /** Utility function to traverse the linked list
