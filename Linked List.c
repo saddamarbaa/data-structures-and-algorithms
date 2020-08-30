@@ -54,6 +54,9 @@ void Traverse(void);
 /* function to find the length of linked list*/
 int length(void);
 
+/* function to Reverse a linked list(Iterative method)*/
+void Reverse();
+
 int main(int argc, char* argv[])    /* the river Code */
 {
     int option, len, position, element;  /* variable declarations */
@@ -73,7 +76,8 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("10: Delete node after a specific position                       :\n");
         printf("11: Remove   : remove node with the given value from list       :\n");
         printf("12: Traverse : Print all the element in linked list using loop  :\n");
-        printf("15: length   : find length of the linked list                   :\n");
+        printf("15: Reverse  : Reverse linked list(Iterative method)            :\n");
+        printf("17: length   : find length of the linked list                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
         // asking user to enter choice
         printf("input your choice                                               :");
@@ -164,8 +168,13 @@ int main(int argc, char* argv[])    /* the river Code */
                  Traverse(); // call  Traverse function
             break;
 
-            // case 15 length of the  linked list
+            // case 15 Reverse linked list(Iterative method)
             case 15 :
+                 Reverse(); // call Reverse function
+            break;
+
+            // case 17 length of the  linked list
+            case 17 :
                 len = length();  // call length function
                 if(len == 0)
                    printf("linked list is empty \n");
@@ -764,3 +773,45 @@ int length()
     /** Time complexity of length() is O(n) */
 
 } /** End of length */
+
+
+/** A utility function to Reverse a linked list (Iterative method)
+    Reference in Future
+   1. https://youtu.be/sYcOK51hl-A
+   2. https://youtu.be/Tk_fi5l8cag
+   3. https://youtu.be/wfdpJELzln4 */
+
+void Reverse()
+{
+    // local variables of type struct node declaration */
+    struct  node * current, *Previous, *nextNode;
+
+    Previous = NULL;  // for Previous node
+    current = first;  // for current node
+    nextNode = NULL;  // for next node
+
+    if(first == NULL) /* linked is empty Case */
+    {
+        printf("linked list is Empty!!!\n");
+        return; // we are done
+    }
+    while(current != NULL)
+    {
+        /** link changes */
+
+        nextNode = current -> next; // move nextNode point to next node
+        current -> next = Previous;  // Reverse current node
+        Previous = current;         // move Previous point to current node
+        current = nextNode;         // now move current point to next node
+
+        // after that go back and loop again
+    }
+    // after while loop now let first(head) point to last node
+
+    first = Previous;  // Reverse first(head pointer) to point to last node
+
+    printf("linked list is been Reversed\n"); // inform user the work is done
+
+   /** Time complexity of Reverse() is O(n) */
+
+} /** End of Reverse */
