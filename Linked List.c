@@ -48,8 +48,21 @@ void Delete_node_After_position(int);
 /* Function to Remove node with the given value from list */
 void Remove(int);
 
-/* function to traverse linked list and Print all element */
+// function to traverse linked list and Print
+// all element (Iterative method) */
 void Traverse(void);
+
+//  function to traverse linked list and Print
+//  all element (Recursive method) */
+void print_using_recursion(struct node* temp);
+
+//  function to traverse linked list and Print
+//  all element (Recursive method) */
+void print_using_recursion(struct node* temp);
+
+//  function to traverse linked list and Print all element
+//  in reverse order using recursion(Recursive method) */
+void Reverse_print_using_recursion(struct node* temp);
 
 /* function to find the length of linked list*/
 int length(void);
@@ -75,7 +88,9 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("9 : Delete node Before a specific position                      :\n");
         printf("10: Delete node after a specific position                       :\n");
         printf("11: Remove   : remove node with the given value from list       :\n");
-        printf("12: Traverse : Print all the element in linked list using loop  :\n");
+        printf("12: Traverse : Print all the element in list (Iterative method) :\n");
+        printf("13: Traverse : Print all the element in list (Recursive method) :\n");
+        printf("14: Traverse : Print element in Reverse order(Recursive method) :\n");
         printf("15: Reverse  : Reverse linked list(Iterative method)            :\n");
         printf("17: length   : find length of the linked list                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
@@ -163,9 +178,21 @@ int main(int argc, char* argv[])    /* the river Code */
                 Remove(element);   // call  Removee function
             break;
 
-            // case 12 traverse linked list and print it value using loop
+            // case 12 traverse linked list and Print all element(Iterative method)
             case 12 :
                  Traverse(); // call  Traverse function
+            break;
+
+            // case 13 traverse linked list and Print all element(Recursive method)
+            case 13 :
+                 print_using_recursion(first); // call  print_using_recursion function
+            break;
+
+            // case 14 traverse linked list and Print all element
+            // in reverse order using recursion(Recursive method)
+            case 14 :
+                 Reverse_print_using_recursion(first); // call  Reverse_print_using_recursion function
+                 printf("\n");
             break;
 
             // case 15 Reverse linked list(Iterative method)
@@ -727,33 +754,6 @@ void Remove(int value)
 } /** End of Removee() */
 
 
-/** Utility function to traverse the linked list and print all the element */
-
-void Traverse()
-{
-    struct node* temp; // local variable of type struct node declaration */
-    temp = first;      // temp is now point to head node
-    if(first == NULL) /* linked is empty Case */
-    {
-        printf("linked list is Empty!!!\n");
-        return; // we are done
-    }
-     /*
-     by now we are sure list is not empty
-     so while we not yet reach NULL print the value
-     of node first and set temp to point to the next node */
-     while(temp != NULL)
-     {
-         printf("%d --> ", temp -> data);  // print the value
-         temp = temp -> next;              // move temp to next node
-     }
-     printf("\n");
-
-    /** Time complexity of Traverse() is O(n) */
-
-} /** End of Traverse */
-
-
 /** A utility function to find the length of linked list */
 
 int length()
@@ -815,3 +815,74 @@ void Reverse()
    /** Time complexity of Reverse() is O(n) */
 
 } /** End of Reverse */
+
+
+/** Utility function to traverse the linked list
+    and print all the element(Iterative method)*/
+
+void Traverse()
+{
+    struct node* temp; // local variable of type struct node declaration */
+    temp = first;      // temp is now point to head node
+    if(first == NULL) /* linked is empty Case */
+    {
+        printf("linked list is Empty!!!\n");
+        return; // we are done
+    }
+     /*
+     by now we are sure list is not empty
+     so while we not yet reach NULL print the value
+     of node first and set temp to point to the next node */
+     while(temp != NULL)
+     {
+         printf("%d --> ", temp -> data);  // print the value
+         temp = temp -> next;              // move temp to next node
+     }
+     printf("\n");
+
+    /** Time complexity of Traverse() is O(n) */
+
+} /** End of Traverse */
+
+
+/**
+    Utility function to traverse the linked list and print
+    all the element recursion(Recursive method)
+
+    Reference in Future
+   1. https://youtu.be/K7J3nCeRC80  */
+
+void print_using_recursion(struct node* temp)
+{
+    if(temp == NULL) //Exit condition
+    {
+        printf("\n");
+         return;
+    }
+
+    // else cases
+    printf("%d -->", temp -> data);      // first print the in the node which is first node
+    print_using_recursion(temp -> next); // Recursive call to move to next node
+
+} /** End of print_using_recursion */
+
+
+/**
+    Utility function to traverse the linked list and print all the
+    element in reverse order using recursion(Recursive method)
+    Reference in Future
+   1. https://youtu.be/K7J3nCeRC80  */
+
+void Reverse_print_using_recursion(struct node* temp)
+{
+    if(temp == NULL) //Exit condition
+        return;
+
+    // else cases
+    Reverse_print_using_recursion(temp-> next); // Recursive call to move to next node first
+
+    printf("%d -->", temp -> data);  // after reach to last node and temp == NULL
+                                     // will start printing from last to first in reverse order
+
+} /** End of Reverse_print_using_recursion */
+
