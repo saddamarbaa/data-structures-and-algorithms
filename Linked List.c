@@ -42,6 +42,8 @@ void Delete_node_at_possition(int);
 /* Function to Delete node Before a specific in linked list */
 void Delete_node_Before_possition(int);
 
+/* Function to Delete node After a specific in linked list */
+void Delete_node_After_possition(int);
 
 /* function to traverse linked list and Print all element */
 void Traverse(void);
@@ -65,7 +67,8 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("7 : Delete node from the End of linked list                     :\n");
         printf("8 : Delete node from a specific position                        :\n");
         printf("9 : Delete node Before a specific position                      :\n");
-        printf("10: Print all the element in linked list using loop             :\n");
+        printf("10: Delete node after a specific position                       :\n");
+        printf("12: Print all the element in linked list using loop             :\n");
         printf("11: length of the linked list                                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
         // asking user to enter choice
@@ -138,8 +141,15 @@ int main(int argc, char* argv[])    /* the river Code */
                 Delete_node_Before_possition(position); // call Delete_Before_possition function
             break;
 
-            // case 10 traverse linked list and print it value using loop
+            // case 10 Delete node After specific position in list
             case 10 :
+                printf("Enter the position to be deleted :");
+                scanf("%d",&position);
+                Delete_node_After_possition(position); // call Delete_node_After_possition function
+            break;
+
+            // case 12 traverse linked list and print it value using loop
+            case 12 :
                  Traverse(); // call  Traverse function
             break;
 
@@ -596,6 +606,58 @@ void Delete_node_Before_possition(int position)
 
 } /** End of Delete_node_Before_possition() */
 
+
+/**
+   A utility function to Delete node which just After a specific
+   given position in linked list.(delete node in the middle
+    or last or even in first of the linked list */
+
+void Delete_node_After_possition(int position)
+{
+    int i, len;                  // local variable declaration
+    struct node *temp, *prves;   // local variables of type struct node declaration */
+    temp  = first;               // temp is now point to head node
+    len = length();              // call length() to get length of list
+    i = 1;                       // initialize counter i to one
+
+    if(position + 1 > len  || position < 0) // invalid position case
+    {
+        printf("invalid location!!!\n");
+        return; // we are done
+    }
+
+    /*
+    if given position is equal to zero this mean at deleting node
+    at first position so we call Delete_from_Beginning() function
+    for help which always delete beginning node  */
+    if(position == 0)
+    {
+        Delete_from_Beginning(); // call Delete_from_Beginning() function for help
+    }
+    else
+    {
+        /*
+        by now we are sure node to be deleted is not at the
+        beginning and not at end of list its somewhere in the
+        middle so let loop first to find then is easy to delete */
+        while(i < position + 1)
+        {
+            // temp is only to uses in free memory process
+            prves = temp;          // save temp in prves
+            temp = temp -> next;   // move temp to next node
+            i++;
+        }
+
+        /** link changes */
+        printf("node --> %d is Will be Deleted\n",temp -> data);
+        prves -> next = temp -> next;   // right side connection first
+        temp -> next = NULL;            // connect temp -> next to NULL
+        free(temp);                     // now Delete temp using free() C function
+    }
+
+    /** Time complexity of Delete_Before_possition() is : O(N) */
+
+} /** End of Delete_node_Before_possition() */
 
 
 /** Utility function to traverse the linked list and print all the element */
