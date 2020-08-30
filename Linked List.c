@@ -36,6 +36,13 @@ void Delete_from_Beginning(void);
 /* Function to Delete node from the end of linked list */
 void Delete_from_End(void);
 
+/* Function to Delete node from a specific in linked list */
+void Delete_node_at_possition(int);
+
+/* Function to Delete node Before a specific in linked list */
+void Delete_node_Before_possition(int);
+
+
 /* function to traverse linked list and Print all element */
 void Traverse(void);
 
@@ -57,6 +64,7 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("6 : Delete node from the Beginning of linked list               :\n");
         printf("7 : Delete node from the End of linked list                     :\n");
         printf("8 : Delete node from a specific position                        :\n");
+        printf("9 : Delete node Before a specific position                      :\n");
         printf("10: Print all the element in linked list using loop             :\n");
         printf("11: length of the linked list                                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
@@ -121,6 +129,13 @@ int main(int argc, char* argv[])    /* the river Code */
                 printf("Enter the position to be deleted :");
                 scanf("%d",&position);
                 Delete_node_at_possition(position); // call Delete_node_at_possition function
+            break;
+
+            // case 9 Delete node Before specific position in list
+            case 9 :
+                printf("Enter the position to be deleted :");
+                scanf("%d",&position);
+                Delete_node_Before_possition(position); // call Delete_Before_possition function
             break;
 
             // case 10 traverse linked list and print it value using loop
@@ -503,7 +518,7 @@ void Delete_node_at_possition(int position)
         middle so let loop first to find then is easy to delete */
         while(i < position)
         {
-           // temp is only to uses in free memory proccess
+            // temp is only to uses in free memory proccess
             prves = temp;          // save temp in prves
             temp = temp -> next;   // move temp to next node
             i++;                   // increment counter i by one
@@ -511,7 +526,7 @@ void Delete_node_at_possition(int position)
 
         /** link changes */
         printf("node --> %d is Will be Deleted\n",temp -> data);
-        prves -> next = temp -> next ;  // right side connection first
+        prves -> next = temp -> next;  // right side connection first
         temp -> next = NULL;            // connect temp -> next to NULL
         free(temp);                     // now Delete temp using free() C function
     }
@@ -520,6 +535,66 @@ void Delete_node_at_possition(int position)
 
 } /** End of Delete_node_at_possition() */
 
+
+/**
+   A utility function to Delete node which just Before a specific
+   given position in linked list.(delete node in the middle
+    or last or even in first of the linked list */
+
+void Delete_node_Before_possition(int position)
+{
+    int i, len;                  // local variable declaration
+    struct node *temp, *prves;   // local variables of type struct node declaration */
+    temp  = first;               // temp is now point to head node
+    len = length();              // call length() to get length of list
+    i = 1;                       // initialize counter i to one
+
+    if(position > len + 1 || position < 2) // invalid position case
+    {
+        printf("invalid location!!!\n");
+        return; // we are done
+    }
+    /*
+    if given position is equal to two this mean at deleting node
+    at first position so we call Delete_from_Beginning() function
+    for help which always delete beginning node  */
+    if(position == 2)
+    {
+        Delete_from_Beginning(); // call Delete_from_Beginning() function for help
+
+    }
+    /*
+    if given position is equal to length + 1 this mean at deleting
+    node at last position so we call Delete_from_End() function
+    for help which always delete at end node  */
+    else if(position + 1 == len)
+    {
+        Delete_from_End(); // call  Delete_from_End() function for help
+    }
+    else
+    {
+        /*
+        by now we are sure node to be deleted is not at the
+        beginning and not at end of list its somewhere in the
+        middle so let loop first to find then is easy to delete */
+        while(i < position - 1)
+        {
+            // temp is only to uses in free memory process
+            prves = temp;          // save temp in prves
+            temp = temp -> next;   // move temp to next node
+            i++;
+        }
+
+        /** link changes */
+        printf("node --> %d is Will be Deleted\n",temp -> data);
+        prves -> next = temp -> next;   // right side connection first
+        temp -> next = NULL;            // connect temp -> next to NULL
+        free(temp);                     // now Delete temp using free() C function
+    }
+
+    /** Time complexity of Delete_Before_possition() is : O(N) */
+
+} /** End of Delete_node_Before_possition() */
 
 
 
