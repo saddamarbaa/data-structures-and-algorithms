@@ -37,13 +37,16 @@ void Delete_from_Beginning(void);
 void Delete_from_End(void);
 
 /* Function to Delete node from a specific in linked list */
-void Delete_node_at_possition(int);
+void Delete_node_at_position(int);
 
 /* Function to Delete node Before a specific in linked list */
-void Delete_node_Before_possition(int);
+void Delete_node_Before_position(int);
 
 /* Function to Delete node After a specific in linked list */
-void Delete_node_After_possition(int);
+void Delete_node_After_position(int);
+
+/* Function to Remove node with the given value from list */
+void Remove(int);
 
 /* function to traverse linked list and Print all element */
 void Traverse(void);
@@ -68,8 +71,9 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("8 : Delete node from a specific position                        :\n");
         printf("9 : Delete node Before a specific position                      :\n");
         printf("10: Delete node after a specific position                       :\n");
-        printf("12: Print all the element in linked list using loop             :\n");
-        printf("11: length of the linked list                                   :\n");
+        printf("11: Remove   : remove node with the given value from list       :\n");
+        printf("12: Traverse : Print all the element in linked list using loop  :\n");
+        printf("15: length   : find length of the linked list                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
         // asking user to enter choice
         printf("input your choice                                               :");
@@ -131,21 +135,28 @@ int main(int argc, char* argv[])    /* the river Code */
             case 8 :
                 printf("Enter the position to be deleted :");
                 scanf("%d",&position);
-                Delete_node_at_possition(position); // call Delete_node_at_possition function
+                Delete_node_at_position(position); // call Delete_node_at_possition function
             break;
 
             // case 9 Delete node Before specific position in list
             case 9 :
                 printf("Enter the position to be deleted :");
                 scanf("%d",&position);
-                Delete_node_Before_possition(position); // call Delete_Before_possition function
+                Delete_node_Before_position(position); // call Delete_Before_possition function
             break;
 
             // case 10 Delete node After specific position in list
             case 10 :
                 printf("Enter the position to be deleted :");
                 scanf("%d",&position);
-                Delete_node_After_possition(position); // call Delete_node_After_possition function
+                Delete_node_After_position(position); // call Delete_node_After_possition function
+            break;
+
+            // case 11 Remove node with the given value from list
+            case 11 :
+                printf("Enter Value to be deleted :");
+                scanf("%d",&element);
+                Remove(element);   // call  Removee function
             break;
 
             // case 12 traverse linked list and print it value using loop
@@ -153,9 +164,9 @@ int main(int argc, char* argv[])    /* the river Code */
                  Traverse(); // call  Traverse function
             break;
 
-            // case 11 length of the  linked list
-            case 11 :
-                len = length();
+            // case 15 length of the  linked list
+            case 15 :
+                len = length();  // call length function
                 if(len == 0)
                    printf("linked list is empty \n");
                 else
@@ -485,7 +496,7 @@ void Delete_from_End()
    given position in linked list.(delete node in the middle
     or last or even in first of the linked list */
 
-void Delete_node_at_possition(int position)
+void Delete_node_at_position(int position)
 {
     int i, len;                  // local variable declaration
     struct node *temp, *prves;   // local variables of type struct node declaration */
@@ -551,7 +562,7 @@ void Delete_node_at_possition(int position)
    given position in linked list.(delete node in the middle
     or last or even in first of the linked list */
 
-void Delete_node_Before_possition(int position)
+void Delete_node_Before_position(int position)
 {
     int i, len;                  // local variable declaration
     struct node *temp, *prves;   // local variables of type struct node declaration */
@@ -612,7 +623,7 @@ void Delete_node_Before_possition(int position)
    given position in linked list.(delete node in the middle
     or last or even in first of the linked list */
 
-void Delete_node_After_possition(int position)
+void Delete_node_After_position(int position)
 {
     int i, len;                  // local variable declaration
     struct node *temp, *prves;   // local variables of type struct node declaration */
@@ -658,6 +669,53 @@ void Delete_node_After_possition(int position)
     /** Time complexity of Delete_Before_possition() is : O(N) */
 
 } /** End of Delete_node_Before_possition() */
+
+
+ /**
+ A utility function to remove node with the given value from list */
+
+void Remove(int value)
+{
+    struct node *temp, *prves;   // local variable of type struct node declaration */
+    temp = prves = first;        //temp and prves are now pointing to head node
+
+    if(first == NULL) /* linked is empty Case */
+    {
+        printf("linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(temp -> data == value)  // case when the given value its at first position */
+    {
+        Delete_from_Beginning();   // call Delete_from_Beginning function
+        return; // we are done
+    }
+
+    /*
+    by now we are sure node to be deleted is not at the
+    beginning  maybe its somewhere so let search it*/
+    while(temp != NULL && temp -> data != value )  // loop until find the value
+    {
+        // temp is only to uses in free memory process
+        prves = temp;          // save temp in prves
+        temp = temp -> next;   // move temp to next node
+    }
+
+    // after search if temp is NULL mean node is not found
+    if(temp == NULL)
+        printf("node --> %d not found\n", value);
+    else
+    {
+        /** link changes */
+
+        printf("node --> %d is Will be Deleted\n",temp -> data);
+        prves -> next = temp -> next;  // right side connection first
+        temp -> next = NULL;           // connect temp -> next to NULL
+        free(temp);                    // now Delete temp using free() C function
+    }
+
+    /** Time complexity of Removee is : O(N) */
+
+} /** End of Removee() */
 
 
 /** Utility function to traverse the linked list and print all the element */
