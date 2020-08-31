@@ -78,13 +78,13 @@ void Traverse(void);
 //  all element (Recursive method) */
 void print_using_recursion(struct Node* temp);
 
-//  function to traverse linked list and Print
-//  all element (Recursive method) */
-void print_using_recursion(struct Node* temp);
-
 //  function to traverse linked list and Print all element
 //  in reverse order using recursion(Recursive method) */
 void Reverse_print_using_recursion(struct Node* temp);
+
+//  function to traverse linked list and Print all element
+//  in reverse order using loop(Iterative method)  */
+void Reverse_print_using_loop();
 
 /* function to find the length of linked list*/
 int length(void);
@@ -116,9 +116,10 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("12: Traverse : Print all the element in list (Iterative method) :\n");
         printf("13: Traverse : Print all the element in list (Recursive method) :\n");
         printf("14: Traverse : Print element in Reverse order(Recursive method) :\n");
-        printf("15: Reverse  : Reverse linked list(Iterative method)            :\n");
-        printf("16: Reverse : Reverse linked list(Recursive method)             :\n");
-        printf("17: length   : find length of the linked list                   :\n");
+        printf("15: Traverse : Print element in Reverse order(Iterative method) :\n");
+        printf("16: Reverse  : Reverse linked list(Iterative method)            :\n");
+        printf("17: Reverse : Reverse linked list(Recursive method)             :\n");
+        printf("18: length   : find length of the linked list                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
         // asking user to enter choice
         printf("input your choice                                               :");
@@ -221,18 +222,26 @@ int main(int argc, char* argv[])    /* the river Code */
                 printf("\n");
             break;
 
-            // case 15 Reverse linked list(Iterative method)
+            // case 15 traverse linked list and Print all element
+            // in reverse order using loop(Iterative method)
             case 15 :
-                // Reverse(); // call Reverse function
+                Reverse_print_using_loop(); // call  Reverse_print_using_loop function
+                printf("\n");
             break;
+
 
             // case 16 Reverse linked list(Iterative method)
             case 16 :
+                // Reverse(); // call Reverse function
+            break;
+
+            // case 17 Reverse linked list(Iterative method)
+            case 17 :
                 // Reverse_using_recursion(first); // callReverse_using_recursion function
             break;
 
-            // case 17 length of the  linked list
-            case 17 :
+            // case 18 length of the  linked list
+            case 18 :
                 len = length();  // call length function
                 if(len == 0)
                    printf("linked list is empty \n");
@@ -938,3 +947,37 @@ void Reverse_print_using_recursion(struct Node* temp)
                                      // will start printing from last to first in reverse order
 
 } /** End of Reverse_print_using_recursion */
+
+
+/**
+    Utility function to traverse the linked list and print all the
+    element in reverse order using loop((Iterative method)) */
+
+void Reverse_print_using_loop()
+{
+    struct Node* temp; // local variable of type struct node declaration */
+    temp = Head;      // temp is now point to head node
+
+    if(Head == NULL) /* linked is empty Case */
+    {
+        printf("Doubly linked list is Empty!!!\n");
+        return; // we are done
+    }
+    /*
+    by now we are sure list is not empty
+    so while we not yet reach NULL move temp to temp -> next */
+    while(temp -> next != NULL)
+         temp = temp -> next;   // move temp to next node
+
+    /*
+    by now we are at last node , the idea is to go back until reach
+    head pointer so while we not yet reach head pointer
+    first print the node and move temp to temp -> prev */
+     while(temp != NULL)
+     {
+         printf("%d --> ", temp -> data);  // print the value
+         temp = temp -> prev;              // move temp to prev node
+     }
+     printf("\n");
+
+} /**End of Reverse_print_using_loop */
