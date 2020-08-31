@@ -31,7 +31,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* A linked list node */
+/* A linked list node  */
 struct node
 {
     int data;  /* data filed */
