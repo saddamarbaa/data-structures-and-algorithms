@@ -65,7 +65,7 @@ void Delete_node_at_position(int);
 void Delete_node_Before_position(int);
 
 /* Function to Delete node After a specific in linked list */
-//void Delete_node_After_position(int);
+void Delete_node_After_position(int);
 
 /* Function to Remove node with the given value from list */
 //void Remove(int);
@@ -194,7 +194,7 @@ int main(int argc, char* argv[])    /* the river Code */
             case 10 :
                 printf("Enter the position to be deleted :");
                 scanf("%d",&position);
-               // Delete_node_After_position(position); // call Delete_node_After_possition function
+                Delete_node_After_position(position); // call Delete_node_After_possition function
             break;
 
             // case 11 Remove node with the given value from list
@@ -675,7 +675,7 @@ void Delete_node_Before_position(int position)
     temp  = Head;       //  temp is now point to head node
     len = length();     //  call length() to get length of list
     i = 1;               // initialize counter i to one
-    
+
     if (Head == NULL)  /* linked is empty Case*/
     {
         printf("Doubly linked list is Empty!!!\n");
@@ -728,6 +728,73 @@ void Delete_node_Before_position(int position)
     /** Time complexity of Delete_Before_possition() is : O(N) */
 
 } /** End of Delete_node_Before_possition() */
+
+
+/**
+   A utility function to Delete node which just After a specific
+   given position in linked list.(delete node in the middle
+    or last or even in first of the linked list */
+
+void Delete_node_After_position(int position)
+{
+    int i, len;          // local variable declaration
+    struct Node *temp;  //  local variables of type struct node declaration */
+    temp  = Head;       //  temp is now point to head node
+    len = length();     //  call length() to get length of list
+    i = 1;               // initialize counter i to one
+
+    if (Head == NULL)  /* linked is empty Case*/
+    {
+        printf("Doubly linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(position  > len - 1 || position < 0) // invalid position case
+    {
+        printf("invalid location!!!\n");
+        return; // we are done
+    }
+    /*
+    if given position is equal to zero this mean at deleting node
+    at first position so we call Delete_from_Beginning() function
+    for help which always delete beginning node  */
+    if(position == 0)
+    {
+        Delete_from_Beginning(); // call Delete_from_Beginning() function for help
+        return; // we are done
+    }
+    /*
+    if given position is equal to length - 1 this mean at deleting
+    node at last position so we call Delete_from_End() function
+    for help which always delete at end node  */
+    else if(position  == len - 1)
+    {
+        Delete_from_End(); // call  Delete_from_End() function for help
+        return; // we are done
+    }
+
+    /*
+    by now we are sure node to be deleted is not at the
+    beginning and not at end of list its somewhere in the
+    middle so let loop first to find then is easy to delete */
+    while(i < position + 1)
+    {
+        // temp is only to uses in free memory process
+        temp = temp -> next;   // move temp to next node
+        i++;                   // increment counter i by one
+    }
+
+    /** link changes */
+
+    printf("node --> %d is Will be Deleted\n",temp -> data);
+    temp -> prev -> next = temp -> next;  // right side connection first
+    temp -> next -> prev = temp -> prev;  // left side connection first
+    temp -> next = NULL;  // assign temp -> next to NULL(this not have to)
+    temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
+    free(temp);          // now Delete temp using free() C function
+
+    /** Time complexity of Delete_node_After_position() is : O(N) */
+
+} /** End of Delete_node_After_position() */
 
 
 /** Utility function to traverse the linked list
