@@ -1,11 +1,10 @@
-
 /**
     [PROGRAM] : Doubly linkedlist Data Structure Complete Implementation
 
     [AUTHOR]  :  Saddam Arbaa
     [Email]   :  <saddamarbaas@gmail.com>
 
-    C Program for Complete implementation of Doubly linkedlist data structure.
+    C Program for Complete implementation of Doubly linked list data structure.
 
     A linked list is a linear data structure, in which the elements
     are not stored at contiguous memory locations.
@@ -19,11 +18,7 @@
      4. https://youtu.be/H8-IuKKiQeo
      5. https://youtu.be/v4szCPs9yEY
      6. https://youtu.be/7yNUXcOcHwE
-     7. https://youtu.be/_6JI9XdO8nM
-
-
-
- */
+     7. https://youtu.be/_6JI9XdO8nM */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -61,7 +56,7 @@ void insert_Before_Position(int, int);
 void Delete_from_Beginning(void);
 
 /* Function to Delete node from the end of linked list */
-//void Delete_from_End(void);
+void Delete_from_End(void);
 
 /* Function to Delete node from a specific in linked list */
 //void Delete_node_at_position(int);
@@ -178,7 +173,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 7 Delete node from the end of linked list
             case 7 :
-               // Delete_from_End(); // call Delete_from_End function
+               Delete_from_End(); // call Delete_from_End function
             break;
 
             // case 8 Delete node from specific position in list
@@ -552,6 +547,45 @@ void Delete_from_Beginning()
     /** Time complexity of Delete_from_Beginning() is : O(1) */
 
 } /** End of Delete_from_Beginning() */
+
+
+/** A utility function to Delete node from the end of linked list */
+
+void Delete_from_End()
+{
+    struct Node *temp; // local variables of type struct node declaration */
+    temp  = Head;      // temp is now point to head node
+
+    if (Head == NULL) /*linked is empty Case*/
+    {
+        printf("Doubly linked list is Empty!!!\n");
+        return; // we are done
+    }
+    // if having only one node in linked list delete that node
+    // and assign head to NULL is mean delete from beginning
+    else if(temp -> next == NULL && temp -> prev == NULL)
+        Delete_from_Beginning(); // call Delete_from_Beginning() for help
+    else
+    {
+         /*
+         by now we are sure list is not empty and have more than one node
+         let loop ( while we not yet reach NULL just go head and loop )*/
+        while(temp -> next != NULL)
+        {
+            // temp is only to uses in free memory process
+            temp = temp -> next;    // move temp to next node
+        }
+
+        /** link changes */
+        printf("node --> %d is Will be Deleted\n",temp -> data);
+        temp -> prev -> next =  NULL;  // right side connection first
+        temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
+        free(temp);           // now Delete temp using free() C function
+    }
+
+    /** Time complexity of Delete_from_End() is : O(N) */
+
+} /** End of Delete_from_End() */
 
 
 /** Utility function to traverse the linked list
