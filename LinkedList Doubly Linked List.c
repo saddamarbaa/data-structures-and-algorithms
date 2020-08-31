@@ -59,7 +59,7 @@ void Delete_from_Beginning(void);
 void Delete_from_End(void);
 
 /* Function to Delete node from a specific in linked list */
-//void Delete_node_at_position(int);
+void Delete_node_at_position(int);
 
 /* Function to Delete node Before a specific in linked list */
 //void Delete_node_Before_position(int);
@@ -180,7 +180,7 @@ int main(int argc, char* argv[])    /* the river Code */
             case 8 :
                 printf("Enter the position to be deleted :");
                 scanf("%d",&position);
-                //Delete_node_at_position(position); // call Delete_node_at_possition function
+                Delete_node_at_position(position); // call Delete_node_at_possition function
             break;
 
             // case 9 Delete node Before specific position in list
@@ -317,7 +317,11 @@ void Append(int value)
         printf("%d : is been inserted at end of list\n",value); // inform user the element is been inserted
     }
 
-    /** Time complexity of Append() is : O(N) */
+    /** 
+    Time complexity of Append() is : O(N) 
+    but if we have maintain one more variable tail pointer 
+    to point to last nod while creating linked list then time 
+    complexity of insert node at end will be O(1) */
 
 } /** End of Append() */
 
@@ -583,9 +587,80 @@ void Delete_from_End()
         free(temp);           // now Delete temp using free() C function
     }
 
-    /** Time complexity of Delete_from_End() is : O(N) */
+    /** 
+    Time complexity of Delete_from_End() is : O(N) 
+    but if we have maintain one more variable tail pointer 
+    to point to last nod while creating linked list then time 
+    complexity of deleting node at end will be O(1) */
 
 } /** End of Delete_from_End() */
+
+
+/**
+   A utility function to Delete node from a specific
+   given position in linked list.(delete node in the middle
+    or last or even in first of the linked list */
+
+void Delete_node_at_position(int position)
+{
+    int i, len;          // local variable declaration
+    struct Node *temp;   // local variables of type struct node declaration */
+    temp  = Head;      // temp is now point to head node
+    len = length();    // call length() to get length of list
+    i = 1;            // initialize counter i to one
+
+    if (Head == NULL)  /* linked is empty Case*/
+    {
+        printf("Doubly linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(position > len || position < 1) // invalid position case
+    {
+        printf("invalid position!!!\n");
+        return; // we are done
+    }
+    /*
+    if given position is equal to one this mean at deleting node
+    at first position so we call Delete_from_Beginning() function
+    for help which always delete beginning node  */
+    else if(position == 1)
+    {
+        Delete_from_Beginning(); // call Delete_from_Beginning() function for help
+        return; // we are done
+    }
+    /*
+    if given position is equal to length this mean at deleting
+    node at last position so we call Delete_from_End() function
+    for help which always delete at end node  */
+    else if(position == len)
+    {
+        Delete_from_End(); // call  Delete_from_End() function for help
+        return; // we are done
+    }
+
+    /*
+    by now we are sure node to be deleted is not at the
+    beginning and not at end of list its somewhere in the
+    middle so let loop first to find then is easy to delete */
+    while(i < position)
+    {
+        // temp is only to uses in free memory process
+        temp = temp -> next;   // move temp to next node
+        i++;                   // increment counter i by one
+    }
+
+    /** link changes */
+    
+    printf("node --> %d is Will be Deleted\n",temp -> data);
+    temp -> prev -> next = temp -> next;  // right side connection first
+    temp -> next -> prev = temp -> prev;  // left side connection first
+    temp -> next = NULL;  // assign temp -> next to NULL(this not have to)
+    temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
+    free(temp);          // now Delete temp using free() C function
+
+    /** Time complexity of Delete_node_at_possition() is : O(N) */
+
+} /** End of Delete_node_at_possition() */
 
 
 /** Utility function to traverse the linked list
