@@ -68,7 +68,7 @@ void Delete_node_Before_position(int);
 void Delete_node_After_position(int);
 
 /* Function to Remove node with the given value from list */
-//void Remove(int);
+void Remove(int);
 
 // function to traverse linked list and Print
 // all element (Iterative method) */
@@ -201,7 +201,7 @@ int main(int argc, char* argv[])    /* the river Code */
             case 11 :
                 printf("Enter Value to be deleted :");
                 scanf("%d",&element);
-               // Remove(element);   // call  Removee function
+                Remove(element);   // call  Removee function
             break;
 
             // case 12 traverse linked list and Print all element(Iterative method)
@@ -795,6 +795,58 @@ void Delete_node_After_position(int position)
     /** Time complexity of Delete_node_After_position() is : O(N) */
 
 } /** End of Delete_node_After_position() */
+
+
+/**
+ A utility function to remove node with the given value from list */
+
+void Remove(int value)
+{
+    struct Node *temp;  // local variable of type struct node declaration */
+    temp =  Head;       //temp is now pointing to head node
+
+    if (Head == NULL)  /* linked is empty Case*/
+    {
+        printf("Doubly linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(temp -> data == value)  // case when the given value its at first position */
+    {
+        Delete_from_Beginning();   // call Delete_from_Beginning function
+        return; // we are done
+    }
+
+    /*
+    by now we are sure node to be deleted is not at the
+    beginning  maybe its somewhere so let search it*/
+    while(temp != NULL && temp -> data != value )  // loop until find the value
+    {
+        // temp is only to uses in free memory process
+        temp = temp -> next;   // move temp to next node
+    }
+
+    // after search if temp is NULL mean node is not found
+    if(temp == NULL)
+       printf("node --> %d not found\n", value);
+
+    // case when the given value is last node */
+    else if(temp -> next == NULL && temp -> data == value)
+          Delete_from_End(); // call Delete_from_End() function
+    else
+    {
+        /** link changes */
+
+        printf("node --> %d is Will be Deleted\n",temp -> data);
+        temp -> prev -> next = temp -> next;  // right side connection first
+        temp -> next -> prev = temp -> prev;  // left side connection first
+        temp -> next = NULL;  // assign temp -> next to NULL(this not have to)
+        temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
+        free(temp);          // now Delete temp using free() C function
+    }
+
+    /** Time complexity of Removee is : O(N) */
+
+} /** End of Removee() */
 
 
 /** Utility function to traverse the linked list
