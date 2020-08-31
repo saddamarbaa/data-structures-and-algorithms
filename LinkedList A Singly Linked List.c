@@ -86,10 +86,6 @@ void Traverse(void);
 //  all element (Recursive method) */
 void print_using_recursion(struct node* temp);
 
-//  function to traverse linked list and Print
-//  all element (Recursive method) */
-void print_using_recursion(struct node* temp);
-
 //  function to traverse linked list and Print all element
 //  in reverse order using recursion(Recursive method) */
 void Reverse_print_using_recursion(struct node* temp);
