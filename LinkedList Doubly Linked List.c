@@ -18,7 +18,9 @@
      4. https://youtu.be/H8-IuKKiQeo
      5. https://youtu.be/v4szCPs9yEY
      6. https://youtu.be/7yNUXcOcHwE
-     7. https://youtu.be/_6JI9XdO8nM */
+     7. https://youtu.be/_6JI9XdO8nM
+     8. https://youtu.be/wfdpJELzln4
+     9. https://youtu.be/ILIjoAsF-zI*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -90,7 +92,7 @@ void Reverse_print_using_loop();
 int length(void);
 
 /* function to Reverse a linked list(Iterative method)*/
-//void Reverse(void);
+void Reverse(void);
 
 /* function to Reverse a linked list(Recursive method)*/
 void Reverse_using_recursion(struct Node* p);
@@ -229,10 +231,9 @@ int main(int argc, char* argv[])    /* the river Code */
                 printf("\n");
             break;
 
-
             // case 16 Reverse linked list(Iterative method)
             case 16 :
-                // Reverse(); // call Reverse function
+                Reverse(); // call Reverse function
             break;
 
             // case 17 Reverse linked list(Iterative method)
@@ -857,6 +858,69 @@ void Remove(int value)
 
 } /** End of Removee() */
 
+/** A utility function to Reverse a linked list (Iterative method)
+    Reference in Future
+   1. https://youtu.be/_6JI9XdO8nM
+   2. https://youtu.be/sYcOK51hl-A
+   3. https://youtu.be/Tk_fi5l8cag
+   4. https://youtu.be/wfdpJELzln4 */
+
+void Reverse()
+{
+    // local variables of type struct node declaration */
+    struct  Node *current, *Previous, *nextNode;
+
+    Previous = NULL;  // for Previous node(only to keep address of last node)
+    current = Head;   // for current node
+    nextNode = NULL;  // for next node
+
+    if(Head == NULL) /* linked is empty Case */
+    {
+        printf("Doubly linked list is Empty!!!\n");
+        return; // we are done
+    }
+    while(current != NULL)
+    {
+        /** link changes */
+        nextNode = current -> next;    // move nextNode point to next node
+        current -> next = current -> prev; //swap between current -> next and current -> prev
+        current -> prev = nextNode;        ////swap between current -> next and current -> prev
+        Previous = current;      // I use Previous only to get address of last node and assgin to head pointer
+        current = nextNode;   // move current to next until you reach null which is end of list
+
+        // after that go back and loop again
+    }
+    // after while loop now let head) point to last node
+
+    Head = Previous;  // Reverse (head pointer) to point to last node
+
+    printf("Doubly linked list is been Reversed\n"); // inform user the work is done
+
+   /** Time complexity of Reverse() is O(n) */
+
+} /** End of Reverse */
+
+
+/** A utility function to find the length of linked list */
+
+int length()
+{
+    int count = 0;     // local counter variable declaration and initializations to zero
+    struct Node* temp; // local variable of type struct node declaration */
+    temp = Head;      // temp is now point to head node
+
+    /* while not yet reach NULL count the number of nodes in list */
+    while(temp != NULL)
+    {
+        count++;              // increment count
+        temp = temp -> next;  // move temp to next node
+    }
+    return count; // return the number of node in list
+
+    /** Time complexity of length() is O(n) */
+
+} /** End of length */
+
 
 /** Utility function to traverse the linked list
     and print all the element(Iterative method)*/
@@ -885,27 +949,6 @@ void Traverse()
     /** Time complexity of Traverse() is O(n) */
 
 } /** End of Traverse */
-
-
-/** A utility function to find the length of linked list */
-
-int length()
-{
-    int count = 0;     // local counter variable declaration and initializations to zero
-    struct Node* temp; // local variable of type struct node declaration */
-    temp = Head;      // temp is now point to head node
-
-    /* while not yet reach NULL count the number of nodes in list */
-    while(temp != NULL)
-    {
-        count++;              // increment count
-        temp = temp -> next;  // move temp to next node
-    }
-    return count; // return the number of node in list
-
-    /** Time complexity of length() is O(n) */
-
-} /** End of length */
 
 
 /**
