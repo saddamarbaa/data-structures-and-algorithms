@@ -11,6 +11,12 @@
     The elements in a linked list are linked using pointers
     (entity that point to the next element)
 
+    Doubly Linked list is a type of Linked List Data structure
+    in which a node contain of three parts(filed)
+    (1) node data,
+    (2) pointer to the next node (next pointer)
+    (3) pointer to the previous node(previous pointer).
+
      Reference in future :---->
      1. https://youtu.be/JdQeNxWCguQ
      2. https://youtu.be/VOQNf1VxU3Q
@@ -245,9 +251,9 @@ int main(int argc, char* argv[])    /* the river Code */
             case 18 :
                 len = length();  // call length function
                 if(len == 0)
-                   printf("linked list is empty \n");
+                   printf("Doubly linked list is Empty!!!\n");
                 else
-                  printf("length is  : %d\n", len);
+                   printf("length is  : %d\n", len);
             break;
 
             case 0 :  /* case 0 Exit case */
@@ -408,6 +414,7 @@ void insert_At_Position(int value, int position)
         }
 
         /** link changes */
+
         newNode -> next = temp -> next;  // right side connection first
         temp -> next -> prev = newNode;     // right side connection first
         newNode -> prev = temp;          // left side connection second
@@ -437,7 +444,7 @@ void insert_After_Position(int value, int position)
 
     if(Head == NULL) /* linked is empty Case */
     {
-        printf("linked list is Empty!!!\n");
+        printf("Doubly linked list is Empty!!!\n");
         return; // we are done
     }
     else if(position  > len || position < 1) // invalid position case
@@ -463,6 +470,7 @@ void insert_After_Position(int value, int position)
     }
 
     /** link changes */
+
     newNode -> next = temp -> next;  // right side connection first
     temp -> next -> prev = newNode;   // right side connection first
     newNode -> prev = temp;          //  left side connection second
@@ -493,7 +501,7 @@ void insert_Before_Position(int value, int position)
 
     if(Head == NULL) /* linked is empty Case */
     {
-        printf("linked list is Empty!!!\n");
+        printf("Doubly linked list is Empty!!!\n");
         return; // we are done
     }
     else if(position > len || position < 2) // invalid position case
@@ -518,6 +526,7 @@ void insert_Before_Position(int value, int position)
     }
 
     /** link changes */
+
     newNode -> next = temp -> next;  // right side connection first
     temp -> next -> prev = newNode;   // right side connection first
     newNode -> prev = temp;          //  left side connection second
@@ -551,6 +560,7 @@ void Delete_from_Beginning()
     else  // by now we are sure list have more than one node
     {
         /** link changes */
+
         printf("node --> %d is Will be Deleted\n",temp -> data); // inform user the job is about to done
         Head = Head -> next;  // right side connection first
         Head -> prev = NULL;  // left side connection second
@@ -591,6 +601,7 @@ void Delete_from_End()
         }
 
         /** link changes */
+
         printf("node --> %d is Will be Deleted\n",temp -> data);
         temp -> prev -> next =  NULL;  // right side connection first
         temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
@@ -901,6 +912,7 @@ void Reverse()
 
 } /** End of Reverse */
 
+
 /** A utility function to Reverse a linked list using Recursion
    (Recursive method)
     Reference in Future
@@ -918,6 +930,7 @@ void Reverse_using_recursion(struct Node* curentNode)
     nextNode = curentNode -> next; // nextNode is now pointing to nextNode
 
     /** link changes */
+
     curentNode -> next = curentNode -> prev; //swap between current -> next and current -> prev
     curentNode -> prev = nextNode;          //swap between current -> next and current -> prev
     // this node is been Reverse now move to next node
