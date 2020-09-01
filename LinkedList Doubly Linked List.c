@@ -238,7 +238,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 17 Reverse linked list(Iterative method)
             case 17 :
-                // Reverse_using_recursion(first); // callReverse_using_recursion function
+                Reverse_using_recursion(Head); // callReverse_using_recursion function
             break;
 
             // case 18 length of the  linked list
@@ -858,6 +858,7 @@ void Remove(int value)
 
 } /** End of Removee() */
 
+
 /** A utility function to Reverse a linked list (Iterative method)
     Reference in Future
    1. https://youtu.be/_6JI9XdO8nM
@@ -899,6 +900,52 @@ void Reverse()
    /** Time complexity of Reverse() is O(n) */
 
 } /** End of Reverse */
+
+/** A utility function to Reverse a linked list using Recursion
+   (Recursive method)
+    Reference in Future
+   1. https://youtu.be/KYH83T4q6Vs */
+
+void Reverse_using_recursion(struct Node* curentNode)
+{
+    if (Head == NULL)  /* linked is empty Case*/
+    {
+        printf("Doubly linked list is Empty!!!\n");
+        return; // we are done
+    }
+
+    struct  Node *nextNode;         /* local variables of type struct node declaration */
+    nextNode = curentNode -> next; // nextNode is now pointing to nextNode
+
+    /** link changes */
+    curentNode -> next = curentNode -> prev; //swap between current -> next and current -> prev
+    curentNode -> prev = nextNode;          //swap between current -> next and current -> prev
+    // this node is been Reverse now move to next node
+
+    if (curentNode -> prev == NULL) // first Exit condition(case when list have only node)
+    {
+        printf("Doubly linked list is have only one Node\n");
+        return;
+    }
+    else if(nextNode -> next == NULL)// second Exit condition(last node)
+    {
+        /**
+        now we are in last node and  all the other node are been Reverse
+        so let Reverse this one also after move head to point to this last node */
+
+        /* link changes */
+        nextNode -> next = nextNode -> prev; // swap between lastNode -> next and lastNode -> prev
+        nextNode ->prev = NULL;              // swap between lastNode -> next and lastNode -> prev
+        Head = nextNode;                     // Reverse (head pointer) to point to last node
+        printf("Doubly linked list is been Reversed\n"); // inform user the work is done
+        return;  // we are done
+    }
+
+    // else cases
+    Reverse_using_recursion(curentNode -> prev); //Recursive call to move to next node  first
+
+
+} /** End of Reverse_using_recursion */
 
 
 /** A utility function to find the length of linked list */
