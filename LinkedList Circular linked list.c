@@ -98,7 +98,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
     do
     {
-        printf("Doubly linkedlist Implementation(All Linked List Operations)   :\n");
+        printf("Circular LinkedList Implementation(All Linked List Operations)   :\n");
         printf("1 : Append  : insert new node to the end of list                :\n");
         printf("2 : Prepend : insert new node to the beginning of list          :\n");
         printf("3 : Insert at position : insert new node to a specific position :\n");
@@ -127,7 +127,7 @@ int main(int argc, char* argv[])    /* the river Code */
             case 1 :
                 printf("Enter element to be inserted at the end  :");
                 scanf("%d",&element);
-               // Append(element); // call append function
+                Append(element); // call append function
             break;
 
             // case 2 insert new node to the the beginning of list
@@ -312,13 +312,50 @@ void insert_At_Beginning(int value)
 
          newNode -> next = last -> next;    // right side connection first
          last -> next = newNode;           // make it Circular List last nod is now point to first node
+         // last node next alway have the address of head(first) so is a circular linked list
          printf("%d : is been inserted at the Beginning of list\n",value); // inform user the element is been inserted
-         printf("%d : is last -> next -> data\n", last -> next -> data); // inform user everything is ok
+         printf("%d : Confirm if the linked list is circular list  \n",last -> next -> data); // inform user everything is ok
     }
 
     /** Time complexity of insert_at_Begining() is  : O(1) */
 
 } /** End of insert_at_Begining() */
+
+
+/** A utility function to(Append)
+    insert new node to the end of list */
+
+void Append(int value)
+{
+    struct Node *newNode; // local variable of type struct node declaration */
+
+    // first step create the node
+    newNode = CreateNewNode(value); // call function to create new nod (now node is ready to add)
+
+    if (last == NULL) /* check if list is empty then this node is the first node */
+    {
+        // insert as the first node in list
+        insert_At_Beginning(value);  // call Insert_At_Begining to added as first node
+        return;
+    }
+
+    /*
+    if already some element are in the linked list we have
+    add the new node at the end after that make it Circular List */
+
+    /** link changes */
+
+    newNode -> next = last -> next; // make it Circular List last nod is now point to first node
+    last -> next = newNode;        // link last -> next  to newNode
+    last  = newNode;              // now last point the new nod
+    // last node next alway have the address of head(first) so is a circular linked list
+
+    printf("%d : is been inserted at end of list\n",value); // inform user the element is been inserted
+    printf("%d : Confirm if the linked list is circular list  \n",last -> next -> data); // inform user everything is ok
+
+    /** Time complexity of Append() is : O(1) */
+
+} /** End of Append() */
 
 
 /** A utility function to find the length of linked list */
