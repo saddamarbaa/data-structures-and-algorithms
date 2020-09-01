@@ -143,7 +143,7 @@ int main(int argc, char* argv[])    /* the river Code */
                 scanf("%d",&element);
                 printf("Enter the position :");
                 scanf("%d",&position);
-              // insert_At_Position(element, position); // call insert_at_Possition function
+                insert_At_Position(element, position); // call insert_at_Possition function
             break;
 
             // case 4 insert node After a specific position
@@ -358,20 +358,80 @@ void Append(int value)
 } /** End of Append() */
 
 
+/**
+   A utility function to insert the given value at the given position
+   (adding node in the middle)  */
+
+void insert_At_Position(int value, int position)
+{
+    int i, len;                 // local variables declaration
+    struct Node *newNode, *temp; // local variables of type struct node declaration */
+
+    i = 1;            // initialize counter i to one
+    len = length();   // call length() to get length of list
+
+    // first step create the node
+    newNode = CreateNewNode(value); // call function to create new nod (now node is ready to add)
+
+    if(position > len + 1 || position < 1) // invalid position case
+    {
+        printf("invalid location!!!\n");
+        return; // we are done
+    }
+    else if (position == 1) // case when the given position is one
+    {
+        // insert at first position
+        insert_At_Beginning(value);  // call Insert_At_Begining () for help
+        return; // we are done
+    }
+    else if(position == len + 1) // case when the given position is equal to len + 1
+    {
+        // insert at last position
+        Append(value); // call Append() for help
+        return; // we are done
+    }
+    // else cases
+
+    // last -> next mean the first node
+    temp = last -> next;    // temp is now point to first node
+
+    /*
+    if already some element are in the linked list and given position
+    is not number one and not the last index  then we have to first loop
+    throw the linked list until position - 1 then add the new element at given position */
+    while(i < position - 1)
+    {
+        temp = temp -> next; // move temp to next node
+        i++;                 // increment counter i by one
+    }
+
+    /** link changes */
+
+    newNode -> next = temp -> next;  // right side connection first
+    temp -> next = newNode;         // left side connection  second
+    printf("%d : is been inserted at %d position \n",value, position); // inform user the element is been inserted
+
+
+    /** Time complexity of insert_At_Position() is O(n) */
+
+} /** END of insert_at_Possition() */
+
+
 /** A utility function to find the length of linked list */
 
 int length()
 {
     int count = 0;     // local counter variable declaration and initializations to zero
     struct Node* temp; // local variable of type struct node declaration */
-    // last -> next mean the first node
-    temp = last -> next;     // temp is now point to first node
 
-    if(last == NULL) /* linked is empty Case */
+    if(last== NULL) /* linked is empty Case */
     {
         printf("Circular Linked List is Empty!!!\n");
         return 0;
     }
+
+    // last -> next mean the first node
+    temp = last -> next;     // temp is now point to first node
 
     /* count first node and move temp to second node and
        count again in loop until we reach to last node */
@@ -420,3 +480,4 @@ void Traverse()
     /** Time complexity of Traverse() is O(n) */
 
 } /** End of Traverse */
+
