@@ -161,7 +161,7 @@ int main(int argc, char* argv[])    /* the river Code */
                 scanf("%d",&element);
                 printf("Enter the position :");
                 scanf("%d",&position);
-                //insert_Before_Position(element, position);  // call insert_Before_Possition function
+                insert_Before_Position(element, position);  // call insert_Before_Possition function
             break;
 
             // case 6 Delete node from the Beginning of linked list
@@ -428,7 +428,7 @@ void insert_After_Position(int value, int position)
 
     // first step create the node
     newNode = CreateNewNode(value); // call function to create new nod (now node is ready to add)
-    
+
     len = length();   // call length() to get length of list
     i = 1;            // initialize counter i to one
 
@@ -472,6 +472,63 @@ void insert_After_Position(int value, int position)
     /** Time complexity of insert_After_Position() is O(n) */
 
 } /** END of insert_after_Possition() */
+
+
+/**
+   A utility function to insert the given value Before the given position
+   (adding node in the middle)  */
+
+void insert_Before_Position(int value, int position)
+{
+    int i, len;                  // local variable declaration
+    struct Node *newNode, *temp; // local variables of type struct node declaration */
+
+    // first step create the node
+    newNode = CreateNewNode(value); // call function to create new nod (now node is ready to add)
+
+    len = length();   // call length() to get length of list
+    i = 1;            // initialize counter i to one
+
+    if(last == NULL) /* linked is empty Case */
+    {
+        printf("linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(position > len|| position < 2) // invalid position case
+    {
+        printf("invalid location!!!\n");
+        return; // we are done
+    }
+    if (position == 2) // case when the given position is two
+    {
+        // insert at first position
+        insert_At_Beginning(value);  // call Insert_At_Begining () for help
+        return; // we are done
+    }
+
+    // else cases
+    // last -> next mean the first node
+    temp = last -> next;    // temp is now point to first node
+
+    /*
+    if already some element are in the linked list we have to first
+    loop throw the linked list until position - 2 then add the new
+    node at just before given position */
+    while(i < position - 2)
+    {
+        temp = temp -> next;   // move temp to next node
+        i++;                   // increment counter i by one
+    }
+
+    /** link changes */
+    
+    newNode -> next = temp -> next; // right side connection first
+    temp -> next = newNode;         // left side connection  second
+    printf("%d : is been inserted at %d position \n",value, position - 1); // inform user the element is been inserted
+
+    /** Time complexity of insert_Before_Possition() is O(n) */
+
+} /** END of insert_Before_Possition() */
 
 
 /** A utility function to find the length of linked list */
