@@ -209,14 +209,22 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 13 traverse linked list and Print all element(Recursive method)
             case 13 :
-               // print_using_recursion(Head); // call  print_using_recursion function
+                 if(last == NULL) /* linked is empty Case */
+                     printf("Circular Linked List is Empty!!!\n");
+                  else // pass head node(last -> next)
+                     print_using_recursion(last -> next); // call  print_using_recursion function
             break;
 
             // case 14 traverse linked list and Print all element
             // in reverse order using recursion(Recursive method)
             case 14 :
-               // Reverse_print_using_recursion(Head); // call  Reverse_print_using_recursion function
-                printf("\n");
+                if(last == NULL) /* linked is empty Case */
+                     printf("Circular Linked List is Empty!!!\n");
+                else // pass head node(last -> next)
+                {
+                    Reverse_print_using_recursion(last -> next); // call  Reverse_print_using_recursion function
+                    printf("\n");
+                }
             break;
 
             // case 15 traverse linked list and Print all element
@@ -951,3 +959,48 @@ void Traverse()
 
 } /** End of Traverse */
 
+
+/**
+    Utility function to traverse the linked list and print
+    all the element recursion(Recursive method)
+    Reference in Future
+   1. https://youtu.be/K7J3nCeRC80  */
+
+void print_using_recursion(struct Node* temp)
+{
+    if(temp == last) //Exit condition
+    {
+        // by now we are at last node but the value of last itself not yet been printed
+        printf("%d --> ", temp -> data); // print the last element
+        printf("\n");
+        return; // we are done
+    }
+    // else cases
+    printf("%d -->", temp -> data);      // first print the in the node which is first node
+    print_using_recursion(temp -> next); // Recursive call to move to next node
+
+} /** End of print_using_recursion */
+
+
+/**
+    Utility function to traverse the linked list and print all the
+    element in reverse order using recursion(Recursive method)
+    Reference in Future
+   1. https://youtu.be/K7J3nCeRC80  */
+
+void Reverse_print_using_recursion(struct Node* temp)
+{
+    if(temp == last) //Exit condition
+    {
+        // by now we are at last node
+        printf("%d --> ", temp -> data); // print the last element value first
+        return; // we are done
+    }
+
+    // else cases
+    Reverse_print_using_recursion(temp -> next); // Recursive call to move to next node first
+
+    printf("%d -->", temp -> data);  // after reach to last node and temp == last
+                                     // will start printing from last to first in reverse order
+
+} /** End of Reverse_print_using_recursion */
