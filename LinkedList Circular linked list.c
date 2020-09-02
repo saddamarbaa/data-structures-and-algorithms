@@ -171,7 +171,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 7 Delete node from the end of linked list
             case 7 :
-               //Delete_from_End(); // call Delete_from_End function
+               Delete_from_End(); // call Delete_from_End function
             break;
 
             // case 8 Delete node from specific position in list
@@ -540,7 +540,7 @@ void Delete_from_Beginning()
     if(last== NULL) /* linked is empty Case */
     {
         printf("Circular Linked List is Empty!!!\n");
-        return;
+        return; // we are done
     }
     // last -> next mean the first node
     temp = last -> next; // temp is now point to first node
@@ -569,6 +569,61 @@ void Delete_from_Beginning()
     /** Time complexity of Delete_from_Beginning() is : O(1) */
 
 } /** End of Delete_from_Beginning() */
+
+/** A utility function to Delete node from the end of linked list */
+
+void Delete_from_End()
+{
+    struct Node *current, *prves; // local variables of type struct node declaration */
+
+    if(last== NULL) /* linked is empty Case */
+    {
+        printf("Circular Linked List is Empty!!!\n");
+        return; // we are done
+    }
+    // last -> next mean the first node
+    current = last -> next; // current now have address of first node
+
+    /* Case when we have only one node in the list
+    if so delete that node and assign last to NULL
+    also can be  if(curent -> next == curent)*/
+    if(last -> next == last)
+    {
+        /** link changes */
+
+        printf("node --> %d is Will be Deleted\n",current -> data); // inform user the job is about to done
+        last = NULL;          // assign last back to NULL
+        current -> next = NULL; // connect curent -> next to NULL
+        free(current);          // now Delete curent using free() C function
+        // also it can be if(curent -> next == curent)
+        return; // we are done
+    }
+    // else cases
+
+    /*
+    by now we are sure list is not empty
+    so while we not yet reach last just go head and loop 
+    also can be current != last*/
+    while(current -> next != last -> next)
+    {
+        // curent is only to uses in free memory process
+        prves = current;          // save curent in prves
+        current = current -> next;    // move curent to next node
+
+       /* at end of loop current will be the last node and prevs
+         will be the node just before the last */
+    }
+
+    /** link changes */
+    printf("node --> %d is Will be Deleted\n",current -> data);
+    prves -> next = last -> next ;  // right side connection first
+    last = prves;             // move last one step back
+    current -> next = NULL;    // connect curent -> next to NULL
+    free(current);           // now Delete curent using free() C function
+
+    /** Time complexity of Delete_from_End() is : O(N) */
+
+} /** End of Delete_from_End() */
 
 
 /** A utility function to find the length of linked list */
