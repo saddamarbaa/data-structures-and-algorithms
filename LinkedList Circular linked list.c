@@ -199,7 +199,7 @@ int main(int argc, char* argv[])    /* the river Code */
             case 11 :
                 printf("Enter Value to be deleted :");
                 scanf("%d",&element);
-               // Remove(element);   // call  Removee function
+                Remove(element);   // call  Removee function
             break;
 
             // case 12 traverse linked list and Print all element(Iterative method)
@@ -829,6 +829,62 @@ void Delete_node_After_position(int position)
     /** Time complexity of Delete_node_After_position() is : O(N) */
 
 } /** End of Delete_node_Before_possition() */
+
+
+/**
+ A utility function to remove node with the given value from list */
+
+void Remove(int value)
+{
+    struct Node *temp, *prves; /* local variables of type struct node declaration */
+
+    if(last == NULL) /* linked is empty Case */
+    {
+        printf("Circular Linked List is Empty!!!\n");
+        return; // we are done
+    }
+    // last -> next mean the first node
+    temp = last -> next;  // temp and prves are now pointing to head node
+
+    if(temp -> data == value)  // case when the given value its at first position */
+    {
+        Delete_from_Beginning();   // call Delete_from_Beginning function
+        return; // we are done
+    }
+
+    /*
+    by now we are sure node to be deleted is not at the
+    beginning  maybe its somewhere so let search it*/
+    while(temp != last && temp -> data != value )  // loop until find the value
+    {
+        // temp is only to uses in free memory process
+        prves = temp;          // save temp in prves
+        temp = temp -> next;   // move temp to next node
+    }
+
+    if(temp == last && temp -> data == value) // case when the given node is the last node
+    {
+        Delete_from_End(); // call Delete_from_End() function for help
+        return; // we are done
+    }
+    else if(temp == last && temp -> data != value) // case when the given node is not found in the last node
+    {
+        printf("node --> %d not found\n", value);
+        return; // we are done
+    }
+    else // case when the given node is in middle
+    {
+        /** link changes */
+
+        printf("node --> %d is Will be Deleted\n",temp -> data);
+        prves -> next = temp -> next;  // right side connection first
+        temp -> next = NULL;           // connect temp -> next to NULL
+        free(temp);                    // now Delete temp using free() C function
+    }
+
+    /** Time complexity of Removee is : O(N) */
+
+} /** End of Removee() */
 
 
 /** A utility function to find the length of linked list */
