@@ -166,7 +166,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 6 Delete node from the Beginning of linked list
             case 6 :
-              // Delete_from_Beginning(); // call Delete_from_Beginning function
+               Delete_from_Beginning(); // call Delete_from_Beginning function
             break;
 
             // case 7 Delete node from the end of linked list
@@ -521,7 +521,7 @@ void insert_Before_Position(int value, int position)
     }
 
     /** link changes */
-    
+
     newNode -> next = temp -> next; // right side connection first
     temp -> next = newNode;         // left side connection  second
     printf("%d : is been inserted at %d position \n",value, position - 1); // inform user the element is been inserted
@@ -529,6 +529,46 @@ void insert_Before_Position(int value, int position)
     /** Time complexity of insert_Before_Possition() is O(n) */
 
 } /** END of insert_Before_Possition() */
+
+
+/** A utility function to Delete node from the Beginning of linked list */
+
+void Delete_from_Beginning()
+{
+    struct Node *temp; // local variable of type struct node declaration */
+
+    if(last== NULL) /* linked is empty Case */
+    {
+        printf("Circular Linked List is Empty!!!\n");
+        return;
+    }
+    // last -> next mean the first node
+    temp = last -> next; // temp is now point to first node
+
+    // if having only one node in linked list delete that node and assign last to NULL
+    if(last -> next == last)
+    {
+        /** link changes */
+
+        printf("node --> %d is Will be Deleted\n",temp -> data); // inform user the job is about to done
+        last = NULL; // assign last back to NULL
+        temp -> next = NULL; // connect temp -> next to NULL
+        free(temp); // now Delete temp using free() C function
+        // also it can be if(temp -> next == temp)
+    }
+    else
+    {
+        /** link changes */
+
+        printf("node --> %d is Will be Deleted\n",temp -> data); // inform user the job is about to done
+        last -> next = temp -> next; // right side connection first
+        temp -> next = NULL; // connect temp -> next to NULL
+        free(temp); // now Delete temp using free() C function
+     }
+
+    /** Time complexity of Delete_from_Beginning() is : O(1) */
+
+} /** End of Delete_from_Beginning() */
 
 
 /** A utility function to find the length of linked list */
