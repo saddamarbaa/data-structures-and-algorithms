@@ -75,14 +75,6 @@ void Traverse(void);
 //  all element (Recursive method) */
 void print_using_recursion(struct Node* temp);
 
-//  function to traverse linked list and Print all element
-//  in reverse order using recursion(Recursive method) */
-void Reverse_print_using_recursion(struct Node* temp);
-
-//  function to traverse linked list and Print all element
-//  in reverse order using loop(Iterative method)  */
-void Reverse_print_using_loop();
-
 /* function to find the length of linked list*/
 int length(void);
 
@@ -113,10 +105,8 @@ int main(int argc, char* argv[])    /* the river Code */
         printf("12: Traverse : Print all the element in list (Iterative method) :\n");
         printf("13: Traverse : Print all the element in list (Recursive method) :\n");
         printf("14: Traverse : Print element in Reverse order(Recursive method) :\n");
-        printf("15: Traverse : Print element in Reverse order(Iterative method) :\n");
-        printf("16: Reverse  : Reverse linked list(Iterative method)            :\n");
-        printf("17: Reverse : Reverse linked list(Recursive method)             :\n");
-        printf("18: length   : find length of the linked list                   :\n");
+        printf("15: Reverse  : Reverse linked list(Iterative method)            :\n");
+        printf("16: length   : find length of the linked list                   :\n");
         printf("0 : Enter 0 to exit (quit)                                      :\n");
         // asking user to enter choice
         printf("input your choice                                               :");
@@ -211,7 +201,7 @@ int main(int argc, char* argv[])    /* the river Code */
             case 13 :
                  if(last == NULL) /* linked is empty Case */
                      printf("Circular Linked List is Empty!!!\n");
-                  else // pass head node(last -> next)
+                 else // pass head node(last -> next)
                      print_using_recursion(last -> next); // call  print_using_recursion function
             break;
 
@@ -227,25 +217,13 @@ int main(int argc, char* argv[])    /* the river Code */
                 }
             break;
 
-            // case 15 traverse linked list and Print all element
-            // in reverse order using loop(Iterative method)
+            // case 15 Reverse linked list(Iterative method)
             case 15 :
-                //Reverse_print_using_loop(); // call  Reverse_print_using_loop function
-                printf("\n");
+                Reverse(); // call Reverse function
             break;
 
-            // case 16 Reverse linked list(Iterative method)
+            // case 16 length of the  linked list
             case 16 :
-               // Reverse(); // call Reverse function
-            break;
-
-            // case 17 Reverse linked list(Iterative method)
-            case 17 :
-               // Reverse_using_recursion(Head); // callReverse_using_recursion function
-            break;
-
-            // case 18 length of the  linked list
-            case 18 :
                 len = length();  // call length function
                 if(len == 0)
                    printf("Doubly linked list is Empty!!!\n");
@@ -893,6 +871,67 @@ void Remove(int value)
     /** Time complexity of Removee is : O(N) */
 
 } /** End of Removee() */
+
+/** A utility function to Reverse a linked list (Iterative method)
+    Reference in Future
+   1. https://youtu.be/xvAoleV706Q
+   2. https://youtu.be/sYcOK51hl-A
+   3. https://youtu.be/Tk_fi5l8cag
+   4. https://youtu.be/wfdpJELzln4 */
+
+void Reverse()
+{
+    // local variables of type struct node declaration */
+    struct  Node * current, *Previous, *nextNode;
+
+    if(last== NULL) /* linked is empty Case */
+    {
+        printf("Circular Linked List is Empty!!!\n");
+        return; // we are done
+    }
+    /* Case when we have only one node in the list
+    if so delete that node and assign last to NULL
+    also can be  if(current -> next == current)*/
+    else if(last -> next == last)
+    {
+        printf("Circular Linked List have only one Node!!!\n");
+        return; // we are done
+    }
+
+    /* else cases */
+
+    Previous = NULL;          // for Previous node
+    // last -> next mean the first node
+    current = last -> next;       // current now have address of first node(for current node)
+    nextNode = current -> next;  // for next node
+
+    while(current != last)
+    {
+        /** link changes */
+
+        Previous = current;         // move Previous point to current node
+        current = nextNode;         // now move current point to next node
+        nextNode = current -> next; // move nextNode point to next node
+
+        /** Reverse*/
+
+        current -> next = Previous;  // Reverse current node
+        // after that go back and loop again
+    }
+
+    /*
+     after while loop now
+    at this point nextNode -> next is point to first node last -> next */
+
+    nextNode -> next = last; // Reverse first node
+
+    last = nextNode;  // Reverse last(tail pointer) to point to first node
+
+    printf("Circular Linked List is been Reversed\n"); // inform user the work is done
+
+   /** Time complexity of Reverse() is O(n) */
+
+} /** End of Reverse */
 
 
 /** A utility function to find the length of linked list */
