@@ -4,7 +4,7 @@
     [AUTHOR]  :  Saddam Arbaa
     [Email]   :  <saddamarbaas@gmail.com>
 
-    C Program for Complete implementation of Circular Linked List.
+    C Program for Complete Implementation of Circular Linked List.
 
     A linked list is a linear data structure, in which the elements
     are not stored at contiguous memory locations.
@@ -16,7 +16,11 @@
     This forms a circular loop.
 
      Reference in future :---->
-     1.*/
+     1. https://youtu.be/fmfx1C4TTxw
+     2. https://youtu.be/jsTybZ5qSNE
+     3. https://youtu.be/ReGglEXEH08
+     4. https://youtu.be/EkE6RHuMx3I
+     5. https://youtu.be/xvAoleV706Q */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -74,6 +78,10 @@ void Traverse(void);
 //  function to traverse linked list and Print
 //  all element (Recursive method) */
 void print_using_recursion(struct Node* temp);
+
+//  function to traverse linked list and Print all element
+//  in reverse order using recursion(Recursive method) */
+void Reverse_print_using_recursion(struct Node* temp);
 
 /* function to find the length of linked list*/
 int length(void);
