@@ -1,11 +1,11 @@
 /**
-    [PROGRAM] :  Doubly circular linked list Data Structure
+    [PROGRAM] :  Doubly Circular linked list Data Structure
                  Complete Implementation
 
     [AUTHOR]  :  Saddam Arbaa
     [Email]   :  <saddamarbaas@gmail.com>
 
-    C Program for Complete implementation of Doubly circular linked list data structure.
+    C Program for Complete implementation of Doubly Circular linked list data structure.
 
     A linked list is a linear data structure, in which the elements
     are not stored at contiguous memory locations.
@@ -47,6 +47,9 @@ void Append(int);
 /* Function to add new node to the Beginning of list */
 void insert_At_Beginning(int);
 
+/* Function to add new node at the given position in list */
+void insert_At_Position(int, int);
+
 /* function to find the length of linked list*/
 int length(void);
 
@@ -60,7 +63,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
     do
     {
-        printf("Doubly linkedlist Implementation(All Linked List Operations)   :\n");
+        printf("Doubly Circular linked list Implementation(All Operations)      :\n");
         printf("1 : Append  : insert new node to the end of list                :\n");
         printf("2 : Prepend : insert new node to the beginning of list          :\n");
         printf("3 : Insert at position : insert new node to a specific position :\n");
@@ -101,6 +104,11 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 3 insert node at a specific position
             case 3 :
+                printf("Enter element to be inserted :");
+                scanf("%d",&element);
+                printf("Enter the position :");
+                scanf("%d",&position);
+                insert_At_Position(element, position); // call insert_at_Possition function
 
             break;
 
@@ -344,6 +352,68 @@ void insert_At_Beginning(int value)
 
 } /** End of insert_at_Begining() */
 
+
+/**
+   A utility function to insert the given value at the given position
+   (adding node in the middle)  */
+
+void insert_At_Position(int value, int position)
+{
+    int i, len;       // local variable declaration
+    struct Node *newNode, *temp; // local variables of type struct node declaration */
+    i = 1;            // initialize counter i to one
+    temp = First;     // temp is now point to head node
+    len = length();   // call length() to get length of list
+
+    // first step create the node
+    newNode = CreateNewNode(value); // call function to create new nod (now node is ready to add)
+
+    if(First == NULL && position != 1) /* linked is empty Case */
+    {
+        printf("Doubly circular linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(position > len + 1 || position < 1) // invalid position case
+    {
+        printf("invalid location!!!\n");
+        return; // we are done
+    }
+    /* case when given position == 1 */
+    if( position == 1)
+    {
+        insert_At_Beginning(value);  // call Insert_At_Begining for help
+        return; // we are done
+    }
+    else if(position == len + 1) // case when the given position is equal to len + 1
+    {
+        // insert at last position
+        Append(value); // call Append() for help
+        return; // we are done
+    }
+
+    /* else cases
+    if already some element are in the linked list and given position
+    is not number one then we have to first loop throw the linked list
+    until position - 1 then add the new element at given position */
+    while(i < position - 1)
+    {
+        temp = temp -> next; // move temp to next node
+        i++; // increment counter i by one
+    }
+
+    /** link changes */
+
+    newNode -> next = temp -> next;  // right side connection first
+    temp -> next -> prev = newNode;     // right side connection first
+    newNode -> prev = temp;          // left side connection second
+    temp -> next = newNode;           // left side connection second
+    printf("%d : is been inserted at %d position \n",value, position); // inform user the element is been inserted
+
+    /** Time complexity of insert_At_Position() is O(n) */
+
+} /** END of insert_at_Possition() */
+
+
 /** A utility function to find the length of linked list */
 
 int length()
@@ -355,7 +425,7 @@ int length()
     if(First == NULL) /* linked is empty Case */
        return 0; // we are done
 
-   /* else  case now  we are sure list is not empty so while not 
+   /* else  case now  we are sure list is not empty so while not
      yet reach last node count the number of nodes in list */
     while(temp != last)
     {
