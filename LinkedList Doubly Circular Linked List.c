@@ -62,6 +62,9 @@ void Delete_from_Beginning(void);
 /* Function to Delete node from the end of linked list */
 void Delete_from_End(void);
 
+/* Function to Delete node from a specific in linked list */
+void Delete_node_at_position(int);
+
 /* function to find the length of linked list*/
 int length(void);
 
@@ -153,7 +156,9 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 8 Delete node from specific position in list
             case 8 :
-
+                printf("Enter the position to be deleted :");
+                scanf("%d",&position);
+                Delete_node_at_position(position); // call Delete_node_at_possition function
             break;
 
             // case 9 Delete node Before specific position in list
@@ -641,6 +646,72 @@ void Delete_from_End()
     /** Time complexity of Delete_from_End() is : O(1) */
 
 } /** End of Delete_from_End() */
+
+/**
+   A utility function to Delete node from a specific
+   given position in linked list.(delete node in the middle
+    or last or even in first of the linked list */
+
+void Delete_node_at_position(int position)
+{
+    int i, len;          // local variable declaration
+    struct Node *temp;   // local variables of type struct node declaration */
+    temp = First;       // temp is now point to head node
+    len = length();     // call length() to get length of list
+    i = 1;             // initialize counter i to one
+
+    if (First == NULL)  /* linked is empty Case*/
+    {
+        printf("Doubly circular linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(position > len || position < 1) // invalid position case
+    {
+        printf("invalid position!!!\n");
+        return; // we are done
+    }
+    /*
+    if given position is equal to one this mean deleting node
+    at first position so we call Delete_from_Beginning() function
+    for help which always delete beginning node  */
+    else if(position == 1)
+    {
+        Delete_from_Beginning(); // call Delete_from_Beginning() function for help
+        return; // we are done
+    }
+    /*
+    if given position is equal to length this mean deleting
+    node at last position so we call Delete_from_End() function
+    for help which always delete at end node  */
+    else if(position == len)
+    {
+        Delete_from_End(); // call  Delete_from_End() function for help
+        return; // we are done
+    }
+
+    /* else cases
+    by now we are sure node to be deleted is not at the
+    beginning and not at end of list its somewhere in the
+    middle so let loop first to find then is easy to delete */
+    while(i < position)
+    {
+        // temp is only to uses in free memory process
+        temp = temp -> next;   // move temp to next node
+        i++;                   // increment counter i by one
+    }
+
+    /** link changes */
+
+    printf("node --> %d is Will be Deleted\n",temp -> data);
+    temp -> prev -> next = temp -> next;  // right side connection first
+    temp -> next -> prev = temp -> prev;  // left side connection first
+    temp -> next = NULL;  // assign temp -> next to NULL(this not have to)
+    temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
+    free(temp);          // now Delete temp using free() C function
+
+    /** Time complexity of Delete_node_at_possition() is : O(N) */
+
+} /** End of Delete_node_at_possition() */
 
 
 /** A utility function to find the length of linked list */
