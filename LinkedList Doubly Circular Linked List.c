@@ -85,6 +85,10 @@ void Traverse(void);
 //  all element (Recursive method) */
 void print_using_recursion(struct Node* temp);
 
+//  function to traverse linked list and Print all element
+//  in reverse order using recursion(Recursive method) */
+void Reverse_print_using_recursion(struct Node* temp);
+
 int main(int argc, char* argv[])    /* the river Code */
 {
     int option, len, position, element;  /* variable declarations */
@@ -208,7 +212,8 @@ int main(int argc, char* argv[])    /* the river Code */
             // case 14 traverse linked list and Print all element
             // in reverse order using recursion(Recursive method)
             case 14 :
-
+                Reverse_print_using_recursion(First); // call  Reverse_print_using_recursion function
+                printf("\n");
             break;
 
             // case 15 traverse linked list and Print all element
@@ -1008,3 +1013,31 @@ void print_using_recursion(struct Node* temp)
     print_using_recursion(temp -> next); // Recursive call to move to next node
 
 } /** End of print_using_recursion */
+
+
+/**
+    Utility function to traverse the linked list and print all the
+    element in reverse order using recursion(Recursive method)
+    Reference in Future
+   1. https://youtu.be/K7J3nCeRC80  */
+
+void Reverse_print_using_recursion(struct Node* temp)
+{
+    if(First == NULL) /* linked is empty Case */
+    {
+        printf("Doubly circular linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(temp == last) //Exit condition
+    {
+        printf("%d --> ", temp -> data);  // print the value last node
+        return;
+    }
+
+    // else cases
+    Reverse_print_using_recursion(temp -> next); // Recursive call to move to next node first
+
+    printf("%d --> ", temp -> data);  // after reach to last node and temp == last
+                                     // will start printing from last to first in reverse order
+
+} /** End of Reverse_print_using_recursion */
