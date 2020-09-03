@@ -59,6 +59,9 @@ void insert_Before_Position(int, int);
 /* Function to Delete node from the Beginning of linked list */
 void Delete_from_Beginning(void);
 
+/* Function to Delete node from the end of linked list */
+void Delete_from_End(void);
+
 /* function to find the length of linked list*/
 int length(void);
 
@@ -145,7 +148,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 7 Delete node from the end of linked list
             case 7 :
-
+                 Delete_from_End(); // call Delete_from_End function
             break;
 
             // case 8 Delete node from specific position in list
@@ -554,31 +557,33 @@ void Delete_from_Beginning()
         printf("Doubly circular linked list is Empty!!!\n");
         return; // we are done
     }
-    // if having only one node in linked list delete that node and assign head to NULL
+    // if having only one node in linked list delete that node and assign head and last to NULL
     else if(First -> next == First)
     {
         printf("node --> %d is Will be Deleted\n",temp -> data); // inform user the job is about to done
-        First = last = NULL; // assign head to NULL
+        First = last = NULL; // assign head and last to NULL
+        temp -> next = NULL;  // assign temp -> next to NULL(this not have to)
+        temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
         free(temp);  // now Delete temp using free() C function
         return; // we are done
     }
      /*
-     * by now we are sure that list have more than one node in this case we 
-     * delete first node and move first variable point to second one 
+     * by now we are sure that list have more than one node in this case we
+     * delete first node and move first variable point to second one
      * so the second node will be the first after we delete the first one
      * for that we need to update 3 nodes and can be written in many ways also
      * First = First -> next
      * First -> prev = last
      * last -> next = First
      */
-    else  
+    else
     {
         /** link changes */
 
         printf("node --> %d is Will be Deleted\n",temp -> data); // inform user the job is about to done
-        First = First -> next;
-        First -> prev = last;
-        last -> next = First;
+        First = First -> next; // move first one step Ahead
+        First -> prev = last;  // connect  first node to last node
+        last -> next = First;  // connect  last node to first node
         temp -> next = NULL;  // assign temp -> next to NULL(this not have to)
         temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
         free(temp);          // now Delete temp using free() C function
@@ -587,6 +592,55 @@ void Delete_from_Beginning()
     /** Time complexity of Delete_from_Beginning() is : O(1) */
 
 } /** End of Delete_from_Beginning() */
+
+
+/** A utility function to Delete node from the end of linked list */
+
+void Delete_from_End()
+{
+    struct Node* temp;  // local variable of type struct node declaration */
+    temp = last;       // temp is now point to last node
+    if(last == NULL) /* linked is empty Case */
+    {
+        printf("Doubly circular linked list is Empty!!!\n");
+        return; // we are done
+    }
+    // if having only one node in linked list delete that node and assign head and last to NULL
+    else if(last -> next == last) // this condition can written in many different ways
+    {
+        printf("node --> %d is Will be Deleted\n",temp -> data); // inform user the job is about to done
+        First = last = NULL; // assign head and last to NULL
+        temp -> next = NULL;  // assign temp -> next to NULL(this not have to)
+        temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
+        free(temp);  // now Delete temp using free() C function
+        return; // we are done
+    }
+     /*
+     * by now we are sure that list have more than one node in this
+     * case we will delete last node and move last variable one step
+     * back to point last -1  so the last -1 node will be the last after
+     * we delete the last one
+     * for that we need to update 3 nodes and this can be written in many ways also
+     * last = last -> prev
+     * last -> next = First
+     * First -> prev = last
+     */
+    else
+    {
+        /** link changes */
+
+        printf("node --> %d is Will be Deleted\n",temp -> data); // inform user the job is about to done
+        last = last -> prev;   // move last one step back
+        last -> next = First;  // connect last node to first node
+        First -> prev = last;  // connect  first node to last node
+        temp -> next = NULL;  // assign temp -> next to NULL(this not have to)
+        temp -> prev = NULL;  // assign temp -> prev to NULL(this not have to)
+        free(temp);          // now Delete temp using free() C function
+    }
+
+    /** Time complexity of Delete_from_End() is : O(1) */
+
+} /** End of Delete_from_End() */
 
 
 /** A utility function to find the length of linked list */
