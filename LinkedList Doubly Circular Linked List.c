@@ -47,6 +47,9 @@ void Append(int);
 /* Function to add new node to the Beginning of list */
 void insert_At_Beginning(int);
 
+/* function to find the length of linked list*/
+int length(void);
+
 // function to traverse linked list and Print
 // all element (Iterative method) */
 void Traverse(void);
@@ -175,7 +178,11 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 18 length of the  linked list
             case 18 :
-
+                len = length();  // call length function
+                if(len == 0)
+                   printf("Doubly circular linked list is Empty!!!\n");
+                else
+                   printf("length is  : %d\n", len);
             break;
 
             case 0 :  /* case 0 Exit case */
@@ -336,6 +343,31 @@ void insert_At_Beginning(int value)
     /** Time complexity of insert_at_Begining() is  : O(1) */
 
 } /** End of insert_at_Begining() */
+
+/** A utility function to find the length of linked list */
+
+int length()
+{
+    int count = 0;     // local counter variable declaration and initializations to zero
+    struct Node* temp; // local variable of type struct node declaration */
+    temp = First;      // temp is now point to head node
+
+    if(First == NULL) /* linked is empty Case */
+       return 0; // we are done
+
+   /* else  case now  we are sure list is not empty so while not 
+     yet reach last node count the number of nodes in list */
+    while(temp != last)
+    {
+        count++;              // increment count
+        temp = temp -> next;  // move temp to next node
+    }
+    count = count + 1 ; // just to include the last node so have to add one to count before return
+    return count; // return the number of node in list
+
+    /** Time complexity of length() is O(n) */
+
+} /** End of length */
 
 
 /** Utility function to traverse the linked list
