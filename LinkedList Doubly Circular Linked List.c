@@ -50,6 +50,9 @@ void insert_At_Beginning(int);
 /* Function to add new node at the given position in list */
 void insert_At_Position(int, int);
 
+/* Function to add new node just after the given position */
+void insert_After_Position(int, int);
+
 /* function to find the length of linked list*/
 int length(void);
 
@@ -114,7 +117,11 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 4 insert node After a specific position
             case 4 :
-
+                printf("Enter element to be inserted :");
+                scanf("%d",&element);
+                printf("Enter the position :");
+                scanf("%d",&position);
+                insert_After_Position(element, position); // call insert_after_Possition function
             break;
 
             // case 5 insert node Before a specific position
@@ -412,6 +419,61 @@ void insert_At_Position(int value, int position)
     /** Time complexity of insert_At_Position() is O(n) */
 
 } /** END of insert_at_Possition() */
+
+
+/**
+   A utility function to insert the given value After the given position
+   (adding node in the middle)  */
+
+void insert_After_Position(int value, int position)
+{
+    int i, len;                  // local variable declaration
+    struct Node *newNode, *temp; // local variables of type struct node declaration */
+
+    // create the node
+    newNode = CreateNewNode(value); // call function to create new nod (now node is ready to add)
+    temp = First;     // temp is now point to head node
+    len = length();   // call length() to get length of list
+    i = 1;            // initialize counter i to one
+
+    if(First == NULL) /* linked is empty Case */
+    {
+        printf("Doubly circular linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(position  > len || position < 1) // invalid position case
+    {
+        printf("invalid location!!!\n");
+        return; // we are done
+    }
+
+    else if(position == len) /* handling corner cases */
+    {
+        // insert at the end of list
+        Append(value); // call Append  function for help
+        return; // we are done
+    }
+    /* else cases
+    if already some element are in the linked list we have to first
+    loop throw the linked list until position then add the new node
+    at just after given position */
+    while(i < position)
+    {
+        temp = temp -> next;   // move temp to next node
+        i++;                   // increment counter i by one
+    }
+
+    /** link changes */
+
+    newNode -> next = temp -> next;  // right side connection first
+    temp -> next -> prev = newNode;   // right side connection first
+    newNode -> prev = temp;          //  left side connection second
+    temp -> next = newNode;           // left side connection second
+    printf("%d : is been inserted at %d position \n",value, position + 1); // inform user the element is been inserted
+
+    /** Time complexity of insert_After_Position() is O(n) */
+
+} /** END of insert_after_Possition() */
 
 
 /** A utility function to find the length of linked list */
