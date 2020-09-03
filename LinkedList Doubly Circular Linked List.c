@@ -18,8 +18,15 @@
     (2) pointer to the next node (next pointer)
     (3) pointer to the previous node(previous pointer).
 
-     Reference in future :---->
-     */
+    Doubly Circular linked list -->
+    in Doubly Circular linked list, the next pointer of the last node
+    points to the first node and the previous pointer of the first node
+    points to the last node making the circular in both directions.
+
+     Reference in future : ---->
+     1. https://youtu.be/eBCTtS_sptM
+     2. https://youtu.be/Fa958fGdgx0
+     3. https://youtu.be/ElQxT6hDeNE*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,7 +39,7 @@ struct Node
 	struct Node* prev; /* address of previous node */
 };
 
-/*  global variable pointer to head node   */
+/*  global variable pointer to head node  */
 struct Node* First = NULL;
 
 /*  global variable pointer to tail(last) node  */
@@ -93,9 +100,11 @@ void Reverse_print_using_recursion(struct Node* temp);
 //  in reverse order using loop(Iterative method)  */
 void Reverse_print_using_loop();
 
+/* function to Reverse a linked list(Recursive method)*/
+void Reverse_using_recursion(struct Node* p);
+
 /* function to Reverse a linked list(Iterative method)*/
 void Reverse(void);
-
 
 int main(int argc, char* argv[])    /* the river Code */
 {
@@ -237,7 +246,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 17 Reverse linked list(Iterative method)
             case 17 :
-
+                Reverse_using_recursion(First); // call Reverse_using_recursion function
             break;
 
             // case 18 length of the  linked list
@@ -1149,3 +1158,57 @@ void Reverse()
    /** Time complexity of Reverse() is O(n) */
 
 } /** End of Reverse */
+
+
+/** A utility function to Reverse a linked list using Recursion
+   (Recursive method)
+    Reference in Future
+   1. https://youtu.be/KYH83T4q6Vs */
+
+void Reverse_using_recursion(struct Node* curentNode)
+{
+    if(First == NULL)  /* linked is empty Case */
+    {
+        printf("Doubly Circular linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(First -> next == First) // if list is having only one node
+    {
+        printf("Doubly Circular linked list have only one Node!!\n");
+        return; // we are done
+    }
+
+    // else cases
+
+    struct  Node* nextNode;         /* local variables of type struct node declaration */
+    nextNode = curentNode -> next;  // nextNode is now pointing to nextNode
+
+    /* the idea is to Reverse current node and make Recursive call
+      on Next node Until all node been Reveres */
+
+    /** link changes  */
+
+    curentNode -> next = curentNode -> prev; //swap between current -> next and current -> prev
+    curentNode -> prev = nextNode;          //swap between current -> next and current -> prev
+
+    // current node is been Reversed now move to next node
+
+    if(nextNode == First)//  Exit condition
+    {
+        /**
+        by now nextNode == First is mean list been Reversed
+        we only need swap to between head pointer and Tail pointer */
+
+        /* link changes */
+
+        last = nextNode;        // Reverse (Tail pointer) to point to first node
+        First = last -> next;   // Reverse (head pointer) to point to last node
+        printf("Doubly Circular linked list is been Reversed\n"); // inform user the work is done
+        return;  // we are done
+    }
+
+    // else cases
+    Reverse_using_recursion(curentNode -> prev); //Recursive call to move to next node  first
+
+
+} /** End of Reverse_using_recursion */
