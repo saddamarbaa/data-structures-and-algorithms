@@ -89,6 +89,11 @@ void print_using_recursion(struct Node* temp);
 //  in reverse order using recursion(Recursive method) */
 void Reverse_print_using_recursion(struct Node* temp);
 
+//  function to traverse linked list and Print all element
+//  in reverse order using loop(Iterative method)  */
+void Reverse_print_using_loop();
+
+
 int main(int argc, char* argv[])    /* the river Code */
 {
     int option, len, position, element;  /* variable declarations */
@@ -219,7 +224,7 @@ int main(int argc, char* argv[])    /* the river Code */
             // case 15 traverse linked list and Print all element
             // in reverse order using loop(Iterative method)
             case 15 :
-
+                Reverse_print_using_loop(); // call  Reverse_print_using_loop function
             break;
 
             // case 16 Reverse linked list(Iterative method)
@@ -1041,3 +1046,49 @@ void Reverse_print_using_recursion(struct Node* temp)
                                      // will start printing from last to first in reverse order
 
 } /** End of Reverse_print_using_recursion */
+
+
+/**
+    Utility function to traverse the linked list and print all the
+    element in reverse order using loop((Iterative method)) */
+
+void Reverse_print_using_loop()
+{
+    struct Node* temp; // local variable of type struct node declaration */
+    temp = First;      // temp is now point to head node
+
+    if(First == NULL) /* linked is empty Case */
+    {
+        printf("Doubly circular linked list is Empty!!!\n");
+        return; // we are done
+    }
+    // if having only one node in linked list
+    else if(First -> next == First)
+    {
+        printf("%d -->", temp -> data);
+        printf("\n");
+        return; // we are done
+    }
+
+    /*else cases
+    by now we are sure list is not empty
+    so while we not yet reach last node move temp to temp -> next */
+    do
+    {
+        temp = temp -> next;
+    }while(temp != last);
+
+    /*
+    by now we are at last node , the idea is to go back until reach
+    head pointer so while we not yet reach head pointer
+    first print the node and move temp to temp -> prev */
+    do
+    {
+        printf("%d --> ", temp -> data);  // print the value
+        temp = temp -> prev;              // move temp to prev node
+    }while(temp != First);
+
+    printf("%d --> ", temp -> data);  // print the value of first node
+    printf("\n");
+
+} /**End of Reverse_print_using_loop */
