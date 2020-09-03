@@ -32,7 +32,7 @@ struct Node
 	struct Node* prev; /* address of previous node */
 };
 
-/*  global variable pointer to head node  */
+/*  global variable pointer to head node   */
 struct Node* First = NULL;
 
 /*  global variable pointer to tail(last) node  */
