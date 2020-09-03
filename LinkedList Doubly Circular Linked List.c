@@ -81,6 +81,10 @@ int length(void);
 // all element (Iterative method) */
 void Traverse(void);
 
+//  function to traverse linked list and Print
+//  all element (Recursive method) */
+void print_using_recursion(struct Node* temp);
+
 int main(int argc, char* argv[])    /* the river Code */
 {
     int option, len, position, element;  /* variable declarations */
@@ -198,7 +202,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
             // case 13 traverse linked list and Print all element(Recursive method)
             case 13 :
-
+                 print_using_recursion(First); // call  print_using_recursion function
             break;
 
             // case 14 traverse linked list and Print all element
@@ -977,3 +981,30 @@ void Traverse()
     /** Time complexity of Traverse() is O(n) */
 
 } /** End of Traverse */
+
+
+/**
+    Utility function to traverse the linked list and print
+    all the element recursion(Recursive method)
+    Reference in Future
+   1. https://youtu.be/K7J3nCeRC80  */
+
+void print_using_recursion(struct Node* temp)
+{
+    if(First == NULL) /* linked is empty Case */
+    {
+        printf("Doubly circular linked list is Empty!!!\n");
+        return; // we are done
+    }
+    else if(temp == last) //Exit condition
+    {
+        printf("%d --> ", temp -> data);  // print the value last node
+        printf("\n");
+        return;
+    }
+
+    // else cases
+    printf("%d --> ", temp -> data);      // first print the value in the node which is first node
+    print_using_recursion(temp -> next); // Recursive call to move to next node
+
+} /** End of print_using_recursion */
