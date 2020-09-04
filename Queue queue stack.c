@@ -8,7 +8,7 @@
 
    to implement queue using stack and flow all queue data structure
    rules(FIFO)first in first out we need two stack for that because
-   stack flow different rule Last In First Out(LIFO,FILO)one things
+   stack flow different rule Last In First Out (LIFO,FILO) one things
    to remember we are implementing queue here so we use two stack first
    stack for enqueue operation but when we want dequeue stack one give us
    the first element but we need the last element so for that we first pop
