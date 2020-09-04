@@ -36,7 +36,7 @@ struct Node
 {
     int data;            /* data filed */
     struct Node* next;  /* address of next node */
-	struct Node* prev; /* address of previous node */
+    struct Node* prev; /* address of previous node */
 };
 
 /*  global variable pointer to head node  */
