@@ -245,7 +245,7 @@ int peek()
 {
     return  top -> data;  // return top element
 
-    /** Time complexity of peek() is O(n) */
+    /** Time complexity of peek() is O(1) */
 
 } /** END of  peek()*/
 
