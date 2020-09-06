@@ -62,7 +62,7 @@ void Traverse(struct node* temp);
 
 int main(int argc, char* argv[])    /* the river Code */
 {
-    int option, len, position, element;  /* variable declarations */
+    int option, element;  /* variable declarations */
 
     do
     {
