@@ -204,7 +204,7 @@ void Append2(int value)
         }
         temp -> next = newNode; // add at end of list
     }
-    printf("--> %d : inserted in list_1\n",value); // inform user the element is been inserted
+    printf("--> %d : inserted in list_2\n",value); // inform user the element is been inserted
 
     /** Time complexity of Append2() is : O(N) */
 
@@ -259,8 +259,6 @@ void Merge_Linked_List()
         printf("second linked list is Empty!!!\n");
         return; // we are done
     }
-
-
      /*
      by now we are sure  both list are not empty
      so let traverse and merge*/
