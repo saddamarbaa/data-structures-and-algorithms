@@ -9,33 +9,24 @@
    element and store them in an array.
    Print the elements stored in the array(size must be bigger than 0)
    find the  sum and average of n numbers which entered by user
-   print the sum and  and average
-*/
+   print the sum and  and average */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-// the  Driver Code
-int main()
+/* function to Valid size for array */
+int get_Valid_Size(int);
+
+int main() // the  Driver Code
 {
-    // size of the array
-    int N;
-    // variables  sum and average
-    float sum = 0.0;
+    int N; // size of the array
+    float sum = 0.0; // variables  sum and average
     double  average;
 
-    // get valid size first
-    do
-    {
-        // asking the length of array from user
-        printf("Enter number of elements(size must be bigger than zero): ");
+    /* get valid size first  */
+    N = get_Valid_Size('V');   /* call get_Valid_Size() */
 
-        scanf("%d",&N);
-
-    } while (N <= 0);
-
-    // Array declaration
-    int vector [N];
+    int vector [N]; // Array declaration
 
     printf("-----------------------------------------\n");
     printf("Enter the elements one by one %d numbers \n",N);
@@ -52,26 +43,46 @@ int main()
           /*  Summation starts */
           // adding number entered by the user to the sum variable
           sum += vector[i]; /*this means sum = sum + vector[i] */
-           printf("\nsum   = %.1f \n", sum);
+          printf("\nsum   = %.1f \n", sum);
      }
 
-     // calculation average
-     average = (double)sum/(double)N;
+    average = (double)sum/(double)N;  // calculation average
 
     printf(" -----------------\n");
 
     printf("Elements in array are : \n");
 
-     // printing elements of an array
-     for (int i = 0; i <= N - 1; i++)
-     {
-         printf("vector[ %d ] :  %d\n", i +1 ,vector[i]);
-     }
+    // printing elements of an array
+    for (int i = 0; i <= N - 1; i++)
+          printf("vector[ %d ] :  %d\n", i +1 ,vector[i]);
 
-     // printing the average and sum
+    // printing the average and sum
     printf("\n Sum of all numbers =  %.2f\n", sum);
 
     printf("\n Average of all input numbers =  %.2f\n",average);
 
     return 0;// signal to operating system everything works fine
-}
+
+} /** End of main function */
+
+
+/**
+  function to get valid size for given array, the valid  size here
+  is positive number bigger than zero and less than maximum array size
+*/
+
+int get_Valid_Size(int A)
+ {
+    int size; // variable declaration
+
+    do // get valid size for Array
+    {
+        // asking the length of array from user
+        printf("Enter size for Array : size must be bigger than zero : ");
+        scanf("%d", &size);
+    } while(size <= 0);
+
+    /* if its reach this line already got the valid size just return */
+    return size;
+
+ } /** END of get_Valid_Size */
