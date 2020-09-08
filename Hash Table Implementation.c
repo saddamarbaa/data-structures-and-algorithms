@@ -175,8 +175,8 @@ void initialize_Array()
     {
         hashArray[i].key = 0;
         hashArray[i].value = 0;
-	}
-
+    }
+  
 } /** End of initialize_Array */
 
 
@@ -215,7 +215,6 @@ void insert(int key, int data)
 
         // inform user the element is been inserted
         printf("\nKey (%d) has been inserted \n", key);
-
     }
     /* case when the key is already present in table */
     else if(hashArray[hashIndex].key == key)
@@ -225,7 +224,6 @@ void insert(int key, int data)
 
         hashArray[hashIndex].value = data;   /* update already existing value */
         printf("\nkey --> (%d) Value is been updated to (%d)\n",key, data);
-
     }
     else  /* case when the Collision occurred  */
     {
@@ -309,6 +307,7 @@ void display()
 
 
 /* function to get size of hash table(number of element in table) */
+
 int size_of_hashtable()
 {
     return size;
