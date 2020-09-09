@@ -1,4 +1,3 @@
-
 /**
     [PROGRAM] : Hash Tables and Hash Functions Implementation
                 Separate Chaining with Singly Linked Lists
@@ -87,6 +86,9 @@ int search(struct Node *list, int);
 
 // function to get Node at given index
 struct Node* get_Node(struct Node* list, int);
+
+// function to Rehash the hash table
+void rehash(void);
 
 /* function to insert a key in the hash table */
 void insert(int, int);
@@ -400,3 +402,53 @@ struct Node* get_Node(struct Node* list, int find_index)
 	return temp;
 
 }/** END of get_Node() */
+
+
+/**
+ A utility function to Rehash the hash table by creating new hash
+ table of size double the previews one then copy all the item from
+ old hash to the new hash table and lastly delete the old hash */
+
+void rehash()
+{
+    struct arrayItem* temp;  // local variable of type struct arrayItem declaration */
+
+    temp = hashArray;  /* temp pointing to the current Hash Table array */
+
+    int i = 0, n =  max_Capacity;
+
+	SIZE = 0; // set size back to zero
+
+	max_Capacity = 2 * max_Capacity;  // double the maximum hash table size
+
+    /*
+    allocate new memory dynamically for array(hash table)
+    using malloc C function(new array size is double of previous array size) */
+    hashArray = (struct arrayItem*) malloc(max_Capacity * sizeof (struct arrayItem));
+
+    if(hashArray == NULL) /* error handling */
+       printf("error in allocating memory\n");
+
+    for (i = 0; i < n; i++)
+    {
+        /* Extract Linked List at position i of Hash Table array */
+
+ 		struct Node* list = (struct Node*) temp[i].Head;
+
+ 		if (list == NULL) /* if there is no Linked List at this index, then continue */
+ 		{
+ 		    continue;
+ 		}
+ 		else // else cases
+        {
+            // loop copy all the item and add to new table
+            while (list != NULL)
+            {
+                insert(list -> key, list -> value);
+
+            }
+        }
+    }
+    temp = NULL; // temp is now point to Null
+
+ } /**End of rehash() */
