@@ -113,8 +113,15 @@ int main(int argc, char* argv[])    /* the river Code */
 {
     int option, key, value, n;     /* variable declarations */
 
-    /*
-    Create Array(hash table)and initialize Head and Tail to NULL */
+    /*  first step
+    Allocate memory dynamically for array(hash table)
+    using malloc C function(memory same as max_Capacity)  */
+    hashArray = (struct arrayItem*) malloc(max_Capacity * sizeof (struct arrayItem));
+
+    if(hashArray == NULL) /* error handling */
+       printf("Error in allocating memory\n");
+
+    /* next step initialize hash table (Head and Tail )to NULL */
     initialize_Array();  // call initialize_Array() function
 
     do
@@ -192,13 +199,6 @@ int main(int argc, char* argv[])    /* the river Code */
 void initialize_Array()
 {
     int i; // counter variable declaration
-
-    /* allocate memory dynamically for array(hash table)
-       using malloc C function(memory same as max_Capacity)  */
-    hashArray = (struct arrayItem*) malloc(max_Capacity * sizeof (struct arrayItem));
-
-    if(hashArray == NULL) /* error handling */
-       printf("error in allocating memory\n");
 
     /* initialize hash table to NULL */
 	for (i = 0; i < max_Capacity; i++)
@@ -419,6 +419,10 @@ void rehash()
     if(hashArray == NULL) /* error handling */
        printf("error in allocating memory\n");
 
+    /* now initialize the hash table (Head and Tail )to NULL */
+    initialize_Array();  // call initialize_Array() function
+
+    
     for (i = 0; i < n; i++)
     {
         /* Extract Linked List at position i of Hash Table array */
