@@ -166,7 +166,7 @@ int main(int argc, char* argv[])    /* the river Code */
                 if(n == 0)
                     printf("Hash Table is Empty!!!\n");
                 else
-                    printf("Size of Hash Table is  --: %d\n", n);
+                    printf("Size of Hash Table is --: %d\n", n);
             break;
 
             case 0 :  /* case 0 Exit case */
@@ -292,8 +292,8 @@ void insert(int key, int data)
 
     if (load_Factor >= 0.75)
     {
-        printf("going to rehash\n");
-       // rehash(); // call rehash function
+        printf("its time to rehash the table \n");
+       rehash(); // call rehash function
     }
 
 } /** End of insert() */
@@ -331,17 +331,7 @@ void remove_Item(int key)
 } /** End of search_Item() */
 
 
-/**
-   Utility function to traverse array(hash table)
-    and display all the elements of a hash table */
-
-void display()
-{
-
-} /** End of display */
-
-
-/* function to get size of hash table(number of element in table) */
+/** function to get size of hash table(number of element in table) */
 
 int size_of_hashtable()
 {
@@ -441,14 +431,51 @@ void rehash()
  		}
  		else // else cases
         {
-            // loop copy all the item and add to new table
+           // loop copy all the item and add to new table
             while (list != NULL)
             {
+                // Get one key and value at a time and add it
+                // to new Hash Table array.
                 insert(list -> key, list -> value);
-
+                // move list next node
+                list = list -> next;
             }
         }
     }
     temp = NULL; // temp is now point to Null
 
  } /**End of rehash() */
+
+
+
+ /**
+   Utility function to traverse array(hash table)
+    and display all the elements of a hash table */
+
+void display()
+{
+    int i; /* counter variable declaration */
+
+    struct Node* temp;  // local variable of type struct node declaration */
+
+    for (i = 0; i < max_Capacity; i++)
+    {
+        temp = hashArray[i].Head;  // temp point to the head node at index i
+
+        if (temp == NULL)
+        {
+            printf("\n hash table [%d] has no elements \n", i);
+        }
+        else
+        {
+            printf("\n hash table [%d] has elements --> : ",i);
+            while (temp != NULL)
+            {
+                printf("key  = %d  value  =  %d\t", temp -> key, temp -> value);
+                temp = temp -> next; // move temp to the next node
+            }
+        }
+
+    }
+
+} /** End of display */
