@@ -9,7 +9,7 @@
      Hash table is a data structure that represents data
      in the form of key-value pairs.
      Each key is mapped to a value in the hash table.
-    (keys must be unique , but the value can be repeated)
+    (keys must be unique, but the value can be repeated)
 
      Reference in future :---->
       1.  https://youtu.be/KTO__3AVVCU
@@ -115,27 +115,27 @@ int main(int argc, char* argv[])    /* the river Code */
 
     /*  first step
     Allocate memory dynamically for array(hash table)
-    using malloc C function(memory same as max_Capacity)  */
+    using malloc C function(memory size same as max_Capacity)*/
     hashArray = (struct arrayItem*) malloc(max_Capacity * sizeof (struct arrayItem));
 
     if(hashArray == NULL) /* error handling */
        printf("Error in allocating memory\n");
 
-    /* next step initialize hash table (Head and Tail )to NULL */
+    /* next step initialize hash table(Head and Tail )to NULL */
     initialize_Array();  // call initialize_Array() function
 
     do
     {
-        printf("Hash Table Separate Chaining with Singly Linked Lists :\n");
-        printf("1 : Insert item in the Hash Table           :\n");
-        printf("2 : Remove item from the Hash Table         :\n");
-        printf("3 : Search For item in the Hash Table       :\n");
-        printf("4 : Display a Hash Table                    :\n");
-        printf("5 : Check the size of Hash Table            :\n");
-        printf("0 : Enter 0 to exit (quit)                  :\n");
+        printf("Hash Table Separate Chaining With Singly Linked Lists :\n");
+        printf("1 : Insert item in the Hash Table                     :\n");
+        printf("2 : Remove item from the Hash Table                   :\n");
+        printf("3 : Search For item in the Hash Table                 :\n");
+        printf("4 : Display a Hash Table                              :\n");
+        printf("5 : Check the size of Hash Table                      :\n");
+        printf("0 : Enter 0 to exit (quit)                            :\n");
 
         // asking user to enter choice
-        printf("  : Input your choice                       :");
+        printf("  : Input your choice                                 :");
         scanf("%d",&option);
         switch(option)
         {
@@ -193,14 +193,14 @@ int main(int argc, char* argv[])    /* the river Code */
 }/** End of main function */
 
 
-/** function To create Array(hash table) and
-  initialize Head and tail to NULL */
+/** function To  initialize the Array(hash tables)
+    Head and tail to NULL */
 
 void initialize_Array()
 {
     int i; // counter variable declaration
 
-    /* initialize hash table to NULL */
+    /* loop and initialize hash table Head and tail to NULL */
 	for (i = 0; i < max_Capacity; i++)
     {
         hashArray[i].Head = NULL;
@@ -219,7 +219,7 @@ int hashFunction(int key)
 
     /* Time complexity of hashFunction() : O(1) */
 
-} /**End of hashFunction */
+} /** End of hashFunction */
 
 
 /** A utility function to insert a key in the hash table */
@@ -275,8 +275,8 @@ void insert(int key, int data)
             by now we are sure the given key is already
             present in the hash table so let updated */
 
-            struct Node* update = get_Node(list, find_index);
-            update -> value = data;
+            struct Node* update = get_Node(list, find_index); // call get_Node() function
+            update -> value = data; // update the node value
             printf("\n the value at Key (%d) has been updated to value (%d) \n", key, data);
         }
     }
@@ -300,7 +300,7 @@ void insert(int key, int data)
 
 
 /**
-    A utility function create a new Node in heap so I can called
+    A utility function to create a new Node in heap so I can called
     it each time I need new node */
 
 struct Node* CreateNewNode(int key, int value)
@@ -323,12 +323,89 @@ struct Node* CreateNewNode(int key, int value)
 } /** END of CreateNewNode() */
 
 
-/** Utility function to Remove(delete) given a key from hash table*/
+/** Utility function to Remove(delete) given a key from hash table */
 
 void remove_Item(int key)
 {
+    // get the hash code
+	int hashIndex = hashFunction(key); // call hashFunction() function
+
+    /* Extract Linked List at a given index by hashFunction */
+	struct Node *list = (struct Node*) hashArray[hashIndex].Head;
+
+	/** Handle all the corner cases */
+
+	if(list == NULL) /* check if list at hashIndex is Empty*/
+    {
+        printf("\nThis key does not exist in the hash table!!\n");
+        return; // we are done
+    }
+    else // list at hashIndex is not Empty
+    {
+        /* search for the node in list at hashIndex maybe is not there  */
+        int find_index = search(list, key);  // call search function
+
+		if (find_index == -1)  /* case when the key not present in table */
+        {
+            /*
+            by now we are sure again the given key is not present in the
+            hash table */
+            printf("\nThis key does not exist in the hash table\n");
+            return; // we are done
+        }
+        else /* case when we have linked list at the index */
+        {
+          /*
+            by now we are sure the given key is present in the hash
+            table so let get it first then is easy to delete*/
+
+            struct Node *temp = list;  // temp is now point to head node
+            struct Node* deleted;
+            deleted = temp; // deleted is only to uses in free memory proccess
+
+            if (temp -> key == key)  // case when the given value its at first position */
+            {
+                /** link changes */
+
+                hashArray[hashIndex].Head = temp -> next; // move Head node one step ahead
+                deleted = NULL;     // connect deleted to NULL
+                free(deleted);      // now Delete deleted using free() C function
+                printf("\nKey (%d) has been Removed \n", key); // inform user the element is been Removed
+                return; // we are done
+            }
+             /*
+             by now we are sure node to be deleted is not at the
+             beginning  maybe its somewhere so let search it*/
+
+
+            // else cases
+            while (temp -> next -> key != key) // search for the key
+            {
+                temp = temp -> next;  // move temp to next node
+            }
+
+            deleted = temp -> next; // deleted is only to uses in free memory proccess
+
+            if (hashArray[hashIndex].Tail-> == temp -> next) // if the key is the last node
+            {
+                /** link changes */
+
+                hashArray[hashIndex].Tail == temp; // move tail one step back
+                deleted = NULL;     // connect deleted to NULL
+                free(deleted);      // now Delete deleted using free() C function
+            }
+            else // the key is not the last node and not first node
+                // its somewhere in middle and now we are at the key posstion
+            {
+                temp -> next = temp -> next -> next;
+            }
+           // printf("\nKey (%d) has been Removed \n", key); // inform user the element is been Removed
+
+        }
+    }
 
 } /** End of search_Item() */
+
 
 
 /** function to get size of hash table(number of element in table) */
@@ -422,7 +499,7 @@ void rehash()
     /* now initialize the hash table (Head and Tail )to NULL */
     initialize_Array();  // call initialize_Array() function
 
-    
+
     for (i = 0; i < n; i++)
     {
         /* Extract Linked List at position i of Hash Table array */
