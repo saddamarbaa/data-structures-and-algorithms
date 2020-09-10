@@ -109,11 +109,21 @@ int hashFunction(int);
 /* function to get size of hash table */
 int size_of_hashtable();
 
+// function to test if the given number is prime
+int isPrime(int);
+
+// function to get prime number
+int getPrime(int);
+
+
 int main(int argc, char* argv[])    /* the river Code */
 {
     int option, key, value, n;     /* variable declarations */
 
-    /*  first step
+    /* first step :  update size of array(Hash Table) to prime number */
+    max_Capacity = getPrime(max_Capacity); // call getPrime function
+     printf("prinme %d \n",max_Capacity);
+    /*  second step
     Allocate memory dynamically for array(hash table)
     using malloc C function(memory size same as max_Capacity)*/
     hashArray = (struct arrayItem*) malloc(max_Capacity * sizeof (struct arrayItem));
@@ -222,6 +232,30 @@ int hashFunction(int key)
 } /** End of hashFunction */
 
 
+/**
+    A utility function to create a new Node in heap so I can called
+    it each time I need new node */
+
+struct Node* CreateNewNode(int key, int value)
+{
+    struct Node* newNode; /* first create node */
+
+    // allocate memory dynamically for node using malloc C function
+    newNode = (struct Node*) malloc(sizeof (struct Node));
+
+    if(newNode == NULL) /* error handling */
+      printf("Error in allocating memory\n");
+
+    /* adding information to node */
+    newNode -> key = key;       // set key at key filed
+    newNode -> value = value;   // set value at value filed
+    newNode -> next = NULL;  // next is NULL for now
+
+     return   newNode;  // return newly created node to place where it been be called
+
+} /** END of CreateNewNode() */
+
+
 /** A utility function to insert a key in the hash table */
 
 void insert(int key, int data)
@@ -282,7 +316,7 @@ void insert(int key, int data)
     }
 
     /*
-    inserting node process is done
+    inserting the key process is done
     so now let check load factor to make sure everything is ok */
 
     // Calculate Load factor
@@ -300,27 +334,37 @@ void insert(int key, int data)
 
 
 /**
-    A utility function to create a new Node in heap so I can called
-    it each time I need new node */
+   Utility function to traverse array(hash table)
+    and display all the elements of a hash table */
 
-struct Node* CreateNewNode(int key, int value)
+void display()
 {
-    struct Node* newNode; /* first create node */
+    int i; /* counter variable declaration */
 
-    // allocate memory dynamically for node using malloc C function
-    newNode = (struct Node*) malloc(sizeof (struct Node));
+    struct Node* temp;  // local variable of type struct node declaration */
 
-    if(newNode == NULL) /* error handling */
-      printf("Error in allocating memory\n");
+    for (i = 0; i < max_Capacity; i++)
+    {
+        temp = hashArray[i].Head;  // temp point to the head node at index i
 
-    /* adding information to node */
-    newNode -> key = key;       // set key at key filed
-    newNode -> value = value;   // set value at value filed
-    newNode -> next = NULL;  // next is NULL for now
+        if (temp == NULL)
+        {
+            printf("\n hash table [%d] has no elements \n", i);
+        }
+        else
+        {
+            printf("\n hash table [%d] has elements --> : ",i);
+            while (temp != NULL)
+            {
+                printf("key  = %d  value  =  %d\t", temp -> key, temp -> value);
+                temp = temp -> next; // move temp to the next node
+            }
+        }
 
-     return   newNode;  // return newly created node to place where it been be called
+    }
+    printf("\n");
 
-} /** END of CreateNewNode() */
+} /** End of display */
 
 
 /** Utility function to Remove(delete) given a key from hash table */
@@ -380,9 +424,9 @@ void remove_Item(int key)
                 prves = temp;          // save temp in prves
                 temp = temp -> next;  // move temp to next node
             }
-        
+
             if (temp == NULL) // after search if temp is NULL mean
-            {                 // the key is found at the last node 
+            {                 // the key is found at the last node
                 /** link changes */
                 prves -> next = NULL;        // right side connection first
                 hashArray[hashIndex].Tail = prves; // move tail one step back
@@ -390,9 +434,9 @@ void remove_Item(int key)
             }
             else // the key is not the last node and not first node
             {    // its somewhere in middle and now we are at the key position
-                
+
                 /** link changes */
-                
+
                 prves -> next = temp -> next;  // right side connection first
                 temp -> next = NULL;           // connect temp -> next to NULL
                 free(temp);                    // now Delete temp using free() C function
@@ -411,9 +455,6 @@ void remove_Item(int key)
 int size_of_hashtable()
 {
     return SIZE;
-
-    /* Time complexity of size_of_hashtable() : O(1) */
-
 } /** End of size_of_hashtable() */
 
 
@@ -446,6 +487,66 @@ int search(struct Node *list, int key)
 
 
 /**
+ A utility function to Rehash the hash table by creating new hash
+ table of size double the previews one then copy all the item from
+ old hash to the new hash table and lastly delete the old hash */
+
+void rehash()
+{
+    struct arrayItem* temp;  // local variable of type struct arrayItem declaration */
+
+    temp = hashArray;  /* temp pointing to the current Hash Table array */
+
+    int i = 0, n =  max_Capacity;
+
+	SIZE = 0; // set size back to zero
+
+	max_Capacity = 2 * max_Capacity;  // double the maximum hash table size
+
+    /* update max_Capacity of array(Hash Table) to prime number */
+    max_Capacity = getPrime(max_Capacity); // call getPrime function
+
+    /*
+    allocate new memory dynamically for array(hash table)
+    using malloc C function(new array size is double of previous array size) */
+    hashArray = (struct arrayItem*) malloc(max_Capacity * sizeof (struct arrayItem));
+
+    if(hashArray == NULL) /* error handling */
+       printf("error in allocating memory\n");
+
+    /* now initialize the hash table (Head and Tail )to NULL */
+    initialize_Array();  // call initialize_Array() function
+
+    for (i = 0; i < n; i++)
+    {
+        /* Extract Linked List at position i of Hash Table array */
+
+ 		struct Node* list = (struct Node*) temp[i].Head;
+
+ 		if (list == NULL) /* if there is no Linked List at this index, then continue */
+ 		{
+ 		    continue; // continue to next index
+ 		}
+ 		else // else cases
+        {
+           // loop copy all the item and add to new table
+            while (list != NULL)
+            {
+                // Get one key and value at a time and add it
+                // to new Hash Table array.
+                insert(list -> key, list -> value);
+                // move list next node
+                list = list -> next;
+            }
+        }
+    }
+    temp = NULL; // temp is now point to Null
+
+ } /**End of rehash() */
+
+
+
+/**
    A utility function to search for node from the Linked List
     at given index and Returns that node
     (before calling this function we are already the given index have node */
@@ -470,92 +571,43 @@ struct Node* get_Node(struct Node* list, int find_index)
 
 
 /**
- A utility function to Rehash the hash table by creating new hash
- table of size double the previews one then copy all the item from
- old hash to the new hash table and lastly delete the old hash */
+    function to test if the given number is prime number or not
+     (Trial division method )*/
 
-void rehash()
+int isPrime(int num)
 {
-    struct arrayItem* temp;  // local variable of type struct arrayItem declaration */
+    if(num == 1 || num == 0) /* handle corner case */
+       return 0; // zero and one are not prime so return zero false
 
-    temp = hashArray;  /* temp pointing to the current Hash Table array */
-
-    int i = 0, n =  max_Capacity;
-
-	SIZE = 0; // set size back to zero
-
-	max_Capacity = 2 * max_Capacity;  // double the maximum hash table size
-
-    /*
-    allocate new memory dynamically for array(hash table)
-    using malloc C function(new array size is double of previous array size) */
-    hashArray = (struct arrayItem*) malloc(max_Capacity * sizeof (struct arrayItem));
-
-    if(hashArray == NULL) /* error handling */
-       printf("error in allocating memory\n");
-
-    /* now initialize the hash table (Head and Tail )to NULL */
-    initialize_Array();  // call initialize_Array() function
-
-
-    for (i = 0; i < n; i++)
+    /* start loop from 2 and run until sqrt Root of num */
+    for(int i = 2, N = sqrt(num); i <= N; i++)
     {
-        /* Extract Linked List at position i of Hash Table array */
+        // if there is any number that can divide our number(num)
+        // that mean the number is not prime
+        if(num % i == 0)
+          return 0; // return zero
 
- 		struct Node* list = (struct Node*) temp[i].Head;
+    } /** End for loop */
 
- 		if (list == NULL) /* if there is no Linked List at this index, then continue */
- 		{
- 		    continue;
- 		}
- 		else // else cases
-        {
-           // loop copy all the item and add to new table
-            while (list != NULL)
-            {
-                // Get one key and value at a time and add it
-                // to new Hash Table array.
-                insert(list -> key, list -> value);
-                // move list next node
-                list = list -> next;
-            }
-        }
-    }
-    temp = NULL; // temp is now point to Null
+    return 1; //if you reach here number is prime
 
- } /**End of rehash() */
+    /* Time complexity of isPrime() : sqrt(N) */
+
+}/** End isPrime */
 
 
+/**
+    function to get prime number which is just bigger
+    than the given  number num (first prime number after num) */
 
- /**
-   Utility function to traverse array(hash table)
-    and display all the elements of a hash table */
-
-void display()
+int getPrime(int num)
 {
-    int i; /* counter variable declaration */
+    if(num % 2 == 0)   /* check if num is not prime */
+      num++;           // increase num by one
 
-    struct Node* temp;  // local variable of type struct node declaration */
+    while(!isPrime(num)) // while num is not yet prime
+        num += 2;           //increase num by 2 and back check again
 
-    for (i = 0; i < max_Capacity; i++)
-    {
-        temp = hashArray[i].Head;  // temp point to the head node at index i
+    return num; // by now num is prime
 
-        if (temp == NULL)
-        {
-            printf("\n hash table [%d] has no elements \n", i);
-        }
-        else
-        {
-            printf("\n hash table [%d] has elements --> : ",i);
-            while (temp != NULL)
-            {
-                printf("key  = %d  value  =  %d\t", temp -> key, temp -> value);
-                temp = temp -> next; // move temp to the next node
-            }
-        }
-
-    }
-    printf("\n");
-
-} /** End of display */
+}/** End of getPrime */
