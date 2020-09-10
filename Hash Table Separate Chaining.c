@@ -353,59 +353,57 @@ void remove_Item(int key)
             printf("\nThis key does not exist in the hash table\n");
             return; // we are done
         }
-        else /* case when we have linked list at the index */
+        else /* case when the key is present in table */
         {
           /*
             by now we are sure the given key is present in the hash
             table so let get it first then is easy to delete*/
 
-            struct Node *temp = list;  // temp is now point to head node
-            struct Node* deleted;
-            deleted = temp; // deleted is only to uses in free memory proccess
+            struct Node *temp, *prves;   // local variable of type struct node declaration */
+            temp = prves = list;        //temp and prves are now pointing to head node
 
             if (temp -> key == key)  // case when the given value its at first position */
             {
                 /** link changes */
 
-                hashArray[hashIndex].Head = temp -> next; // move Head node one step ahead
-                deleted = NULL;     // connect deleted to NULL
-                free(deleted);      // now Delete deleted using free() C function
+                hashArray[hashIndex].Head = temp -> next;  // right side connection first
+                temp -> next = NULL;        // connect temp -> next to NULL
+                free(temp);                 // now Delete temp using free() C function
                 printf("\nKey (%d) has been Removed \n", key); // inform user the element is been Removed
                 return; // we are done
             }
-             /*
-             by now we are sure node to be deleted is not at the
-             beginning  maybe its somewhere so let search it*/
-
-
-            // else cases
-            while (temp -> next -> key != key) // search for the key
+            /*
+            by now we are sure node to be deleted is not at the
+            beginning  maybe its somewhere in middle or last so let search it*/
+            while (temp != NULL && temp -> key != key)  // loop until find the key
             {
+                prves = temp;          // save temp in prves
                 temp = temp -> next;  // move temp to next node
             }
-
-            deleted = temp -> next; // deleted is only to uses in free memory proccess
-
-            if (hashArray[hashIndex].Tail-> == temp -> next) // if the key is the last node
-            {
+        
+            if (temp == NULL) // after search if temp is NULL mean
+            {                 // the key is found at the last node 
                 /** link changes */
-
-                hashArray[hashIndex].Tail == temp; // move tail one step back
-                deleted = NULL;     // connect deleted to NULL
-                free(deleted);      // now Delete deleted using free() C function
+                prves -> next = NULL;        // right side connection first
+                hashArray[hashIndex].Tail = prves; // move tail one step back
+                free(temp);                    // now Delete temp using free() C functi
             }
             else // the key is not the last node and not first node
-                // its somewhere in middle and now we are at the key posstion
-            {
-                temp -> next = temp -> next -> next;
+            {    // its somewhere in middle and now we are at the key position
+                
+                /** link changes */
+                
+                prves -> next = temp -> next;  // right side connection first
+                temp -> next = NULL;           // connect temp -> next to NULL
+                free(temp);                    // now Delete temp using free() C function
+
             }
-           // printf("\nKey (%d) has been Removed \n", key); // inform user the element is been Removed
+            printf("\nKey (%d) has been Removed \n", key); // inform user the element is been Removed
 
         }
     }
 
-} /** End of search_Item() */
-
+} /** End of remove_Item() */
 
 
 /** function to get size of hash table(number of element in table) */
@@ -558,5 +556,6 @@ void display()
         }
 
     }
+    printf("\n");
 
 } /** End of display */
