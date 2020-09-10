@@ -10,6 +10,10 @@
      in the form of key-value pairs.
      Each key is mapped to a value in the hash table.
     (keys must be unique, but the value can be repeated)
+    
+    Separate Chaining deals with hash collisions by maintaining
+    a data structure(usually linked list) to hold all the different
+    values which hashed to particular value.
 
      Reference in future :---->
       1.  https://youtu.be/KTO__3AVVCU
