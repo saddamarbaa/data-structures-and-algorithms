@@ -122,7 +122,7 @@ int main(int argc, char* argv[])    /* the river Code */
 
     /* first step :  update size of array(Hash Table) to prime number */
     max_Capacity = getPrime(max_Capacity); // call getPrime function
-     printf("prinme %d \n",max_Capacity);
+
     /*  second step
     Allocate memory dynamically for array(hash table)
     using malloc C function(memory size same as max_Capacity)*/
@@ -169,7 +169,7 @@ int main(int argc, char* argv[])    /* the river Code */
             case 3 :
                 printf("Enter the key to Search For item : ");
                 scanf("%d",&key);
-                //search_Item(key); // call search_Item_Item function
+                search_Item(key); // call search_Item_Item function
             break;
 
             // case 4 traverse Hash Table and Print all element(Iterative method)
@@ -273,7 +273,7 @@ void insert(int key, int data)
 
 	/** Handle all the corner cases */
 
-	if(list == NULL) /* check if list is empty then this node is the first node at that index */
+	if(list == NULL) /* check if list at hashIndex is Empty then this node is the first node at that index  */
     {
         hashArray[hashIndex].Head = newNode;
         hashArray[hashIndex].Tail = newNode;
@@ -424,7 +424,6 @@ void remove_Item(int key)
                 prves = temp;          // save temp in prves
                 temp = temp -> next;  // move temp to next node
             }
-
             if (temp == NULL) // after search if temp is NULL mean
             {                 // the key is found at the last node
                 /** link changes */
@@ -455,6 +454,7 @@ void remove_Item(int key)
 int size_of_hashtable()
 {
     return SIZE;
+
 } /** End of size_of_hashtable() */
 
 
@@ -523,7 +523,7 @@ void rehash()
 
  		struct Node* list = (struct Node*) temp[i].Head;
 
- 		if (list == NULL) /* if there is no Linked List at this index, then continue */
+ 		if (list == NULL) /* check if list at hashIndex is Empty */
  		{
  		    continue; // continue to next index
  		}
@@ -611,3 +611,45 @@ int getPrime(int num)
     return num; // by now num is prime
 
 }/** End of getPrime */
+
+
+/**  Utility function to Search For item with given key from hash table */
+
+void search_Item(int key)
+{
+    // get the hash code
+	int hashIndex = hashFunction(key); // call hashFunction() function
+
+    /* Extract Linked List at a given index by hashFunction */
+	struct Node *list = (struct Node*) hashArray[hashIndex].Head;
+
+	if(list == NULL) /* check if list at hashIndex is Empty */
+    {
+        printf("This key does not exist in the hash table!!\n");
+        return; // we are done
+    }
+    else // list at hashIndex is not Empty
+    {
+        /* search for the node in list at hashIndex */
+        int find_index = search(list, key);  // call search function
+
+		if (find_index == -1)  /* case when the key not present in table */
+        {
+            /*
+            by now we are sure again the given key is not present in the
+            hash table */
+            printf("This key does not exist in the hash table\n");
+            return; // we are done
+        }
+
+        else /* case when the key is already present in table */
+        {
+            /*
+            by now we are sure the given key is present in the
+            hash table so let inform  the user */
+            printf("the key is present in hash table\n");
+        }
+    }
+
+
+} /** End of search_Item() */
