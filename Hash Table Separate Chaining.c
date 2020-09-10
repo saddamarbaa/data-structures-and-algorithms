@@ -62,15 +62,15 @@ struct arrayItem
 /* Global array(hash table) declaration*/
 struct arrayItem* hashArray;
 
-/*Global declaration of Hash Table maximum
+/* Global declaration of Hash Table maximum
   capacity and initialization to 10(array size) */
 int max_Capacity = 10;
 
-/*Global declaration Hash Table size Global size and initialization
+/* Global declaration Hash Table size Global size and initialization
   to zero (number of elements present in Hash Table */
 int SIZE = 0;
 
-/*Load Factor variable is to keeping track of load factor,
+/* Load Factor variable is to keeping track of load factor,
  and know weather rehashing is required or not so far each
  time new item is been inserted to the hash table */
 float load_Factor = 0.0;
@@ -107,7 +107,7 @@ void display(void);
 int hashFunction(int);
 
 /* function to get size of hash table */
-int size_of_hashtable();
+int size_of_hashtable(void);
 
 // function to test if the given number is prime
 int isPrime(int);
@@ -183,7 +183,7 @@ int main(int argc, char* argv[])    /* the river Code */
                 if(n == 0)
                     printf("Hash Table is Empty!!!\n");
                 else
-                    printf("Size of Hash Table is --: %d\n", n);
+                    printf("Size of Hash Table is  : %d\n", n);
             break;
 
             case 0 :  /* case 0 Exit case */
@@ -226,8 +226,6 @@ void initialize_Array()
 int hashFunction(int key)
 {
     return (key % max_Capacity); // return unique hash code
-
-    /* Time complexity of hashFunction() : O(1) */
 
 } /** End of hashFunction */
 
@@ -360,7 +358,6 @@ void display()
                 temp = temp -> next; // move temp to the next node
             }
         }
-
     }
     printf("\n");
 
@@ -414,6 +411,7 @@ void remove_Item(int key)
                 temp -> next = NULL;        // connect temp -> next to NULL
                 free(temp);                 // now Delete temp using free() C function
                 printf("\nKey (%d) has been Removed \n", key); // inform user the element is been Removed
+                SIZE--; /* decrement hash size by one */
                 return; // we are done
             }
             /*
@@ -439,8 +437,8 @@ void remove_Item(int key)
                 prves -> next = temp -> next;  // right side connection first
                 temp -> next = NULL;           // connect temp -> next to NULL
                 free(temp);                    // now Delete temp using free() C function
-
             }
+            SIZE--; /* decrement hash size by one */
             printf("\nKey (%d) has been Removed \n", key); // inform user the element is been Removed
 
         }
@@ -479,7 +477,6 @@ int search(struct Node *list, int key)
         temp = temp -> next;   // move temp to next node
         index++;    // increment index by one
     }
-
     // if search here the key is not found in list return -1
 	return -1;
 
@@ -542,8 +539,7 @@ void rehash()
     }
     temp = NULL; // temp is now point to Null
 
- } /**End of rehash() */
-
+ } /** End of rehash() */
 
 
 /**
@@ -650,6 +646,5 @@ void search_Item(int key)
             printf("the key is present in hash table\n");
         }
     }
-
 
 } /** End of search_Item() */
