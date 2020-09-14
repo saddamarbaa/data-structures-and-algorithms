@@ -1,6 +1,24 @@
+/**
+    [PROGRAM] :  Infix to Postfix Conversion Using Stack
+    [AUTHOR]  :  Saddam Arbaa
+    [Email]   :  <saddamarbaas@gmail.com>
+
+    C Program to Convert Infix to Postfix Expression Using STACK Data Structure.
+
+     Reference in future :---->
+     1. https://youtu.be/rs3yFyq_Kds
+     2. https://youtu.be/Xta_sJZEYPw
+     3. https://youtu.be/b6miFHYFaVI
+     4. https://youtu.be/riKPj1d16PI
+     5. https://youtu.be/qqagmeTN0p4
+     6. https://youtu.be/8wQ7JE5pFXU
+     7. https://youtu.be/BeRM6DzdCBg
+     8. https://youtu.be/dJESbyFR1sU
+     9. https://youtu.be/QZOLb0xHB_Q
+     10.https://youtu.be/MeRb_1bddWg  */
+
 #include <stdio.h>
 #include "stdlib.h"
-//#include <cs50.h>  //<cs50.h>  this because am now using Cs50 IDE
 #include <string.h> // include string.h
 
 /* Structure to represent stack */
@@ -26,7 +44,7 @@ int precedence(char);
 // Function to push(add)character into stack
 void push(struct Stack* stack, char);
 
-//Function to pop(remove)top character from stack
+// Function to pop(remove)top character from stack
 char pop(struct Stack* stack);
 
 // function to get the top character from without deleting it
@@ -46,7 +64,7 @@ int main(int argc, char* argv[]) // the  Driver Code
     char* infix_Expression = "((A+B-C)*D^E^F)/G";  /* output Expression must be " AB+C-DEF^^*G/ " */
 
     // print the expression Before Convention
-    printf("Before Convert infix expression is : %s\n",infix_Expression);
+    printf("Before Convert infix Expression is : %s\n",infix_Expression);
 
     // call InfixToPostfix() function
     InfixToPostfix(infix_Expression);
@@ -55,12 +73,14 @@ int main(int argc, char* argv[]) // the  Driver Code
 
 }/** End of main function */
 
+
 /**
     function to Convert Infix Expression to Postfix Expression
-    Algorithm
+
+    Algorithm Convert Infix to Postfix
     1. Scan the infix expression from left to right.
     2. If the scanned character is an operand,output it.
-    3. If the scanned character is aoperator and Stack is empty,
+    3. If the scanned character is operator and Stack is empty,
         push this operator onto the stack
     4.  IF incoming SYMBOL is ‘(‘ PUSH it onto Stack.
     5.  IF incoming SYMBOL is ‘)’ POP the stack and print OPERATORs
@@ -70,8 +90,7 @@ int main(int argc, char* argv[]) // the  Driver Code
     7. IF incoming OPERATOR has LOWER precedence than the TOP of
        the Stack, then POP and print the TOP. Then test the incoming
        operator against the NEW TOP of stack.
-    8. IF incoming OPERATOR has EQUAL precedence with TOP of Stack,
-        use ASSOCIATIVITY Rules.
+    8. IF incoming OPERATOR has EQUAL precedence with TOP of Stack,use ASSOCIATIVITY Rules.
     9. For ASSOCIATIVITY of LEFT to RIGHT –>
         POP and print the TOP of stack, then push the incoming OPERATO
     10. For ASSOCIATIVITY of RIGHT to LEFT –
@@ -150,7 +169,7 @@ void InfixToPostfix(char* infix)
                       push(stack, infix[i]); // Push the Operator to stack
                   }
                   /*
-                  (this one is special case about'^')
+                  (this one is special case about '^' as '^' have Right to Left Associativity)
                   this is mean incoming Operator is '^' */
                   else if((precedence(infix[i]) == precedence(top(stack))) && ((infix[i] == '^')))
                   {
@@ -164,7 +183,7 @@ void InfixToPostfix(char* infix)
                           pop(stack);         // pop the top Operator out
                       }
                       // after while loop
-                      push(stack, infix[i]); // Push the new Operator to stack
+                      push(stack, infix[i]); // Push the new Operator to stack ('^')
                   }
               }
          }
@@ -183,7 +202,7 @@ void InfixToPostfix(char* infix)
     postfix[++k] = '\0';  // add '\0' at the end of postfix Expression
 
     // print the expression after Convention
-    printf("After Convert postfix expression is : %s\n",postfix); /* output must be " AB+C-DEF^^*G/ " */
+    printf("After Convert Postfix Expression is : %s\n",postfix); /* output must be " AB+C-DEF^^*G/ " */
 
 } /** End of InfixToPostfix() */
 
@@ -201,7 +220,7 @@ struct Stack* create_Stack(unsigned capacity)
       printf("Error in allocating memory\n");
 
     /* adding information to Stack */
-    stack -> top = -1;    // set  top to -1
+    stack -> top = -1;            // set  top to -1
     stack -> capacity = capacity; // set capacity at capacity filed
 
     /* allocate memory dynamically for Stack array using malloc  */
@@ -214,13 +233,16 @@ struct Stack* create_Stack(unsigned capacity)
 
 } /** END of Create_Stack() */
 
-/**
-   Utility function to Check if the
-   given character is Operand or not */
 
-int is_Operand(char c)
+/**
+   Utility function to Check if the given character is Operand or not
+   here am assuming that operand will be a single character*/
+
+int is_Operand(char C)
 {
-    if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+    if((C >=  'A' && C <= 'Z')  ||
+      (C  >=  'a' && C <= 'z')  ||
+      (C  >=  '0' && C <= '9'))
        return 1; // is Operand
     else
       return 0; // is not Operator
@@ -229,8 +251,8 @@ int is_Operand(char c)
 
 
 /**
-   Utility function to Check if the
-   given character is Operator or not */
+    Utility function to Check if the given character
+    is operator symbol or not */
 
 int is_Operator(char c)
 {
@@ -242,16 +264,18 @@ int is_Operator(char c)
 } /** End of is_Operator() */
 
 
-/** function to determine Associativity Operator precedence
-     (return precedence of a given operator) */
+/**
+    function to determine Associativity Operator precedence
+    An operator with higher weight will have higher precedence.
+    (return precedence of a given operator) */
 
-int precedence(char c)
+int precedence(char op)
 {
-    if(c == '^')  /* Highest precedence */
+    if(op == '^')  /* Highest precedence */
     return 3;
-    else if(c == '*' || c == '/')  /* second Highest precedence */
+    else if(op == '*' || op == '/')  /* second Highest precedence */
     return 2;
-    else if(c == '+' || c == '-')  /* third Highest precedence */
+    else if(op == '+' || op == '-')  /* third Highest precedence */
     return 1;
     return -1; // in all else cases
 
@@ -263,7 +287,7 @@ int precedence(char c)
 void push(struct Stack* stack, char c)
 {
     // increment top by one first
-    stack -> array[++stack -> top] = c; // add the given character to stack
+    stack -> array[++stack -> top] = c;  // add the given character to stack
 
     printf("%c  been push to Stack\n",c); // inform  user the character is been added
 
