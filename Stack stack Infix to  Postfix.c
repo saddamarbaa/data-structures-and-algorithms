@@ -1,7 +1,6 @@
-
 #include <stdio.h>
 #include "stdlib.h"
-#include <cs50.h>  //<cs50.h>  this because am now using Cs50 IDE
+//#include <cs50.h>  //<cs50.h>  this because am now using Cs50 IDE
 #include <string.h> // include string.h
 
 /* Structure to represent stack */
@@ -9,7 +8,7 @@ struct Stack
 {
     int top;            /* top of stack filed */
     unsigned capacity; /* size of stack filed */
-    int* array;      /* stack array filed (dynamic array) */
+    int* array;       /* stack array filed (dynamic array) */
 };
 
 /*  Function to create Stack */
@@ -33,7 +32,7 @@ char pop(struct Stack* stack);
 // function to get the top character from without deleting it
 char top(struct Stack* stack);
 
-//function to Check if the stack is empty or not
+// function to Check if the stack is empty or not
 int isEmpty(struct Stack* stack);
 
 // function to Convert Infix Expression to Postfix Expression
@@ -44,7 +43,7 @@ int main(int argc, char* argv[]) // the  Driver Code
     printf("Convert Infix to Postfix Expression using STACK Data Structure\n");
 
     // variable declarations
-    char *infix_Expression = get_string("Enter Infix Expression :"); // get user input
+    char* infix_Expression = "((A+B-C)*D^E^F)/G";  /* output Expression must be " AB+C-DEF^^*G/ " */
 
     // print the expression Before Convention
     printf("Before Convert infix expression is : %s\n",infix_Expression);
@@ -82,18 +81,16 @@ int main(int argc, char* argv[]) // the  Driver Code
 
 void InfixToPostfix(char* infix)
 {
-    // counter variable K declarations and initializations to zero
+    // counter variable K declarations and initializations to -1
     int k = -1;
 
-    // allocate memory dynamically for postfix using malloc
+    // allocate memory dynamically for postfix Expression using malloc
     char* postfix = malloc(strlen(infix) + 1);
-
     if(postfix == NULL) /* error handling */
     {
         printf("Error in allocating memory\n");
         return;
     }
-
     // Create a stack of capacity equal to expression size
     struct Stack* stack = create_Stack(strlen(infix));
     if(stack == NULL) /* error handling */
@@ -107,7 +104,7 @@ void InfixToPostfix(char* infix)
     {
         /* case 1
         IF the incoming charter is an operand then Print
-        OPERANDs as the arrive(add it to output) */
+        operand as the arrive( add it to output) */
         if(is_Operand(infix[i]))
         {
             postfix[++k] = infix[i]; // add OPERAND to postfix as its
@@ -116,7 +113,7 @@ void InfixToPostfix(char* infix)
         IF the incoming charter SYMBOL is ‘(‘ PUSH it onto Stack. */
         else if (infix[i] == '(')
         {
-            push(stack, infix[i]); // Push character at index i '(' to stack
+            push(stack, infix[i]); // Push '(' to stack
         }
         /*
          case 3
@@ -134,7 +131,7 @@ void InfixToPostfix(char* infix)
                pop(stack);      // pop '(' out
         }
          /*
-         IF the incoming charter SYMBOL is Operator( +,*,/,-,^)
+         IF the incoming charter is Operator( +,*,/,-,^)
          (since this is the last case we dont even need to call
          Operator function we can just go with simple else block) */
          else if (is_Operator(infix[i]))
@@ -153,11 +150,11 @@ void InfixToPostfix(char* infix)
                       push(stack, infix[i]); // Push the Operator to stack
                   }
                   /*
-                  (this one is special case)
+                  (this one is special case about'^')
                   this is mean incoming Operator is '^' */
                   else if((precedence(infix[i]) == precedence(top(stack))) && ((infix[i] == '^')))
                   {
-                      push(stack, infix[i]); // Push the Operator ('^') to stack
+                      push(stack, infix[i]); // Push ('^') to stack
                   }
                   else // else case
                   {
@@ -167,26 +164,26 @@ void InfixToPostfix(char* infix)
                           pop(stack);         // pop the top Operator out
                       }
                       // after while loop
-                      push(stack, infix[i]); // Push the new  Operator to stack
+                      push(stack, infix[i]); // Push the new Operator to stack
                   }
               }
          }
 
     } /** END of for loop */
+
     /*
     after the for loop
     while stack is not empty pop out the remaining operators */
     while(!isEmpty(stack))
     {
         postfix[++k] = top(stack); // add the remaining operators to postfix Expression
-        pop(stack);                // pop the top the  operators out
+        pop(stack);                // pop the top the operators Expression
     }
 
     postfix[++k] = '\0';  // add '\0' at the end of postfix Expression
 
     // print the expression after Convention
-    printf("After Convert postfix expression is : %s\n",postfix);
-
+    printf("After Convert postfix expression is : %s\n",postfix); /* output must be " AB+C-DEF^^*G/ " */
 
 } /** End of InfixToPostfix() */
 
