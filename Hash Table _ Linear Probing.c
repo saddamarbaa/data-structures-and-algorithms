@@ -51,7 +51,6 @@ struct hashtable_Item
     struct Data_Set* data; // data(key and value)
 };
 
-
 /* Global array(hash table) declaration*/
 struct hashtable_Item* hashArray;
 
@@ -211,7 +210,7 @@ void insert(int key, int value)
 	int hashIndex = hashFunction(key); // call hashFunction()
 	int i = hashIndex; //counter i is equal to  hashIndex
 
-	/*
+    /*
     second step create new item to insert in the hash table array
     allocate memory dynamically for new_item using malloc C */
     struct Data_Set* new_item = (struct Data_Set*) malloc (sizeof(struct Data_Set));
