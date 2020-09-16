@@ -1,5 +1,5 @@
 /**
-    [PROGRAM] : Hash Tables and Hash Functions Implementation
+    [PROGRAM] : Hash Tables and Hash Functions Implementation Using Linear Probing
     [AUTHOR]  :  Saddam Arbaa
     [Email]   :  <saddamarbaas@gmail.com>
 
@@ -41,7 +41,6 @@ struct Data_Set
    and data (consisting of key and value */
 struct hashtable_Item
 {
-
     /*
      * flag = 0 : data does not exist
      * flag = 1 : data exists
@@ -158,7 +157,7 @@ int main(int argc, char* argv[])    /* the river Code */
                 if(n == 0)
                     printf("Hash Table is Empty!!!\n");
                 else
-                    printf("Size of Hash Table is  --: %d\n", n);
+                    printf("Size of Hash Table is  : %d\n", n);
             break;
 
             case 0 :  /* case 0 Exit case */
@@ -216,6 +215,7 @@ void insert(int key, int value)
     second step create new item to insert in the hash table array
     allocate memory dynamically for new_item using malloc C */
     struct Data_Set* new_item = (struct Data_Set*) malloc (sizeof(struct Data_Set));
+
     if(new_item == NULL) /* Error handling */
     {
        printf("Error in allocating memory\n");
@@ -227,7 +227,7 @@ void insert(int key, int value)
     /* probing through the array until we reach an empty space */
     while (hashArray[i].flag == 1)
     {
-       /* case when the key is at ith index in table */
+       /* case when the key is Already at ith index in table */
        if(hashArray[i].data -> key == key)
        {
            /*
@@ -273,9 +273,16 @@ void remove_Item(int key)
 	 hashIndex = hashFunction(key); // call hashFunction()
 	 int i = hashIndex; // counter i is equal to  hashIndex
 
+	 if (size_of_hashtable() == 0) /* case when the hash table is Empty */
+    {
+        printf("Hash Table is Empty!!!\n");
+        return;
+    }
+    /* in else case iterate throw the hash table */
+
     /*
-    now second step probing through hash array until we reach an empty space
-    where not even once an element had been present search for the key*/
+    next step probing through hash array until we reach an empty space
+    where not even once an element had been present until then search for the key */
     while (hashArray[i].flag != 0)
     {
         if (hashArray[i].flag == 1 && hashArray[i].data -> key == key)
@@ -290,15 +297,16 @@ void remove_Item(int key)
 
         i = (i + 1) % capacity; /* calculate the next index */
 
-       	if (i == hashIndex) /* case when we are in loop*/
+       	if (i == hashIndex) /* case when we are in forever loop*/
         {
-            printf("\n Hash table is full!!\n");
+            printf("This key does not exist in the hash table!!!\n");
+            printf("\n All the  has table been searched now we are in forever loop!!\n");
 		    return; // we are done
         }
     }
 
     /* case when the key not present in table */
-    printf("\nThis key does not exist in the hash table\n");
+    printf("This key does not exist in the hash table!!!\n");
 
 } /** End of remove_Item() */
 
@@ -313,15 +321,38 @@ void search_Item(int key)
     hashIndex = hashFunction(key); // call hashFunction()
     int i = hashIndex; // counter i is equal to  hashIndex
 
+    if (size_of_hashtable() == 0) /* case when the hash table is Empty */
+    {
+        printf("Hash Table is Empty!!!\n");
+        return;
+    }
+    /* in else case iterate throw the hash table */
 
+    /*
+     probing through hash array until we reach an empty space
+    where not even once an element had been present until then search for the key */
+    while (hashArray[i].flag != 0)
+    {
+        if (hashArray[i].flag == 1 && hashArray[i].data -> key == key)
+        {
+            /* case when the key present in table */
+            printf("\nan Item with Key (%d) is  : (%d) \n", key , hashArray[i].data -> value);
+            return ;
+        }
 
-	//if (hashArray[hashIndex].key == 0) /* case when the key not present in table */
-        printf("\nNot found in the hash table!!\n");
+        i = (i + 1) % capacity; /* calculate the next index */
 
-    //else  /* case when the key present in table */
-        printf("\nan Item with Key (%d) is  : (%d) \n", key , hashArray[hashIndex].data -> value);
+       	if (i == hashIndex) /* case when we are in forever loop*/
+        {
+            printf("\nThis key does not exist in the hash table\n");
+            printf("\n All the  has table been searched now we are in forever loop!!\n");
+		    return; // we are done
+        }
+    }
 
-    /* Time complexity of search_Item : O(1) */
+    /* case when the key not present in table */
+    printf("This key does not exist in the hash table!!!\n");
+
 
 } /** End of search_Item() */
 
@@ -335,7 +366,12 @@ void display()
     int i; /* counter variable declaration */
     struct Data_Set *current; /* local variable of type Data_Set*/
 
-    // iterate throw the hash table
+    if (size_of_hashtable() == 0) /* case when the hash table is Empty */
+    {
+        printf("Hash Table is Empty!!!\n");
+        return;
+    }
+    // else case iterate throw the hash table
     for (i = 0; i < capacity; i++)
     {
         // current is now point to hashArray[i].data
