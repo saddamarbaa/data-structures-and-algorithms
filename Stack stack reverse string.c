@@ -1,92 +1,132 @@
 /**
-    [PROGRAM] : Reverse a string using stack
+    [PROGRAM] :  Reverse a string using stack
     [AUTHOR]  :  Saddam Arbaa
     [Email]   :  <saddamarbaas@gmail.com>
 
     C Program to Reverse a string using stack.
-    to Reverse a string using stack the idea is to loop throw the string
-    and push each character to stack until we reach end of string
-    then just easily pop all of them again from stack and printed
 
-    as stack flow first in last out so if we pop out the string will be
-    already  Reverse .
-
-     Reference in future :---->
+     Reference in future :-->
      https://youtu.be/hNP72JdOIgY */
 
 #include <stdio.h>
 #include "stdlib.h"
-#include <cs50.h>  //<cs50.h>  this because am now using Cs50 Ide
 #include <string.h> // include string.h
 
-#define CAPCITY 100 // define size of stack
+/* Structure to represent stack */
+struct Stack
+{
+    int top;            /* top of stack filed */
+    unsigned capacity; /* size of stack filed */
+    int* array;       /* stack array filed (dynamic array) */
+};
 
-/*  declare stack (Array of character) globally
-    so that it can be access from all function */
-int stack[CAPCITY];
-
-/* top of stack variable global declaration
-   and initializations to -1 */
-int top = -1;
+/*  Function to create Stack */
+struct Stack* create_Stack(unsigned capacity);
 
 // Function to push(add)character into stack
-void push(char);
+void push(struct Stack* stack, char);
 
-//Function to pop(remove)top character from stack
-void pop(void);
+// Function to pop(remove)top character from stack
+char pop(struct Stack* stack);
 
 // function to get the top character from without deleting it
-char peek(void);
+char top(struct Stack* stack);
 
-// function to Check if the Stack is full or not
-int isFull(void);
-
-//function to Check if the stack is empty or not
-int isEmpty(void);
+// function to Check if the stack is empty or not
+int isEmpty(struct Stack* stack);
 
 //function to Reverse a string
-void Reverse(string s);
+char* Reverse(struct Stack* stack, char*);
 
 int main(int argc, char* argv[]) // the  Driver Code
 {
     printf("Reverse a string using stack\n");
 
-    string given_string; // variable declarations
-
-    // get user input (here Am using CS50 IDE)
-    given_string = get_string("Enter string to push in stack and Rvesed : ");
+    // variable declarations
+    char*given_string = "ABCDEFG";  // output Expression must be   " GFEDCBA "
 
     // print the string Before Reverse
-    printf("Before Reverse string is : %s\n",given_string);
+    printf("Before Reverse string is :%s\n",given_string);
 
-     /* traverse the string and Reversed using stack  */
-    Reverse(given_string); // call Reverse() function
+    // Create a stack of capacity equal to expression size
+    struct Stack* stack = create_Stack(strlen(given_string));
+    if(stack == NULL) /* error handling */
+    {
+        printf("Error in allocating memory\n");
+        return 1;
+    }
+
+    /* traverse the string and Reversed using stack  */
+    given_string = Reverse(stack, given_string); // call Reverse() function
 
     // print the string After Reverse
-    printf("After Revers string is : %s\n",given_string);
+    printf("After Revers string is : %s\n",given_string); // output Expression must be  " GFEDCBA "
 
     return 0;// signal to operating system everything works fine
 
 }/** End of main function */
 
 
-/** function to Reverse a string */
+/** A utility function to create stack */
 
-void Reverse(string s)
+struct Stack* create_Stack(unsigned capacity)
+{
+    struct Stack* stack;  /* first create stack node */
+
+    // allocate memory dynamically for Stack using malloc
+    stack = (struct Stack*) malloc(sizeof (struct Stack));
+
+    if(stack == NULL) /* Error handling */
+      printf("Error in allocating memory\n");
+
+    /* adding information to Stack */
+    stack -> top = -1;            // set  top to -1
+    stack -> capacity = capacity; // set capacity at capacity filed
+
+    /* allocate memory dynamically for Stack array using malloc  */
+    stack -> array = (int*) malloc(stack -> capacity * sizeof(int));
+
+    if(stack -> array == NULL) /* Error handling */
+      printf("Error in allocating memory\n");
+
+    return stack;  // return newly created stack to place where it been be called
+
+} /** END of Create_Stack() */
+
+
+/**
+    function to Reverse a string  using stack.
+    to Reverse a string using stack the idea is to loop throw
+    the string and push each character to stack until we reach end of string
+    then just easily pop all of them again from stack and printed
+    as stack flow first in last out so if we pop out the string will be
+    already  Reverse . */
+
+char* Reverse(struct Stack* stack, char* s)
 {
     int i, size;      // variable declarations
     size = strlen(s); // calculate the string size
 
+    // allocate memory dynamically for Reversed Expression using malloc
+    char* reverse = malloc(strlen(s) + 1);
+    if(reverse == NULL) /* Error handling */
+    {
+        printf("Error in allocating memory\n");
+        return "\0";
+    }
+    // Scan the  Expression from Left to Right
     for (i = 0; i < size; i++)  // loop for Push
-          push(s[i]); // Push character at index i to stack
+         push(stack, s[i]); // Push character at index i to stack
 
-    // pop each char from stack first in last so char will come in revres order
-
+    // pop char from  top of stack stack (first in last so char will come in revrese order)
     for (i = 0; i < size; i++)  // loop for pop
     {
-        s[i] = peek(); // peek top character and stored at index i
-        pop();   // pop the top character out
+        reverse[i] = top(stack);  // peek top character and stored at index i
+        pop(stack);              // pop the top character out
     }
+    reverse[i] = '\0'; // add '\0' at the end of reversed Expression
+
+    return reverse;   // return  the reversed Expression
 
     /**
     Time complexity :  O(n)
@@ -95,71 +135,46 @@ void Reverse(string s)
 } /** End of Reverse() */
 
 
-/** A utility function to push new given element to stack
-   If there is no place for new item, stack is in overflow state*/
+/** A utility function to push new given character to stack */
 
-void push(char element)
+void push(struct Stack* stack, char c)
 {
-    if(isFull()) // stack is full condition
-       printf("Stack is Full!!(stack is in overflow)\n");
+    // increment top by one first
+    stack -> array[++stack -> top] = c;  // add the given character to stack
 
-    /*
-    now we are sure stack is not full so let first increment
-    top by one after that add given element at top position */
-
-    else
-    {
-        top++; // increment top by one
-        stack[top] = element; // add the given element to stack
-        printf("%c  been push to Stack\n",element); // inform  user the element is been added
-    }
+    printf("%c  been push to Stack\n",c); // inform  user the character is been added
 
 } /** End of push() */
 
 
 /**
- utility function to pop(remove)top element
+ utility function to pop(remove) top character
  from stack(last in first out)  */
 
-void pop()
+char pop(struct Stack* stack)
 {
-    //if Stack is empty then we dont have any element to pop
-    if(isEmpty()) // Stack is empty condition
-       printf ("Stack Underflow \n");
-    else
+    if(isEmpty(stack)) // Stack is empty condition
     {
-        // inform user that the top element is been remove
-         printf("%c  been popped out \n",stack[top]);
-         top--; // decrement top by one
+       printf ("Stack Underflow \n");
+       return '$';
     }
+    /* else cases */
+    // inform user that the top element is been remove
+    printf("%c  been popped out \n", stack -> top);
+    return stack -> array[stack -> top--];  // decrement top by one
+
 
 }/** End of pop() */
 
 
-/**
-   Utility function to Check if the stack is full or not here
-   Am saying that stack is full if and only if (top == CAPCITY - 1) */
+/** Utility function to Check if the stack is empty or not here */
 
-int isFull()
+int isEmpty(struct Stack* stack)
 {
-    if(top == CAPCITY - 1) // is empty full
-        return 1;
-
-    else // is not full
-       return 0;
-} /** End of isFull() */
-
-
-/**
-   Utility function to Check if the stack is empty or not here
-   Am saying that stack is empty if and only if (top == -1) */
-
-int isEmpty()
-{
-    if (top == -1) /* empty case */
+    if (stack -> top == -1) /* empty case */
         return 1;
     else               /* else case */
-        return 0;
+       return 0;
 
 }/** End of isEmpty() */
 
@@ -167,14 +182,8 @@ int isEmpty()
 /**
    function return the top element in stack without deleting it */
 
-char peek()
+char top(struct Stack* stack)
 {
-    if (isEmpty()) // if stack is  empty
-    {
-        printf ("Stack Underflow \n");
-    }
-
-    return stack[top]; // return top element
+    return stack -> array[stack -> top]; // return top of stack
 
 } /** End of peek() */
-
