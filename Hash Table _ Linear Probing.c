@@ -1,5 +1,5 @@
 /**
-    [PROGRAM] : Hash Tables and Hash Functions Implementation Using Linear Probing
+    [PROGRAM] : Hash Tables and Hash Functions Implementation Using Linear Probing (Collision Resolution Technique)
     [AUTHOR]  :  Saddam Arbaa
     [Email]   :  <saddamarbaas@gmail.com>
 
