@@ -70,7 +70,7 @@ struct arrayItem* hashArray;
   capacity and initialization to 10(array size) */
 int max_Capacity = 10;
 
-/* Global declaration Hash Table size Global size and initialization
+/* Global declaration of Hash Table size and initialization
   to zero (number of elements present in Hash Table */
 int SIZE = 0;
 
@@ -215,7 +215,7 @@ void initialize_Array()
     int i; // counter variable declaration
 
     /* loop and initialize hash table Head and tail to NULL */
-	for (i = 0; i < max_Capacity; i++)
+    for (i = 0; i < max_Capacity; i++)
     {
         hashArray[i].Head = NULL;
         hashArray[i].Tail = NULL;
@@ -266,16 +266,16 @@ void insert(int key, int data)
 	int hashIndex = hashFunction(key); // call hashFunction() function
 
     /* Extract Linked List at a given index by hashFunction */
-	struct Node *list = (struct Node*) hashArray[hashIndex].Head;
+    struct Node *list = (struct Node*) hashArray[hashIndex].Head;
 
-	/* list is now point the hashIndex so let create node to add */
+    /* list is now point the hashIndex so let create node to add */
 
-	// create the node
+   // create the node
     struct Node *newNode = CreateNewNode(key, data); // call function to create new(now node is ready to add)
 
 	/** Handle all the corner cases */
 
-	if(list == NULL) /* check if list at hashIndex is Empty then this node is the first node at that index  */
+    if(list == NULL) /* check if list at hashIndex is Empty then this node is the first node at that index  */
     {
         hashArray[hashIndex].Head = newNode;
         hashArray[hashIndex].Tail = newNode;
@@ -291,7 +291,7 @@ void insert(int key, int data)
         maybe the is already in the  hash table */
         int find_index = search(list, key);  // call search function
 
-		if (find_index == -1)  /* case when the key not present in table */
+	if (find_index == -1)  /* case when the key not present in table */
         {
             /*
             by now we are sure the given key is not present in the
@@ -373,14 +373,14 @@ void display()
 void remove_Item(int key)
 {
     // get the hash code
-	int hashIndex = hashFunction(key); // call hashFunction() function
+    int hashIndex = hashFunction(key); // call hashFunction() function
 
     /* Extract Linked List at a given index by hashFunction */
-	struct Node *list = (struct Node*) hashArray[hashIndex].Head;
+    struct Node *list = (struct Node*) hashArray[hashIndex].Head;
 
-	/** Handle all the corner cases */
+    /** Handle all the corner cases */
 
-	if(list == NULL) /* check if list at hashIndex is Empty*/
+   if(list == NULL) /* check if list at hashIndex is Empty*/
     {
         printf("\nThis key does not exist in the hash table!!\n");
         return; // we are done
@@ -390,7 +390,7 @@ void remove_Item(int key)
         /* search for the node in list at hashIndex maybe is not there  */
         int find_index = search(list, key);  // call search function
 
-		if (find_index == -1)  /* case when the key not present in table */
+	if (find_index == -1)  /* case when the key not present in table */
         {
             /*
             by now we are sure again the given key is not present in the
@@ -472,12 +472,12 @@ int search(struct Node *list, int key)
     temp = list;       // temp is now point to the given node
 
     // while temp is not null GO and search for key
-	while (temp != NULL)
+    while (temp != NULL)
     {
         if (temp -> key == key) // if temp -> key == key mean is found it index
         {
             return index;  // return index
-		}
+	}
         temp = temp -> next;   // move temp to next node
         index++;    // increment index by one
     }
@@ -528,7 +528,7 @@ void rehash()
  		{
  		    continue; // continue to next index
  		}
- 		else // else cases
+ 	else // else cases
         {
            // loop copy all the item and add to new table
             while (list != NULL)
