@@ -262,8 +262,8 @@ struct Node* CreateNewNode(int key, int value)
 
 void insert(int key, int data)
 {
-	// get the hash code
-	int hashIndex = hashFunction(key); // call hashFunction() function
+    // get the hash code
+    int hashIndex = hashFunction(key); // call hashFunction() function
 
     /* Extract Linked List at a given index by hashFunction */
     struct Node *list = (struct Node*) hashArray[hashIndex].Head;
