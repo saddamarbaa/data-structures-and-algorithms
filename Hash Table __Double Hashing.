@@ -232,10 +232,10 @@ void insert(int key, int value)
 {
     int hashIndex1, hashIndex2, i;  /* local variables declaration */
 
-	/* first step : get the hash codes */
-	hashIndex1 = hash_Function_1(key); // call hash_Function_1()
-	hashIndex2 = hash_Function_2(key); // call hash_Function_2()
-	i = hashIndex1; // counter i is equal to hashIndex1
+    /* first step : get the hash codes */
+    hashIndex1 = hash_Function_1(key); // call hash_Function_1()
+    hashIndex2 = hash_Function_2(key); // call hash_Function_2()
+    i = hashIndex1; // counter i is equal to hashIndex1
 
     /*
     second step create new item to insert in the hash table array
@@ -311,12 +311,12 @@ void remove_Item(int key)
 {
     int hashIndex1, hashIndex2, i;  /* local variables declaration */
 
-	/* first step : get the hash codes */
-	hashIndex1 = hash_Function_1(key); // call hash_Function_1()
-	hashIndex2 = hash_Function_2(key); // call hash_Function_2()
-	i = hashIndex1; // counter i is equal to  hashIndex1
+    /* first step : get the hash codes */
+    hashIndex1 = hash_Function_1(key); // call hash_Function_1()
+    hashIndex2 = hash_Function_2(key); // call hash_Function_2()
+    i = hashIndex1; // counter i is equal to  hashIndex1
 
-	 if (size_of_hashtable() == 0) /* case when the hash table is Empty */
+    if (size_of_hashtable() == 0) /* case when the hash table is Empty */
     {
         printf("Hash Table is Empty!!!\n");
         return;
@@ -365,10 +365,10 @@ void search_Item(int key)
 {
     int hashIndex1, hashIndex2, i;  /* local variables declaration */
 
-	/* first step : get the hash codes */
-	hashIndex1 = hash_Function_1(key); // call hash_Function_1()
-	hashIndex2 = hash_Function_2(key); // call hash_Function_2()
-	i = hashIndex1; // counter i is equal to  hashIndex1
+    /* first step : get the hash codes */
+    hashIndex1 = hash_Function_1(key); // call hash_Function_1()
+    hashIndex2 = hash_Function_2(key); // call hash_Function_2()
+    i = hashIndex1; // counter i is equal to  hashIndex1
 
     if (size_of_hashtable() == 0) /* case when the hash table is Empty */
     {
