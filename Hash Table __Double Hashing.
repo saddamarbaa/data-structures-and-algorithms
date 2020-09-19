@@ -187,10 +187,10 @@ int main(int argc, char* argv[])    /* the river Code */
 
 void initialize_Array()
 {
-    int i; // counter variable declaration
+   int i; // counter variable declaration
 
   /* initialize hash table to zero */
-	for (i = 0; i < capacity; i++)
+  for (i = 0; i < capacity; i++)
   {
         hashArray[i].flag = 0;  //(flag = 0) mean data does not exist
         hashArray[i].data = NULL;
