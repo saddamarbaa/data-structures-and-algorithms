@@ -57,6 +57,7 @@ TrieNode* searchWord(TrieNode*, char*);
 
 int main()
 {
+   // Input keys (use only lower case 'a' through 'z')
     printf(" Trie Operations\n");
     printf("1. insert \n");
     printf("2. delete \n");
@@ -66,10 +67,34 @@ int main()
     printf("Enter string element to delete\n");
     printf("Enter string element to search\n");
 
-    
+    /*
+
+ * Destroy Trie
+
+ */
+
+
+ /*
+
+ * Trie Traversal
+
+ */
+
     TrieNode * head = getNewNode();
 
 	Insert_Node(head, "hello");
+	Insert_Node(head, "hs");
+	Insert_Node(head, "hellvo");
+
+	searchWord(head, "hs");
+	if(searchWord(head, "hs"))
+      printf("found\n");
+    else printf("not found\n");
+    removeWord(head, "hhs");
+    searchWord(head, "hs");
+	if(searchWord(head, "hs"))
+      printf("found\n");
+    else printf("not found\n");
 
     return 0;
 }
@@ -145,13 +170,15 @@ void Insert_Node(TrieNode* head, char* word)
 
 void removeWord(TrieNode* head, char* word)
 {
-    /* first step search for node search for the word in trie */
+    /* first step search for the word in Trie */
     TrieNode* currentNode = searchWord(head, word); // call searchWord function
-    if (currentNode == NULL)
+    if (currentNode == NULL) /* cases when the word is not found */
     {
-        printf("\nWord is not been found \n");
+        printf("This word does not exist in Trie!!!\n");
         return ;//  we are done
     }
+    /** deleting process start from here */
+
     --currentNode -> occurrences;  // decrement currentNode -> occurrences by one
     // local variables
     TrieNode* parent = NULL;
@@ -175,9 +202,10 @@ void removeWord(TrieNode* head, char* word)
             if(parent -> children[i] == currentNode)
             {
                 parent -> children[i] = NULL;
-                free(currentNode); // delete the node
+                free(currentNode); // delete the currentNode
+                currentNode = parent; // go one step up save in currentNode the  address of parent
             }
-            else if(parent -> children[i] != NULL)
+            else if(parent -> children[i] != NULL) // parent have others children
             {
                 isLeaf = 0;
                 break;
@@ -187,8 +215,6 @@ void removeWord(TrieNode* head, char* word)
     printf("\nWord HAS been Removed \n");
 
  } /* END of removeWord() */
-
-
 
 
 /** Function to search for the given word  word in trie */
@@ -210,14 +236,12 @@ TrieNode* searchWord(TrieNode* head, char* word)
              ++word; // increment word to move to next character
          }
          else  // word is not found just return null
-            printf("\nWord is not been found \n");
+           return NULL;
      }
-     // after loop
 
      if(currentNode -> occurrences != 0)
         return currentNode;  // return the address of final node in current word
 
      return NULL;  // if reach this line return  null
-
 
  } /* END of searchWord() */
