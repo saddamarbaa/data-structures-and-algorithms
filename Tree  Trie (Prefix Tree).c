@@ -1,18 +1,20 @@
 /**
-    [PROGRAM] : Tries Tree Data Structure Implementation
+    [PROGRAM] : Trie(Prefix Tree) Data Structure Implementation
     [AUTHOR]  :  Saddam Arbaa
     [Email]   :  <saddamarbaas@gmail.com>
 
-    C Program to Implement Tries data structure
-     Tries Tree is also known as A prefix tree.
+    C Program to Implement Trie data structure
+     Tries is also known as A prefix tree.
 
-     Reference in future  :---->
+     Reference in future :---->
      1. https://youtu.be/bxO-LIYQWqs
      2. https://youtu.be/7KQNGgk-Sik
-     3. https://youtu.be/MC-iQHFdEDI
-     4. https://youtu.be/sAErv97lfIM
-     5. https://youtu.be/_rjW8w89ju8
-     6. https://youtu.be/ks7rs5fqPws*/
+     3. https://youtu.be/uhAUk63tLRM
+     4. https://youtu.be/MC-iQHFdEDI
+     5. https://youtu.be/sAErv97lfIM
+     6. https://youtu.be/_rjW8w89ju8
+     7. https://youtu.be/ks7rs5fqPws
+     8. https://www.cs.usfca.edu/~galles/visualization/Trie.html*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,7 +30,7 @@ const int CASE = 'a';
 /* A structure to represent TrieNode*/
 typedef struct TrieNode
 {
-    /*
+   /*
     parent filed
     pointer to the nodes parent node*/
    struct TrieNode * parent;
@@ -50,54 +52,43 @@ TrieNode* getNewNode();
 /* function to insert Word into Trie*/
 void Insert_Node(TrieNode*, char*);
 
+/* function to Remove Word from Trie*/
 void removeWord(TrieNode*, char*);
 
 /*  Function to search for word in Trie */
 TrieNode* searchWord(TrieNode*, char*);
 
-int main()
+int main() /* the river Code */
 {
-   // Input keys (use only lower case 'a' through 'z')
-    printf(" Trie Operations\n");
-    printf("1. insert \n");
-    printf("2. delete \n");
-    printf("3. search \n");
-
-    printf("Enter string element to insert\n");
-    printf("Enter string element to delete\n");
-    printf("Enter string element to search\n");
-
-    /*
-
- * Destroy Trie
-
- */
-
-
- /*
-
- * Trie Traversal
-
- */
-
+    /* pointer to Head TrieNode */
     TrieNode * head = getNewNode();
 
+     /* inserting words */
 	Insert_Node(head, "hello");
-	Insert_Node(head, "hs");
-	Insert_Node(head, "hellvo");
+	Insert_Node(head, "this trie");
+    Insert_Node(head, "prefix tree");
 
-	searchWord(head, "hs");
-	if(searchWord(head, "hs"))
+    /* searching for words  */
+    if(searchWord(head, "this trie"))
       printf("found\n");
     else printf("not found\n");
-    removeWord(head, "hhs");
-    searchWord(head, "hs");
-	if(searchWord(head, "hs"))
+    if(searchWord(head, "trie"))
       printf("found\n");
     else printf("not found\n");
 
-    return 0;
-}
+    /* removing words  */
+    removeWord(head, "hello");
+    removeWord(head, "helloo");
+
+    /* searching for words again  */
+    if(searchWord(head, "hello"))
+      printf("found\n");
+    else printf("not found\n");
+
+    return 0;// signal to operating system everything works fine
+
+}/** End of main function */
+
 
 /**
     A utility function to create TrieNode
@@ -140,7 +131,7 @@ void Insert_Node(TrieNode* head, char* word)
          if(currentNode -> children[index] == NULL)
          {
              currentNode -> children[index] = getNewNode(); // call getNewNode function to create new nod and added
-             currentNode -> children[index] -> parent = currentNode; // update the new node it parent
+             currentNode -> children[index] -> parent = currentNode; // update the  parent
          }
          currentNode = currentNode -> children[index];  // move currentNode to next node(next character)
          ++word; // increment word to move to next character
@@ -151,7 +142,7 @@ void Insert_Node(TrieNode* head, char* word)
 
     printf("\nWord has been inserted \n");  // inform user the element is been inserted
 
- } /* END of Insert_Node() */
+ } /** END of Insert_Node() */
 
 
 /**
@@ -166,7 +157,7 @@ void Insert_Node(TrieNode* head, char* word)
     Delete the node if
     1. has no children
     2. its occurrence is 0
-    3. move to the parent node and repeat*/
+    3. move to the parent node and repeat */
 
 void removeWord(TrieNode* head, char* word)
 {
@@ -177,9 +168,10 @@ void removeWord(TrieNode* head, char* word)
         printf("This word does not exist in Trie!!!\n");
         return ;//  we are done
     }
-    /** deleting process start from here */
+    /** deleting word process start from here */
 
     --currentNode -> occurrences;  // decrement currentNode -> occurrences by one
+
     // local variables
     TrieNode* parent = NULL;
     int isLeaf = 1; // flag variable
@@ -201,9 +193,9 @@ void removeWord(TrieNode* head, char* word)
         {
             if(parent -> children[i] == currentNode)
             {
-                parent -> children[i] = NULL;
-                free(currentNode); // delete the currentNode
-                currentNode = parent; // go one step up save in currentNode the  address of parent
+                parent -> children[i] = NULL; // set parent null first
+                free(currentNode);      // delete the currentNode
+                currentNode = parent; // go one step up save in currentNode the address of parent
             }
             else if(parent -> children[i] != NULL) // parent have others children
             {
@@ -212,9 +204,9 @@ void removeWord(TrieNode* head, char* word)
             }
         }
     }
-    printf("\nWord HAS been Removed \n");
+    printf("\nWord HAS been Removed \n"); // inform user the job is done
 
- } /* END of removeWord() */
+ } /** END of removeWord() */
 
 
 /** Function to search for the given word  word in trie */
@@ -222,9 +214,9 @@ void removeWord(TrieNode* head, char* word)
 TrieNode* searchWord(TrieNode* head, char* word)
 {
     // local variable of type TrieNode declaration */
-     TrieNode* currentNode = head;
+    TrieNode* currentNode = head;
 
-    /* iterate over the given word character by character */
+     /* iterate over the given word character by character */
      while(*word != '\0')
      {
          int index = *word - CASE; /* Calculate the current index */
@@ -233,7 +225,7 @@ TrieNode* searchWord(TrieNode* head, char* word)
          if(currentNode -> children[index] != NULL)
          {
              currentNode = currentNode -> children[index];  // move currentNode to next node(next character)
-             ++word; // increment word to move to next character
+             ++word; // increment word to move to the next character
          }
          else  // word is not found just return null
            return NULL;
@@ -244,4 +236,4 @@ TrieNode* searchWord(TrieNode* head, char* word)
 
      return NULL;  // if reach this line return  null
 
- } /* END of searchWord() */
+ } /** END of searchWord() */
