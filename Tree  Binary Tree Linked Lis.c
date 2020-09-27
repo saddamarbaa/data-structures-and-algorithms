@@ -35,7 +35,7 @@ void Preorder_traversal(struct Node *rootNode);
 // Function to print nodes in Postorder traversal
 void Postorder_traversal(struct Node *rootNode);
 
-int main() /* the river Code */
+int main()  /* the river Code */
 {
     printf("Binary Tree Linked List Representation \n");
 
