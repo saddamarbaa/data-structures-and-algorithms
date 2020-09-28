@@ -32,7 +32,7 @@ typedef struct TrieNode
 {
    /*
     parent filed
-    pointer to the nodes parent node*/
+    pointer to the nodes parent node */
    struct TrieNode * parent;
 
     /*
