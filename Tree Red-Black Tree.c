@@ -326,7 +326,7 @@ void red_black_insert(int key)
             x =  x -> right;
         }
     }
-	// now we  have reached leaf(NILL) we are ready to add
+    // now we  have reached leaf(NILL) we are ready to add
 
     //  if Y is NILL that is mean this is first node added as the root
    if(y == NILL) // y is parent of z
@@ -337,13 +337,13 @@ void red_black_insert(int key)
     /* if data of child is less than its parent,*/
    else if(z -> key < y -> key)
     {
-		y -> left = z;  /* insert as left child */
+	   y -> left = z;  /* insert as left child */
     }
 
     /* if data of child is greater than its parent,*/
     else if(z -> key > y -> key)
     {
-        y -> right = z;  /* insert as right child */
+	    y -> right = z;  /* insert as right child */
     }
     // update  z parent
     z -> parent = y;
@@ -513,6 +513,7 @@ void Inorder_traversal(struct node* rootNode)
     printf("%d ",rootNode ->key);           /* then print the ROOT data  */
     Inorder_traversal(rootNode -> right);    /* Visit right subtree */
    // this goes on until root node == null which is base condition
+	
 } /** END OF Inorder_traversal() */
 
 
@@ -552,11 +553,11 @@ void  Postorder_traversal(struct node* rootNode)
 *  and x, y's left child. y's left child becomes x's right child.
 
  *
- * 		x									y
- *	   / \                                 / \
- *  STA   y			----------->		  x   STC
- *		 / \							 / \
- *	  STB   STC						  STA   STB
+ * 	    x							       y
+ *	   / \                                                        / \
+ *       STA     y			----------->		    x    STC
+ *		 / \					           / \  
+ *	       STB   STC				         STA   STB
   The left grandchild of x (left child of the right child x) will become
   the right child of it after rotation. We will do this but before doing
   this, let's mark the right child of x as y.
@@ -589,7 +590,7 @@ void  Postorder_traversal(struct node* rootNode)
 
 void left_rotate(struct node *x)
 {
-    struct node *y;
+     struct node *y;
      y = x -> right;   // let's mark the right child of x as y.
      x -> right = y -> left; // The left child of y is going to be the right child of x
 
@@ -602,9 +603,9 @@ void left_rotate(struct node *x)
         y -> left -> parent = x;
      }
 
-	/*
-	Then we need to put y to the position of x. We will first change
-       the parent of y to the parent of x - y.parent = x.parent.
+     /*
+     Then we need to put y to the position of x. We will first change
+      the parent of y to the parent of x - y.parent = x.parent.
       After this, we will make the node x the child of y's parent instead of y.
       We will do so by checking if y is the right or left child of its parent.
        We will also check if y is the root of the tree.  */
@@ -616,7 +617,7 @@ void left_rotate(struct node *x)
 	  }
 	 else if(x == x -> parent -> left) // if x was is left child y will be the left child now
 	{
-	    x -> parent -> left = y;
+	     x -> parent -> left = y;
 	}
 	else    // if x was is the right child y will be the right child now
 	{
@@ -635,19 +636,19 @@ void left_rotate(struct node *x)
  * Lets say y is x's left child. Right rotate x by making x, y's right child
  * and y x's parent. y's right child becomes x's left child.
  *
- *			|											|
- *			x											y
+ *		    |										   |
+ *	            x										   y
  *		   / \										   / \
- *		  y   STA		---------------->			STB	  x
+ *		  y   STA		---------------->			                 STB     x
  *		 / \											 / \
- *	  STB   STC										  STC   STA
+ *	       STB   STC										STC   STA
  */
 
 void right_rotate(struct node *x)
 {
     struct node *y;
-	y = x -> left;        // let's mark the left child of x as y.
-	x -> left = y -> right; // The right child of y is going to be the left child of x
+     y = x -> left;        // let's mark the left child of x as y.
+     x -> left = y -> right; // The right child of y is going to be the left child of x
 
     if(y -> right != NILL)
      {
@@ -805,14 +806,14 @@ void red_black_delete_fixup(struct node *x)
     {
         if(x == x -> parent -> left)
 	{
-		 // marked the sibling of x as w  ,  w = x.parent.right.
+		// marked the sibling of x as w  ,  w = x.parent.right.
 	    	 struct node *w  = x -> parent -> right;  // now we have the sibling let check the sibling color
 
-            // case 1 w is red.
+                      // case 1 w is red.
 			if(w -> color == RED)
-            {
-                /* we switch the colors of w and its parent and then left rotate
-                  the parent of x. In this way, we will enter either case 2, 3 or 4 */
+                         {
+                           /* we switch the colors of w and its parent and then left rotate
+                             the parent of x. In this way, we will enter either case 2, 3 or 4 */
 				w -> color = BLACK;
 				x -> parent -> color = RED;
 				left_rotate(x -> parent);
@@ -821,10 +822,10 @@ void red_black_delete_fixup(struct node *x)
 		// case 2  w is black and its both children are black.
 		if(w -> left -> color == BLACK && w -> right -> color == BLACK)
                {
-                /*
-                Move x and w's blackness to x's parent by coloring w to RED and x's parent to BLACK.
-                Make x's parent new x.Notice if case 2 come through case 1 x's parent becomes
-                RED and BLACK as it became RED in case 1. So loop will stop in next iteration. */
+                      /*
+                       Move x and w's blackness to x's parent by coloring w to RED and x's parent to BLACK.
+                       Make x's parent new x.Notice if case 2 come through case 1 x's parent becomes
+                        RED and BLACK as it became RED in case 1. So loop will stop in next iteration. */
 
 			w -> color = RED;
 			x -> parent -> color = BLACK;
