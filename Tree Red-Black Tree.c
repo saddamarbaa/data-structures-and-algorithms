@@ -62,9 +62,9 @@ struct node
 {
     int key;    // data of node
     int color;  // for color property
-	struct node *parent;   // links for parent
-	struct node *left;      //links for left child
-	struct node *right;   //links for right child
+    struct node *parent;   // links for parent
+    struct node *left;      //links for left child
+    struct node *right;   //links for right child
 };
 
 /* Global, since all function will access them */
@@ -114,12 +114,13 @@ void Inorder_traversal(struct node *root);
 void  Postorder_traversal(struct node *root);
 
 int main(int argc, char* argv[])    /* the river Code */
-{  /*
+{  
+   /*
     allocate memory dynamically for NILL node using malloc C function
     (NILL are leaf node are always in black color) */
     NILL = malloc(sizeof(struct node));
-	  NILL -> color = BLACK;
-	  ROOT = NILL;  // root is NILL in the begging is empty tree
+    NILL -> color = BLACK;
+    ROOT = NILL;  // root is NILL in the begging is empty tree
     while(1)
     {
         printf("\nRed Black tree Implementation \n");
@@ -160,7 +161,7 @@ int main(int argc, char* argv[])    /* the river Code */
                  //   red_black_insert(150);
                   //   red_black_insert(110);
                    //   red_black_insert(120);
-            break;
+             break;
 
              case 2: // case 2 search for node in Red Black tree
                  // Ask user to enter a number.
@@ -170,24 +171,24 @@ int main(int argc, char* argv[])    /* the river Code */
                  SearchValue = tree_search(element); // calll search function
                  if (SearchValue == NILL)
                     printf("%d is not found in Red Black",element);
-                else
-                   printf("%d is found in Red Black",element);
-             break;
+                 else
+                    printf("%d is found in Red Black",element);
+              break;
 
-            case 3: // Case 3 Deleting a Node in Red Black
+             case 3: // Case 3 Deleting a Node in Red Black
                 // asking user for the value to be inserted
                 printf("Enter value to be deleted from Red Black tree:");
                 scanf("%d",&element);
                 /*
                 to delete node search function will be called first
-               and search function will search for the value given to delete
-               if the value found then the address of that node will be pass to
-               red_black_delete() so can be deleted */
-               struct node *deletedNode = tree_search(element);
-               if (deletedNode == NILL)
-                  printf("%d Not found in Red Black tree \n",element);
-               else
-               {
+                and search function will search for the value given to delete
+                if the value found then the address of that node will be pass to
+                red_black_delete() so can be deleted */
+                struct node *deletedNode = tree_search(element);
+                if (deletedNode == NILL)
+                   printf("%d Not found in Red Black tree \n",element);
+                else
+                {
                     red_black_delete(deletedNode);
                     printf("Preorder traversal of the Red Black tree after deleting  %d  is :\n",(element));
                     Preorder_traversal(ROOT);// to see the node after deletion
@@ -312,15 +313,15 @@ void red_black_insert(int key)
     y is used for keeping track of the last non-NILL node
     which will be z's parent. later after added*/
 
-	while(x != NILL)
+   while(x != NILL)
     {
         y = x; // keep track of the last non-NILL node
 
         if(z -> key < x -> key)  /* if key is lesser go to left subtree */
         {
-			x = x -> left;
+	     x = x -> left;
         }
-		else   /* if key is grater go to right subtree */
+	else   /* if key is grater go to right subtree */
         {
             x =  x -> right;
         }
@@ -328,16 +329,16 @@ void red_black_insert(int key)
 	// now we  have reached leaf(NILL) we are ready to add
 
     //  if Y is NILL that is mean this is first node added as the root
-	if(y == NILL) // y is parent of z
+   if(y == NILL) // y is parent of z
     {
         ROOT = z; // updating global ROOT newly added node is root now
-	}
+    }
 
     /* if data of child is less than its parent,*/
-	else if(z -> key < y -> key)
+   else if(z -> key < y -> key)
     {
 		y -> left = z;  /* insert as left child */
-	}
+    }
 
     /* if data of child is greater than its parent,*/
     else if(z -> key > y -> key)
@@ -367,7 +368,7 @@ void red_black_insert(int key)
 void insertFixUp(struct node *z)
 {
     // (z's parent is RED color) loop will continue we need to fix
-	while(z -> parent -> color == RED)
+    while(z -> parent -> color == RED)
     {
         if (z -> parent == z -> parent -> parent  -> left)//z.parent is the left child
         {
@@ -424,9 +425,9 @@ void insertFixUp(struct node *z)
            z -> parent -> parent -> color = RED;   // recolor grandparent node
            z = z -> parent -> parent;                // move z to grandparent and loop will continue until no violation
            }
-			// case 4 or case 5
+	   // case 4 or case 5
 
-			else{ /* z's left uncle is not RED */
+	  else{ /* z's left uncle is not RED */
 
              /* z is z's parents left child */
              if(z == z -> parent -> left) // case 4
@@ -442,8 +443,8 @@ void insertFixUp(struct node *z)
              z -> parent -> color = BLACK;  // made parent black
              z -> parent -> parent -> color = RED; //made parent red
              left_rotate(z -> parent -> parent);    // left Rotate Grandparent
-			}
-		}
+	      }
+	  }
 	}
 	// At this point only property of color can be violated so make root BLACK
 	ROOT -> color = BLACK;  //keep root always black
@@ -589,32 +590,31 @@ void  Postorder_traversal(struct node* rootNode)
 void left_rotate(struct node *x)
 {
     struct node *y;
-	y = x -> right;   // let's mark the right child of x as y.
-
-	x -> right = y -> left; // The left child of y is going to be the right child of x
+     y = x -> right;   // let's mark the right child of x as y.
+     x -> right = y -> left; // The left child of y is going to be the right child of x
 
     /*
     The left child of y is going to be the right child of x - x.right = y.left.
     We also need to change the parent of y.left to x.
     We will do this if the left child of y is not NULL. */
-	if(y -> left != NILL)
+   if(y -> left != NILL)
     {
         y -> left -> parent = x;
-	}
+     }
 
 	/*
 	Then we need to put y to the position of x. We will first change
-    the parent of y to the parent of x - y.parent = x.parent.
-    After this, we will make the node x the child of y's parent instead of y.
-    We will do so by checking if y is the right or left child of its parent.
-    We will also check if y is the root of the tree.  */
+       the parent of y to the parent of x - y.parent = x.parent.
+      After this, we will make the node x the child of y's parent instead of y.
+      We will do so by checking if y is the right or left child of its parent.
+       We will also check if y is the root of the tree.  */
 
 	y -> parent = x -> parent;
 	if(y -> parent == NILL)  //if was x root y will be the root now as y will move to place of x
-    {
+         {
 		ROOT = y;
-	}
-	else if(x == x -> parent -> left) // if x was is left child y will be the left child now
+	  }
+	 else if(x == x -> parent -> left) // if x was is left child y will be the left child now
 	{
 	    x -> parent -> left = y;
 	}
@@ -649,28 +649,28 @@ void right_rotate(struct node *x)
 	y = x -> left;        // let's mark the left child of x as y.
 	x -> left = y -> right; // The right child of y is going to be the left child of x
 
-	if(y -> right != NILL)
-  {
-    y -> right -> parent = x;
-	}
+    if(y -> right != NILL)
+     {
+       y -> right -> parent = x;
+     }
 	/* Make x's parent y's parent and y, x's parent's child */
 	y -> parent = x -> parent;
 	if(y -> parent == NILL) //if was x root y will be the root now as y will move to place of x
-  {
+        {
 		ROOT = y;
 	}
 	else if(x == x -> parent -> left) // if x was is left child y will be the left child now
-  {
+       {
 		x -> parent -> left = y;
 	}
 	else // if x was is the right child y will be the right child now
-  {
+        {
 		x -> parent -> right = y;
 	}
 
      /* At last, we need to make x the right child of y and y, x's parent */
-	   y -> right = x;
-     x -> parent = y;
+      y -> right = x;
+      x -> parent = y;
 
 } /** END of right_rotate() */
 
@@ -707,7 +707,7 @@ void right_rotate(struct node *x)
 void red_black_delete(struct node *z)
 {
     struct node *y, *x;
-	  int yOriginalColor;  // variable to keep trake original color of y
+    int yOriginalColor;  // variable to keep trake original color of y
 
     /*
     we are going to store the original color of y in our process.
@@ -715,15 +715,15 @@ void red_black_delete(struct node *z)
     the node z has two children, we will change the node y. */
     y = z;
 
-	 yOriginalColor = y -> color; // node y OriginalColor
+   yOriginalColor = y -> color; // node y OriginalColor
 
-	if(z -> left == NILL) // node to be deleted has no children or only right
-  {
+     if(z -> left == NILL) // node to be deleted has no children or only right
+      {
 		x = z -> right; // x is used to keep track of the node which replace y.
 		red_black_transplant(z, z -> right); // TRANSPLANT z node with it right child
 	}
 	else if(z -> right == NILL)
-  {
+        {
 		x = z -> left;     // only left child
 		red_black_transplant(z, z -> left); // TRANSPLANT z node with it left child
 	}
@@ -733,42 +733,42 @@ void red_black_delete(struct node *z)
 		yOriginalColor = y -> color;  // keep Original Color of that node
 		x = y -> right;
 		if(y -> parent == z) // y is direct child of z
-    {
+                {
 			x -> parent = y;
 		}
 		else    // y is not direct child of z
 		{
 		    /*
 		    If y is not the direct child of z, we will first transplant
-            the right subtree of y to y - RB-TRANSPLANT(T, y, y.right).
-            After this, we will change the right of y to right of z -
-            y.right = z.right
-            y.right.parent = y
-            After that we can transplant y to z in both cases
-            (whether y is direct child or not).
-            */
+                   the right subtree of y to y - RB-TRANSPLANT(T, y, y.right).
+                   After this, we will change the right of y to right of z -
+                   y.right = z.right
+                   y.right.parent = y
+                    After that we can transplant y to z in both cases
+                   (whether y is direct child or not).
+                                                  */
 
-			red_black_transplant(y, y -> right);
-			y -> right = z -> right;
-			y -> right -> parent = y;
+		   red_black_transplant(y, y -> right);
+		    y -> right = z -> right;
+		    y -> right -> parent = y;
 		}
 		red_black_transplant(z, y);
 
         /*
         Next,we will put the left of z to left of y and color y as z. */
         y -> left = z -> left;
-		y -> left -> parent = y;
-		y -> color = z -> color;
+	y -> left -> parent = y;
+	y -> color = z -> color;
 	}
 
 	 /*
 	 At last, we will call the function to fix the violation
-    if the original color of y was black .
-    until here deletion process is done now let check if original
-    color was black we will call fix up function
-    else if  original color  was red no need to fix  */
+         if the original color of y was black .
+        until here deletion process is done now let check if original
+         color was black we will call fix up function
+        else if  original color  was red no need to fix  */
 	if(yOriginalColor == BLACK)
-    {
+        {
 		red_black_delete_fixup(x);  // call fix up function
 	}
 } /** END of red_black_delete() */
@@ -804,8 +804,8 @@ void red_black_delete_fixup(struct node *x)
     while(x != ROOT && x -> color == BLACK)
     {
         if(x == x -> parent -> left)
-		{
-		     // marked the sibling of x as w  ,  w = x.parent.right.
+	{
+		 // marked the sibling of x as w  ,  w = x.parent.right.
 	    	 struct node *w  = x -> parent -> right;  // now we have the sibling let check the sibling color
 
             // case 1 w is red.
@@ -817,40 +817,40 @@ void red_black_delete_fixup(struct node *x)
 				x -> parent -> color = RED;
 				left_rotate(x -> parent);
 				w = x -> parent -> right; // position of w have change
-			}
-			// case 2  w is black and its both children are black.
-			if(w -> left -> color == BLACK && w -> right -> color == BLACK)
-       {
+		}
+		// case 2  w is black and its both children are black.
+		if(w -> left -> color == BLACK && w -> right -> color == BLACK)
+               {
                 /*
                 Move x and w's blackness to x's parent by coloring w to RED and x's parent to BLACK.
                 Make x's parent new x.Notice if case 2 come through case 1 x's parent becomes
                 RED and BLACK as it became RED in case 1. So loop will stop in next iteration. */
 
-				w -> color = RED;
-				x -> parent -> color = BLACK;
-				x = x -> parent;
-			}
-			else  // case 3 or 4
-       {
-                //case 3 w is black and its right child is black and left child is red.
-				if(w -> right -> color == BLACK)
-         {
-            /*
-              We will transform case 3 to case 4 by switching the colors
-              of w and its left child and then rotating right w.*/
-					    w -> color = RED;
-					    w -> left -> color = BLACK;
-					    right_rotate(w);
-					    w = x -> parent -> right; // position of w have change
+			w -> color = RED;
+			x -> parent -> color = BLACK;
+			x = x -> parent;
+		}
+		else  // case 3 or 4
+                {
+			//case 3 w is black and its right child is black and left child is red.
+			if(w -> right -> color == BLACK)
+                        {
+                            /*
+                            We will transform case 3 to case 4 by switching the colors
+                             of w and its left child and then rotating right w.*/
+				 w -> color = RED;
+				w -> left -> color = BLACK;
+				right_rotate(w);
+				w = x -> parent -> right; // position of w have change
 				}
 
 				/*
-				case 4 w is black and its right child is red.
-                We first colored w same as the parent of x
-                and then colored the parent of x black.
-                After this, we colored the right child of w black
-                and then left rotated the parent of x.
-                Make x point to root. So loop will be stopped in next iteration. */
+			     case 4 w is black and its right child is red.
+                              We first colored w same as the parent of x
+                              and then colored the parent of x black.
+                              After this, we colored the right child of w black
+                              and then left rotated the parent of x.
+                               Make x point to root. So loop will be stopped in next iteration. */
 
 				w -> color = x -> parent -> color;
 				x -> parent -> color = BLACK;
@@ -860,43 +860,43 @@ void red_black_delete_fixup(struct node *x)
 
 			   	/*
 			   	we have moved x to the root of the tree  x = Root because
-                all the violations will be fixed in this case and  we need to
-                terminate the loop. So, making the root of the tree as x will
-                terminate the loop. */
-            }
+                              all the violations will be fixed in this case and  we need to
+                                 terminate the loop. So, making the root of the tree as x will
+                               terminate the loop. */
+                                }
 		}
 
-		else   // x == x -> parent -> right  code will be symmetric
-     {
-            // marked the sibling of x as w - w = x.parent.left.  and check the 4 cases again
+	     else   // x == x -> parent -> right  code will be symmetric
+               {
+		     // marked the sibling of x as w - w = x.parent.left.  and check the 4 cases again
 
-	    	struct node *w = x -> parent -> left;
+	    	      struct node *w = x -> parent -> left;
 
 			//case 1 w is red.
 			if(w -> color == RED)
-      {
+                         {
 				w -> color = BLACK;
 				x -> parent -> color = RED;
 				right_rotate(x -> parent); //only different is now right rotate
 				w = x -> parent -> left;
-			}
-			// case 2 w is black and its both children are black.
+			 }
+			 // case 2 w is black and its both children are black.
 			if(w -> left -> color == BLACK && w -> right -> color == BLACK)
-      {
-                // same Idea above
+                         {
+                            // same Idea above
 				w -> color = RED;
 				x -> parent -> color = BLACK;
 				x = x -> parent;
-			}
+			    }
 
 			else  //case 3 or 4
-       {
-                // case 3 w is black and its right child is black and left child is red.
+                        {
+                             // case 3 w is black and its right child is black and left child is red.
 
 				if(w -> left -> color == BLACK)
-         {
-                    w -> color = RED;
-                    w -> right -> color = BLACK;
+                                  {
+                                        w -> color = RED;
+                                        w -> right -> color = BLACK;
 					left_rotate(w); // only different rotate left not right
 					w = x -> parent -> left;
 				}
@@ -950,9 +950,9 @@ void red_black_delete_fixup(struct node *x)
 
 void red_black_transplant(struct node *u, struct node *v)
 {
-  if(u -> parent == NILL)//u is root
-  {
-		ROOT = v;
+     if(u -> parent == NILL)//u is root
+     {
+	     ROOT = v;
 	}
 	else if(u == u -> parent -> left)  //u is left child
 	{
@@ -962,7 +962,7 @@ void red_black_transplant(struct node *u, struct node *v)
 	{
 		u -> parent -> right = v;
 	}
-    // Lastly, we also need to point the parent of v to the parent of u.
+         // Lastly, we also need to point the parent of v to the parent of u.
 	v -> parent = u -> parent;
 
 } /**  END of red_black_transplant() */
@@ -997,7 +997,7 @@ struct node *tree_search(int key)
 	{
 	    /*
 	    If the key to be search is smaller than the root's key,
-        then it lies in left subtree  search in left subtree */
+             then it lies in left subtree  search in left subtree */
 		if(key < x -> key)
 		{
 			x = x -> left;
