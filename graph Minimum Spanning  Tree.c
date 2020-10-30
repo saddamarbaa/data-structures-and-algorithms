@@ -1,8 +1,7 @@
 /**
-* [PROG]		: Implementation Minimum Spanning Tree
-                   using | Kruskal’s Algorithm
-
-* [AUTHOR]		: Saddam Arbaa <saddamarbaas@gmail.com>
+    [PROGRAM] :  Minimum Spanning Tree Implementation using | Kruskal’s Algorithm
+    [AUTHOR]  :  Saddam Arbaa
+    [Email]   :  <saddamarbaas@gmail.com>
 
     C program for Kruskal's algorithm to find Minimum Spanning Tree
     of a given connected, undirected and weighted graph
