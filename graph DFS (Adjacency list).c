@@ -1,5 +1,5 @@
 /*
-            :  Graph Data Stucture
+                         :  Graph Data Stucture
  * [PROG]		: C Program (DFS)  Adjacency list representation implementation CS50 IDE
  * [AUTHOR]		: Saddam Arbaa <saddamarbaas@gmail.com>
 
