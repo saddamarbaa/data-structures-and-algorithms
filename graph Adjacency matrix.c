@@ -1,7 +1,6 @@
 /*
                 :  Graph Data Stucture
- * [PROG]		:  Adjacency matrix representation implementation
-                   in c using cs50 IDE
+ * [PROG]		  :  Adjacency matrix representation implementation  in c using cs50 IDE
  * [AUTHOR]		: Saddam Arbaa <saddamarbaas@gmail.com>
 
         An adjacency matrix is a way of representing a graph G = {V, E}
