@@ -1,6 +1,6 @@
  
 /*
-                  Graph Data Stucture
+                         Graph Data Stucture
  * [PROG]		 C Program for Adjacency list repres implementation CS50 IDE
  * [AUTHOR]		 Saddam Arbaa <saddamarbaas@gmail.com>
 
