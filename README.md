@@ -1,11 +1,10 @@
-#  Data  Structures & Algorithms
+#  Data Structures & Algorithms
 I made this repository to post my C and C++ code and document my progress while Learning Data Structures and Algorithms Concepts
 
-#  Algorithms & data structures include
+#  Data Structures AND Algorithms Include
 
 
-
-# Arrays in Data Structure
+# Arrays Data Structure
 
 A one-dimensional array (or single dimension array)
 
