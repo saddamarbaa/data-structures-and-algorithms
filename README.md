@@ -28,6 +28,28 @@ Doubly Circular Linked List
 
 
 
+# Stack Data Structure
+
+Stack Data Structure Array Implementation 
+
+Stack Data Structure linked list Implementation
+
+
+# Infix Prefix & Postfix Expressions in Data Structures 
+
+
+Infix to Postfix Expression using STACK Data Structure
+
+Infix to Prefix  Expression using Stack Data Structure
+
+Pretfix to Infix Expression using STACK Data Structure
+
+Postfix to Prefix Expression using STACK Data Structure 
+
+Prefix to Postfix Expression using STACK Data Structure 
+
+
+
 
 
 
