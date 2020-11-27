@@ -35,6 +35,40 @@ Stack Data Structure Array Implementation
 Stack Data Structure linked list Implementation
 
 
+# Queue Data Structure
+
+
+Queue Data Structure Array Implementation (FIFO)
+
+
+Queue Data Structure linked list Implementation(FIFO)
+
+
+Queue Data Structure Stack Implementation (FIFO)
+
+
+Circular Queue Data Structure Array Implementation
+
+Circular Queue Data Structure linkedlist Implementation
+
+
+Deque (Double Ended Queue)
+
+Double Ended Queue Circular Array Implementation
+
+
+
+# Priority Queue
+
+
+A priority Queue Implementation Using A Min-Heap
+
+
+A priority Queue Implementation Using A Max-Heap
+
+
+
+
 # Infix Prefix & Postfix Expressions in Data Structures 
 
 
