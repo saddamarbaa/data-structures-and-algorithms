@@ -35,6 +35,20 @@ Stack Data Structure Array Implementation
 Stack Data Structure linked list Implementation
 
 
+# Infix Prefix & Postfix Expressions in Data Structures 
+
+
+Infix to Postfix Expression using STACK Data Structure
+
+Infix to Prefix  Expression using Stack Data Structure
+
+Pretfix to Infix Expression using STACK Data Structure
+
+Postfix to Prefix Expression using STACK Data Structure 
+
+Prefix to Postfix Expression using STACK Data Structure 
+
+
 # Queue Data Structure
 
 
@@ -69,18 +83,58 @@ A priority Queue Implementation Using A Max-Heap
 
 
 
-# Infix Prefix & Postfix Expressions in Data Structures 
+# Sorting Algorithms
+
+Bubble Sort Algorithm
+
+Selection Sort Algorithm
+
+Insertion Sort Algorithm
+
+Merge Sort Algorithm
+
+Quicksort Algorithm
+
+Counting Sort Algorithm
+
+Radix Sort Algorithm
+
+Bucket Sort Algorithm
+
+Shell Sort Algorithm
+
+Heap Sort Algorithm
+
+A Min-Heap Sort Algorithm
+
+A Max-Heap Sort Algorithm
+
+Graph Topological Sort 
 
 
-Infix to Postfix Expression using STACK Data Structure
+# TODO 
 
-Infix to Prefix  Expression using Stack Data Structure
+Bitonic Sort
 
-Pretfix to Infix Expression using STACK Data Structure
+Cocktail Sort
 
-Postfix to Prefix Expression using STACK Data Structure 
+Cycle Sort
 
-Prefix to Postfix Expression using STACK Data Structure 
+Gnome Sort
+
+LSDRadix Sort Algorithm
+
+
+# Searching Algorithms
+
+Linear Search
+
+Binary Search
+Postman Sort
+
+Tim-sort
+pigeonhole-sort
+COMB SORT
 
 
 
