@@ -1,5 +1,6 @@
 #  Data Structures & Algorithms
-I made this repository to post my C and C++ code and document my progress while Learning Data Structures and Algorithms Concepts
+
+I made this repository to post my code and document my progress while Learning Data Structures and Algorithms Concepts
 
 
 #  Reference Source
@@ -307,4 +308,6 @@ Subset Sum Problem using Dynamic Programming
 # Algorithms  TODO 
 
 Backtracking Algorithm
+
+
 Rabin-Karp Algorithm
