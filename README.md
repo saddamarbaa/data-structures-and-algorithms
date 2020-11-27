@@ -112,17 +112,17 @@ A Max-Heap Sort Algorithm
 Graph Topological Sort 
 
 
-# TODO 
+# TODO ON (Sorting Algorithms)
 
 Bitonic Sort
-
 Cocktail Sort
-
 Cycle Sort
-
 Gnome Sort
-
 LSDRadix Sort Algorithm
+Postman Sort
+Tim-sort
+pigeonhole-sort
+COMB SORT
 
 
 # Searching Algorithms
@@ -130,12 +130,61 @@ LSDRadix Sort Algorithm
 Linear Search
 
 Binary Search
-Postman Sort
 
-Tim-sort
-pigeonhole-sort
-COMB SORT
 
+
+#  Tree Based Data Structure(1)
+
+
+# Tree Data Structure
+
+Tree Traversal - inorder, preorder and postorder
+
+Binary Tree
+
+Full Binary Tree
+
+Perfect Binary Tree
+
+Complete Binary Tree
+
+Balanced Binary Tree
+
+Binary Search Tree(BST)
+
+AVL Tree
+
+
+#  Tree Based Data Structure(2)
+
+# Red-Black Tree
+
+Insertion in a Red-Black Tree
+
+Deletion From a Red-Black Tree
+
+
+# Splay Tree
+
+Insertion in Splay Tree
+
+Deletion From Splay Tree (Top Down Splaying)
+
+Deletion From Splay Tree (Bottom-up Splaying)
+
+
+# B-tree
+
+
+Insertion into a B-tree(CODE TODO)
+
+Deletion from a B-tree (CODE TODO)
+
+# B+ Tree
+
+Insertion on a B+ Tree (CODE TODO)
+
+Insertion on a B+ Tree (CODE TODO)
 
 
 
