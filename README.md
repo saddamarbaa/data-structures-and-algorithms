@@ -1,8 +1,30 @@
 #  Data Structures & Algorithms
 I made this repository to post my C and C++ code and document my progress while Learning Data Structures and Algorithms Concepts
 
+
+#  Reference Source
+
+Introduction to Algorithms, 3rd Edition by thomas h. cormen
+
+
+
 #  Data Structures AND Algorithms Include
 
+# DSA Introduction
+
+Asymptotic Analysis
+
+Asymptotic Notations
+
+Theta Notation (Θ-notation)
+
+Big-O Notation (O-notation)
+
+Omega Notation (Ω-notation)
+
+Master Theorem
+
+Divide and Conquer Algorithm
 
 # Arrays Data Structure
 
@@ -11,7 +33,6 @@ A one-dimensional array (or single dimension array)
 Two-dimensional Arrays
 
 Multi-dimensional  Arrays
-
 
 
 
@@ -81,6 +102,10 @@ A priority Queue Implementation Using A Min-Heap
 A priority Queue Implementation Using A Max-Heap
 
 
+# Disjoint Set Union
+
+Path compression
+Union by Rank
 
 
 # Sorting Algorithms
@@ -131,6 +156,29 @@ Linear Search
 
 Binary Search
 
+
+# Hashing
+
+ Direct Address Table
+ 
+ Hash Table and Hash Function Array Implementation
+ 
+ Hash Tables Separate Chaining With Doubly Linked Lists
+ 
+ Hash Table Separate Chaining With Singly Linked Lists
+ 
+ Hash Table with Chaining (Dictionary Speller Checker )
+ 
+ Hash Table Implementation with Linear Probing (Hashing)
+ 
+ Hash Table Implementation with Quadratic Probing
+ 
+ Hash Table Implementation with Double Hashing
+ 
+ 
+ # TODO ON (Hashing)
+ 
+ Cryptographic Hashing
 
 
 #  Tree Based Data Structure(1)
@@ -188,8 +236,75 @@ Insertion on a B+ Tree (CODE TODO)
 
 
 
+# Graph Based Data Structure
+
+Graph Data Stucture
+
+Graph Adjacency list Representation 
+
+Graph Adjacency Matrix Representation 
+
+Depth First Search Implementation (DFS Algorithm)
+
+Breadth first Search Implementation (BFS Algorithm)
+
+Spanning Tree and Minimum Spanning Tree
+
+ Topological Sorting
+ 
+ Types of edges in DFS | Edge classification 
+
+Strongly Connected Components (CODE TODO)
+
+
+# TODO ON (Graph Based Data Structure)
+
+Bellman Ford's Algorithm
+
+Detect Cycle in Directed Graph
+
+Detect Cycle in Undirected Graph
 
 
 
+# Greedy Algorithms
+
+Kruskal's Algorithm
+
+Prim's Algorithm
+
+# TODO ON (Greedy Algorithms)
+
+Ford-Fulkerson Algorithm
+
+Dijkstra's Algorithm
+
+Huffman Coding
 
 
+
+# Dynamic Programming
+
+Coin Change Problem Number
+Coin Change Problem: Minimum number of coins Dynamic Programming
+
+
+# TODO ON (Dynamic Programming)
+
+Floyd-Warshall Algorithm
+
+Longest Common Subsequence
+
+Traveling Salesman Problem using Dynamic Programming
+
+0/1 knapsack problem-Dynamic Programming
+
+Fractional Knapsack Problem using Greedy Method
+
+Subset Sum Problem using Dynamic Programming
+
+
+# Algorithms  TODO 
+
+Backtracking Algorithm
+Rabin-Karp Algorithm
