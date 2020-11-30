@@ -3,6 +3,14 @@
 I made this repository to post my code and document my progress while Learning Data Structures and Algorithms Concepts
 
 
+## Recommended Books for the  Course and Reference Source
+
+1. Introduction to Algorithms, 3rd Edition by thomas h. cormen
+
+2. Introduction to Algorithms, 2rd Edition by thomas h. cormen
+
+3. Data Structures Through C In Depth By. Sk Srivastava
+
 
 
 #  Data Structures AND Algorithms Include
@@ -308,12 +316,6 @@ Backtracking Algorithm
 
 Rabin-Karp Algorithm
 
-
-
-
-#  Reference Source
-
-Introduction to Algorithms, 3rd Edition by thomas h. cormen
 
 
 
