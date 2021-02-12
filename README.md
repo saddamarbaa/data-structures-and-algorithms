@@ -2,7 +2,6 @@
 
 I made this repository to post my code and document my progress while Learning Data Structures and Algorithms Concepts
 
-
 ## Recommended Books for the  Course and Reference Source
 
 1. Introduction to Algorithms, 3rd Edition by thomas h. cormen
