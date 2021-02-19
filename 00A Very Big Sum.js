@@ -1,7 +1,8 @@
+// HackerRank (A Very Big Sum problem) => Array Sum
+// https://www.hackerrank.com/challenges/a-very-big-sum/problem
+
 "use strict";
 
-// Hckerrank A Very Big Sum
-// https://www.hackerrank.com/challenges/a-very-big-sum/problem
 const fs = require("fs");
 
 process.stdin.resume();
