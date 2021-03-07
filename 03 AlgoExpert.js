@@ -42,64 +42,64 @@
 
 // Solution#1:
 function quickSort(array) {
-	// Write your code here...
-	// call the helper function
-	helper(array, 0, array.length-1 );
+  // Write your code here...
+  // call the helper function
+  helper(array, 0, array.length - 1);
 
-	return array;
-
+  return array;
 }
 
 // create a helper function: keep track of recursion
 function helper(array, start, end) {
-	// start 
-	// base case: for recursion
-	if(start >= end ) return;
-	// init pointers
-	let pivotPointer = start;
-	let leftPointer = start +1;
-	let rightPointer = end;
+  // start
+  // base case: for recursion
+  if (start >= end) return;
+  // init pointers
+  let pivotPointer = start;
+  let leftPointer = start + 1;
+  let rightPointer = end;
 
-	// loop thru
-	while ( leftPointer <= rightPointer) {
-			// conditional check
-			// check if 
-			if((array[leftPointer] > array[pivotPointer] )&&(array[rightPointer] < array[pivotPointer])) {
-					//if both meet, call swap function
-					swap(leftPointer, rightPointer, array);
-			}
-			if(array[leftPointer] <= array[pivotPointer]) {
-					// move leftPointer to the right
-					leftPointer ++;
-			}
-			if(array[rightPointer] >= array[pivotPointer]){
-					rightPointer --;
-			}
+  // loop thru
+  while (leftPointer <= rightPointer) {
+    // conditional check
+    // check if
+    if (
+      array[leftPointer] > array[pivotPointer] &&
+      array[rightPointer] < array[pivotPointer]
+    ) {
+      //if both meet, call swap function
+      swap(leftPointer, rightPointer, array);
+    }
+    if (array[leftPointer] <= array[pivotPointer]) {
+      // move leftPointer to the right
+      leftPointer++;
+    }
+    if (array[rightPointer] >= array[pivotPointer]) {
+      rightPointer--;
+    }
+  }
 
-	}
+  // swap the pivotNum with rightNum
+  swap(pivotPointer, rightPointer, array);
 
-	// swap the pivotNum with rightNum
-	swap(pivotPointer, rightPointer, array);
+  // call the helper function itself
 
-	// call the helper function itself
-	
-		const leftSubarrayIsSmaller = (rightPointer - 1 - start) < (end - (rightPointer + 1));
-			
-if (leftSubarrayIsSmaller) {
-	helper(array, start, rightPointer - 1);
-	helper(array, rightPointer + 1, end);
-} else {
-	helper(array, rightPointer + 1, end);
-	helper(array, start, rightPointer - 1);
-}
+  const leftSubarrayIsSmaller =
+    rightPointer - 1 - start < end - (rightPointer + 1);
 
-
+  if (leftSubarrayIsSmaller) {
+    helper(array, start, rightPointer - 1);
+    helper(array, rightPointer + 1, end);
+  } else {
+    helper(array, rightPointer + 1, end);
+    helper(array, start, rightPointer - 1);
+  }
 }
 
 function swap(i, j, array) {
-	// right side only cares about the left side; left side only cares about the right side.
-	[array[i], array[j]] = [array[j], array[i]];
-	}
+  // right side only cares about the left side; left side only cares about the right side.
+  [array[i], array[j]] = [array[j], array[i]];
+}
 
 /* BIG O Notation
 Note that: Quick Sort 
@@ -121,8 +121,5 @@ O(log(n)) because of the recursive calls. Each time we call our function recursi
 
 // Solution#2 by Ray:
 function quickSort(array) {
-	// Write your code here...
-	
-	
-
+  // Write your code here...
 }
