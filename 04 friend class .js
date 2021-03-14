@@ -26,7 +26,7 @@ class Person {
 			for (let i = 0; i < this.friends.length; i++) {
 				console.log(
 					this['firstName'] +
-						' ' +
+						' ' + 
 						" 's Friend: " +
 						' ' +
 						this.friends[i]['firstName'] +
