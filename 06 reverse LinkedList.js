@@ -2,18 +2,18 @@
 
 class Node {
 	constructor(data, next = null) {
-		this.data = data; /* data filed */
-		this.next = next; /*address of next node */
+		this.data = data; // data filed
+		this.next = next; // address of next node
 	}
 }
 
 class linkedList {
 	constructor() {
-		this.head = null; /* pointer to first node // (head) */
+		// pointer to first node // (head)
+		this.head = null;
 	}
 
-	
-	/** A utility function to insert new node to the Beginning of list */
+	// A utility function to insert new node to the Beginning of list
 	insertAtBeginning(value) {
 		// first step create the node
 		let newNode = new Node(value);
@@ -33,25 +33,27 @@ class linkedList {
 		/** Time complexity of insertAtBeginning() is  : O(1) */
 	}
 
-	/** A utility function to(Append) insert new node to the end of list */
+	// A utility function to(Append) insert new node to the end of list
 
 	append(value) {
-		// local variables  declaration */
+		// local variables  declaration
 		let newNode, temp;
 
 		// first step create the node
-		newNode = new Node(value); // (now node is ready to add)
+		// (now node is ready to add)
+		newNode = new Node(value);
 
 		if (this.head == null) {
-			/* check if list is empty then this node is the first node */
+			//  check if list is empty then this node is the first node
 			// insert as the first node in list
-			this.insertAtBeginning(value); // call insertAtBeginning to added as first node
+			// call insertAtBeginning to added as first node
+			this.insertAtBeginning(value);
 		} else {
-			/*
-         if already some element are in the linked list we have to first
+			/* if already some element are in the linked list we have to first
          loop throw the linked list then add the new element at end */
 
-			temp = this.head; // temp is now point to head node
+			// temp is now point to head node
+			temp = this.head;
 
 			while (temp.next != null) {
 				/* while we not yet reach to NULL move temp ahead*/
@@ -68,10 +70,11 @@ class linkedList {
 	/** Utility function to traverse the linked list
     and print all the element(Iterative method)*/
 	traverse() {
-		let temp = this.head; // local variable( temp is now point to head node) */
+		// local variable( temp is now point to head node)
+		let temp = this.head;
 
 		if (this.head == null) {
-			/* linked is empty Case */
+			//  linked is empty Case
 			console.log("linked list is Empty");
 			return; // we are done
 		}
@@ -90,21 +93,45 @@ class linkedList {
 	/**
     Utility function to traverse the linked list and print
     all the element recursion(Recursive method)
-    Reference in Future
-   1. https://youtu.be/K7J3nCeRC80  */
-
-	traverseUsingRecursion(temp) {
-		if (temp == null) {
+    */
+	traverseUsingRecursion(currentHeadPointer) {
+		if (currentHeadPointer == null) {
 			//Exit condition
 			return;
 		}
 
 		// else cases
-		console.log(temp.dat); // first print the in the node which is first node
-		traverseUsingRecursion(temp.next); // Recursive call to move to next node
+		// first print the in the node which is first node
+		console.log(currentHeadPointer.data);
+
+		// Recursive call to move to next node
+		this.traverseUsingRecursion(currentHeadPointer.next);
 	}
 
-	//  A utility function to Reverse a linked list (Iterative method)
+	/*
+    Utility function to traverse the linked list and print all the
+    element in reverse order using recursion(Recursive method)
+        */
+	reversePrintUsingRecursion(currentHeadPointer) {
+		if (currentHeadPointer == null) {
+			//Exit condition
+			return;
+		} else {
+			// Recursive call to move to next node first
+			this.reversePrintUsingRecursion(currentHeadPointer);
+
+			// after reach to last node and temp == NULL
+			// will start printing from last to first in reverse order
+			// console.log(currentHeadPointer.data);
+		}
+	}
+
+	// Utility function to Head Pointer
+	get getHeadPointer() {
+		return this.head;
+	}
+
+	// A utility function to Reverse a linked list (Iterative method)
 	reverse() {
 		// local variables of type struct node declaration */
 		let current, Previous, nextNode;
@@ -114,12 +141,13 @@ class linkedList {
 		nextNode = null; // for next node
 
 		if (this.head == null) {
-			/* linked is empty Case */ console.log("linked list is Empty");
+			// linked is empty Case
+			console.log("linked list is Empty");
+			return;
 		}
 
 		while (current != null) {
 			/** link changes */
-
 			nextNode = current.next; // move nextNode point to next node
 			current.next = Previous; // Reverse current node
 			Previous = current; // move Previous point to current node
@@ -135,18 +163,28 @@ class linkedList {
 
 		/** Time complexity of Reverse() is O(n) */
 	}
+
+	// Utility function to Head Pointer
+	getHead() {
+		return this.head;
+	}
 }
 
-const nu1 = new linkedList();
-// nu1.insertAtBeginning(1);
-// nu1.insertAtBeginning(2);
+const object1 = new linkedList();
 
-nu1.append(1);
+for (let i = 1; i <= 5; i++) {
+	object1.append(i);
+}
 
-nu1.append(2);
+object1.traverse();
+object1.reverse();
+object1.traverse();
 
-nu1.append(3);
-nu1.traverse();
-nu1.reverse();
-nu1.traverse();
+let headPointer = object1.getHeadPointer;
+console.log(headPointer);
 
+// call traverseUsingRecursion() function
+// object1.traverseUsingRecursion(head);
+
+// call traverseUsingRecursion() function
+// object1.reversePrintUsingRecursion(headPointer);
