@@ -1,6 +1,9 @@
-
 /** @format */
 
+// stackblitz Testing Link
+// https://stackblitz.com/edit/js-zlittw
+
+// Node Class
 class Node {
 	constructor(data, next = null, prev = null) {
 		this.data = data; // data filed
@@ -9,7 +12,8 @@ class Node {
 	}
 }
 
-class linkedList {
+// Doubly Linked List Class
+class DoublyLinkedList {
 	constructor() {
 		// pointer to first node // (head)
 		this.head = null;
@@ -24,8 +28,8 @@ class linkedList {
 		if (this.head == null) {
 			this.head = newNode;
 		} else {
-			/* if already some element are in the linked list we
-        have to add the new node at the Beginning of the list */
+			// if already some element are in the linked list we
+			// have to add the new node at the Beginning of the list
 
 			/** link changes */
 			newNode.next = this.head; // right side connection first
@@ -34,12 +38,11 @@ class linkedList {
 		}
 
 		console.log(`${value} is been inserted as first node in lis`);
-		/** Time complexity of insertAtBeginning() is  : O(1) */
+		// Time complexity of insertAtBeginning() is  : O(1)
 	}
 
-	/** Utility function to traverse the linked list
-    and print all the element(Iterative method)*/
-
+	// Utility function to traverse the linked list
+	// and print all the element(Iterative method)
 	traverse() {
 		// local variable(temp is now point to head node)
 		let temp = this.head;
@@ -50,22 +53,19 @@ class linkedList {
 			return; // we are done
 		}
 
-		/*
-     by now we are sure list is not empty
-     so while we not yet reach NULL print the value
-     of node first and set temp to point to the next node */
-
+		// by now we are sure list is not empty
+		// so while we not yet reach NULL print the value
+		// of node first and set temp to point to the next node
 		while (temp !== null) {
 			console.log(`${temp.data}  --> `);
 			temp = temp.next; // move temp to next node
 		}
 
-		/** Time complexity of Traverse() is O(n) */
+		// Time complexity of Traverse() is O(n)
 	}
 
-	/**
-	  A utility function to(Append)
-    insert new node to the end of list */
+	// A utility function to(Append)
+	// insert new node to the end of list
 	append(value) {
 		// first step create the node
 		let newNode = new Node(value);
@@ -75,8 +75,8 @@ class linkedList {
 			// insert as the first node in list
 			this.insertAtBeginning(value);
 		} else {
-			/* if already some element are in the linked list we have to first
-				 loop throw the linked list then add the new element at end */
+			// if already some element are in the linked list we have to first
+			// loop throw the linked list then add the new element at end
 
 			let temp = this.head; // temp is now point to head node
 
@@ -92,18 +92,33 @@ class linkedList {
 			console.log(`${value}  is been inserted at end of list`);
 		}
 
-		/**
-		Time complexity of Append() is : O(N)
-		but if we have maintain one more variable tail pointer
-		to point to last nod while creating linked list then time
-		complexity of insert node at end will be O(1) */
+		// Time complexity of Append() is : O(N)
+		// but if we have maintain one more variable tail pointer
+		// to point to last nod while creating linked list then time
+		// complexity of insert node at end will be O(1)
+	}
+
+	// A utility function to find the length of linked list
+	length() {
+		// local counter variable declaration and initializations to zero
+		let count = 0;
+		let temp = ths.head; // temp is now point to head node
+
+		// while not yet reach NULL count the number of nodes in list
+		while (temp != NULL) {
+			count++; // increment count
+			temp = temp.next; // move temp to next node
+		}
+		return count; // return the number of node in list
+
+		// Time complexity of length() is O(n)
 	}
 }
 
-let t = new linkedList();
-
-for (let i = 1; i < 10; i++) {
-	t.append(i);
+const object1 = new DoublyLinkedList();
+for (let i = 1; i <= 10; i++) {
+	// insert nodes from 1 to 10
+	object1.append(i);
 }
 
-console.log(t.traverse());
+object1.traverse();
