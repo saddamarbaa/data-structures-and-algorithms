@@ -1,5 +1,6 @@
 /** @format */
 
+// Node Class
 class Node {
 	constructor(data, next = null) {
 		this.data = data; // data filed
@@ -7,6 +8,7 @@ class Node {
 	}
 }
 
+// linked list class
 class linkedList {
 	constructor() {
 		// pointer to first node // (head)
@@ -68,7 +70,7 @@ class linkedList {
 	}
 
 	/** Utility function to traverse the linked list
-    and print all the element(Iterative method)*/
+           and print all the element(Iterative method)*/
 	traverse() {
 		// local variable( temp is now point to head node)
 		let temp = this.head;
@@ -78,10 +80,11 @@ class linkedList {
 			console.log("linked list is Empty");
 			return; // we are done
 		}
-		/*
-     by now we are sure list is not empty
-     so while we not yet reach NULL print the value
-     of node first and set temp to point to the next node */
+	     /*
+            by now we are sure list is not empty
+           so while we not yet reach NULL print the value
+           of node first and set temp to point to the next node 
+	  */
 		while (temp != null) {
 			console.log(`${temp.data}  --> `); // print the value
 			temp = temp.next; // move temp to next node
@@ -90,7 +93,7 @@ class linkedList {
 		/** Time complexity of Traverse() is O(n) */
 	}
 
-	/**
+     /**
     Utility function to traverse the linked list and print
     all the element recursion(Recursive method)
     */
@@ -108,27 +111,22 @@ class linkedList {
 		this.traverseUsingRecursion(currentHeadPointer.next);
 	}
 
-	/*
+     /*
     Utility function to traverse the linked list and print all the
     element in reverse order using recursion(Recursive method)
-        */
+    */
 	reversePrintUsingRecursion(currentHeadPointer) {
 		if (currentHeadPointer == null) {
 			//Exit condition
 			return;
 		} else {
 			// Recursive call to move to next node first
-			this.reversePrintUsingRecursion(currentHeadPointer);
+			this.reversePrintUsingRecursion(currentHeadPointer.next);
 
 			// after reach to last node and temp == NULL
 			// will start printing from last to first in reverse order
-			// console.log(currentHeadPointer.data);
+			console.log(currentHeadPointer.data);
 		}
-	}
-
-	// Utility function to Head Pointer
-	get getHeadPointer() {
-		return this.head;
 	}
 
 	// A utility function to Reverse a linked list (Iterative method)
@@ -164,8 +162,29 @@ class linkedList {
 		/** Time complexity of Reverse() is O(n) */
 	}
 
+	// A utility function to Reverse a linked list using Recursio  (Recursive method)
+	ReverseUsingRecursion(currentHeadPointer) {
+		if (currentHeadPointer === null) {
+			return;
+		}
+
+		if (currentHeadPointer.next === null) {
+			// Reverse (head pointer) to point to last node
+			this.head = currentHeadPointer;
+			return;
+		}
+
+		// Recursive call to move to next node until you reach last node
+		this.ReverseUsingRecursion(currentHeadPointer.next);
+
+		/** link changes */
+		let temp = currentHeadPointer.next; // Reverse process
+		temp.next = currentHeadPointer; // Reverse process
+		currentHeadPointer.next = null; // Reverse process
+	}
+
 	// Utility function to Head Pointer
-	getHead() {
+	get getHeadPointer() {
 		return this.head;
 	}
 }
@@ -177,14 +196,15 @@ for (let i = 1; i <= 5; i++) {
 }
 
 object1.traverse();
-object1.reverse();
+
+let nodePointer = object1.getHeadPointer;
+
+object1.ReverseUsingRecursion(nodePointer);
+
+// console.log("by Now is  been Revese ");
 object1.traverse();
 
-let headPointer = object1.getHeadPointer;
-console.log(headPointer);
+object1.ReverseUsingRecursion(nodePointer);
 
-// call traverseUsingRecursion() function
-// object1.traverseUsingRecursion(head);
-
-// call traverseUsingRecursion() function
-// object1.reversePrintUsingRecursion(headPointer);
+// console.log("by Now is  been Revese  again");
+object1.traverse();
