@@ -44,7 +44,17 @@ public class RunningSum {
 
         return result;
     }
+ 
 
+ public static int[] optimizeRunningSum(int[] nums) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            nums[i] = sum;
+        }
+        return nums;
+    }
+ 
     public static void main(String[] args) {
         // Define the input array
         int[] nums = {1, 2, 3, 4, 5};
@@ -55,5 +65,8 @@ public class RunningSum {
         // Print the result array
         System.out.println("Running Sum of the Array: " + Arrays.toString(result));
         // Expected output: [1, 3, 6, 10, 15]
+     
+       int[] optimizeResult = optimizeRunningSum(nums);
+        System.out.println("Optimize Running Sum of the Array: " + Arrays.toString(result));
     }
 }
