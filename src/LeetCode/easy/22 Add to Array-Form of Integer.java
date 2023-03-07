@@ -33,6 +33,7 @@ num does not contain any leading zeros except for the zero itself.
 1 <= k <= 104
 */
 
+
 import java.util.ArrayList;
 import java.util.List;
 
