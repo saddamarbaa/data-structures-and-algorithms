@@ -1,5 +1,5 @@
 /*
-989. Add to Array-Form of Integerr
+989. Add to Array-Form of Integer
 Easy
 Companies
 The array-form of an integer num is an array representing its digits in left to right order.
