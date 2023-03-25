@@ -7,7 +7,6 @@ All the elements in the diagonals of the matrix are non-zero.
 All other elements are 0.
 Given a 2D integer array grid of size n x n representing a square matrix, return true if grid is an X-Matrix. Otherwise, return false.
 
-
 Example 1:
 
 Input: grid = [[2,0,0,1],[0,3,1,0],[0,5,2,0],[4,0,0,2]]
