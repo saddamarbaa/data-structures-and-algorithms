@@ -1,5 +1,4 @@
 /*
-
 832. Flipping an Image
 Easy
 
