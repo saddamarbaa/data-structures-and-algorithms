@@ -50,7 +50,7 @@ nums[i] is 0 or 1
 
 import java.util.Arrays;
 
-public class RemoveDuplicates{
+public class RemoveDuplicates {
     public static void main(String[] args) {
 
         // Test case 1:
@@ -112,6 +112,43 @@ public class RemoveDuplicates{
 
 
     /**
+     * Remove Duplicates from Sorted Array from a sorted integer array in-place, such that each unique element
+     * appears only once.
+     * The relative order of the elements is kept the same. The method returns the number of unique elements in the
+     * modified array.
+     * Algorithm steps:
+     * Check if the input array nums is null. If it is null, an IllegalArgumentException is thrown.
+     * Initialize two pointers: current and next. Both start at the beginning of the array.
+     * Iterate over the elements of the input array nums while the next pointer is less than the length of the array.
+     * If the current element is equal to the next element, move the next pointer to the next element.
+     * Otherwise, update the current element to the next unique element by copying the element at next pointer to the
+     * position after current, then move both pointers to the next element.
+     * Once the iteration is complete, the method returns the number of unique elements, which is the current pointer
+     * plus one.
+     * Time complexity: The method iterates over all the elements of the input array once. Therefore, the time
+     * complexity is O(n), where n is the length of the input array.
+     * Space complexity: The algorithm modifies the input array in-place, so it has a space complexity of O(1).
+     */
+    public static int removeDuplicates(int[] nums) {
+        if (nums == null) {
+            throw new IllegalArgumentException("Input array cannot be null");
+        }
+
+        int n = nums.length;
+        int leftPointer = 0;
+        int rightPointer = 1;
+        while (rightPointer < n) {
+            if (nums[rightPointer] != nums[leftPointer]) {
+                leftPointer = leftPointer + 1;
+                nums[leftPointer] = nums[rightPointer];
+            }
+            rightPointer++;
+        }
+        return leftPointer + 1;
+    }
+
+
+    /**
      * Remove Duplicates from Sorted Array
      * Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique
      * element appears only once. The relative order of the elements should be kept the same. Then return the number of
@@ -126,7 +163,7 @@ public class RemoveDuplicates{
      * where n is the length of the input array.
      * Space complexity:
      */
-    public static int removeDuplicates(int[] nums) {
+    public static int removeDuplicates2(int[] nums) {
         if (nums == null) {
             throw new IllegalArgumentException("Input array cannot be null");
         }
