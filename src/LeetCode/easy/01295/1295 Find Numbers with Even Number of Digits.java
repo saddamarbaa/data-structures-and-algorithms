@@ -100,12 +100,17 @@ public class FindNumbers {
         if (number == 0) {
             return 1;
         }
-        int count = 0;
-        while (number != 0) {
-            count++;
-            number /= 10;
-        }
-        return count;
+
+//        int count = 0;
+//        while (number != 0) {
+//            count++;
+//            number /= 10;
+//        }
+//        return count;
+
+
+        // optimal version
+        return (int) Math.log10(Math.abs(number)) + 1;
     }
 }
 
