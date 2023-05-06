@@ -31,7 +31,7 @@ Constraints:
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Arra {
+public class FirstMissingPositive {
     public static void main(String[] args) {
         int[] input1 = {7, 8, 9, 11, 12};
         int expected1 = 1;
