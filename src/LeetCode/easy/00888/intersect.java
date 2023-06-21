@@ -75,60 +75,6 @@ public class FairCandySwap {
 
 
     /*
-       Algorithm Steps:
-       1. Sort both nums1 and nums2 arrays.
-       2. Create an ArrayList to store the common elements.
-       3. Initialize two pointers, pointer1 for nums1 and pointer2 for nums2, both starting at index 0.
-       4. Iterate while both pointers are within the bounds of their respective arrays:
-           a. Get the current elements num1 = nums1[pointer1] and num2 = nums2[pointer2].
-           b. If num1 is equal to num2, add the element to the intersection list, increment both pointers.
-           c. If num1 is less than num2, increment pointer1.
-           d. If num1 is greater than num2, increment pointer2.
-       5. Convert the intersection list to an array.
-       6. Return the array.
-
-       Time Complexity: O(n log n + m log m), where n and m are the lengths of nums1 and nums2 respectively
-                       (due to sorting the arrays).
-       Space Complexity: O(min(n, m)), where n and m are the lengths of nums1 and nums2 respectively
-                         (to store the intersection list).
-   */
-    public static int[] intersect(int[] nums1, int[] nums2) {
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-
-        List<Integer> intersection = new ArrayList<>();
-
-        int pointer1 = 0;  // Pointer for nums1
-        int pointer2 = 0;  // Pointer for nums2
-
-        while (pointer1 < nums1.length && pointer2 < nums2.length) {
-            int num1 = nums1[pointer1];
-            int num2 = nums2[pointer2];
-
-            if (num1 == num2) {
-                intersection.add(num1);  // Add common element to the intersection list
-                pointer1++;  // Move both pointers forward
-                pointer2++;
-            } else if (num1 < num2) {
-                pointer1++;  // Move pointer for nums1 forward
-            } else {
-                pointer2++;  // Move pointer for nums2 forward
-            }
-        }
-
-        // Convert the intersection list to an array
-        int[] result = new int[intersection.size()];
-        int index = 0;
-        for (int num : intersection) {
-            result[index] = num;
-            index++;
-        }
-
-        return result;
-    }
-
-
-    /*
      Algorithm Steps:
      1. Calculate the total number of candies owned by Alice and Bob.
      2. Iterate through each candy in Alice's possession:
