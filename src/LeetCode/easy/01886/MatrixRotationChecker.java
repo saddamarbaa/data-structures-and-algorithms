@@ -30,7 +30,6 @@ n == mat[i].length == target[i].length
 mat[i][j] and target[i][j] are either 0 or 1.
 */
 
-import java.util.Arrays;
 
 public class MatrixRotationChecker {
 
