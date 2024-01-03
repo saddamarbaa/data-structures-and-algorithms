@@ -92,7 +92,7 @@ public class MatrixReshape{
         System.out.println("Test case 8: " + Arrays.deepEquals(expected8, result8)); // expected true
 
 
-// Test case 9: reshape 6x6 matrix to 3x12 matrix
+        // Test case 9: reshape 6x6 matrix to 3x12 matrix
         int[][] matrix9 = {
                 {1, 2, 3, 4, 5, 6},
                 {7, 8, 9, 10, 11, 12},
