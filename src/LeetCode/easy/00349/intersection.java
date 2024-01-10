@@ -23,7 +23,7 @@ Constraints:
 
 import java.util.*;
 
-public class Arra {
+public class Intersection {
     public static void main(String[] args) {
         // Test Case 1
         int[] nums1 = {1, 2, 2, 1};
