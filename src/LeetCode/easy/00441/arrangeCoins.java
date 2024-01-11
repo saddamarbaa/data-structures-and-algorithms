@@ -23,22 +23,49 @@ Constraints:
  */
 
 
-public class ArrangeCoins {
+class ArrangeCoins {
     public static void main(String[] args) {
-        int num1 = 5;
-        int result1 = arrangeCoins(num1);
-        System.out.println(num1 + " Answer " + result1);
+        // Test cases
+        testArrangeCoins(5, 2);
+        testArrangeCoins(8, 3);
+        testArrangeCoins(0, 0);
+        testArrangeCoins(15, 4);
+    }
+
+    public static void testArrangeCoins(int n, int expected) {
+        int result = arrangeCoins(n);
+        System.out.println("Input: " + n + ", Expected: " + expected + ", Result: " + result);
+        System.out.println("Test passed: " + (result == expected));
+        System.out.println();
     }
 
 
+    /**
+     * Algorithm:
+     * 1. Initialize remainingCoins with the given value n and rows to 0.
+     * 2. Iterate through rows using a for loop:
+     *    a. Check if remainingCoins is greater than or equal to the current row index i.
+     *    b. If true, subtract i from remainingCoins, and increment rows.
+     *    c. Continue the loop until remainingCoins is no longer greater than or equal to i.
+     * 3. Return the total number of complete rows formed, which is the value of rows.
+     *
+     * Time Complexity: O(sqrt(n))
+     *   - The loop iterates until remainingCoins is less than the current row index i.
+     *   - In the worst case, it takes approximately sqrt(n) iterations to reach this condition.
+     *
+     * Space Complexity: O(1)
+     *   - Constant space is used since only a few variables (remainingCoins and rows) are used.
+     */
     public static int arrangeCoins(int n) {
-        int i;
-        for (i = 1; i <= n; i++) {
-            if (n < i) {
-                break;
-            }
-            n -= i;
+        int remainingCoins = n;
+        int rows = 0;
+
+        // Iterate through rows
+        for (int i = 1; remainingCoins >= i; i++) {
+            remainingCoins -= i;
+            rows++;
         }
-        return i - 1;
+
+        return rows;
     }
 }
