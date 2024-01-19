@@ -72,10 +72,22 @@ public class NextGreatestLetter {
         // Expected output: The smallest letter greater than f is: a (wrapping around to the first letter)
     }
 
+      /**
+       Algorithm:
+       1. Initialize variables left to 0 and right to n - 1, where n is the length of the letters array.
+       2. Perform a binary search while left is less than or equal to right.
+       a. Calculate mid as (left + right) / 2.
+       b. If letters[mid] is less than or equal to the target, update left to mid + 1.
+       c. Otherwise, update right to mid - 1.
+       3. After the binary search, if left is less than n, return letters[left]; otherwise, return letters[0].
 
+     Time Complexity: O(log n) - Binary search takes logarithmic time.
+     Space Complexity: O(1) - Constant space is used for variables.
+     */
     public static char nextGreatestLetter(char[] letters, char target) {
         int left = 0, right = letters.length - 1;
 
+         // Binary search to find the smallest character greater than target
         while (left <= right) {
             int mid = left + (right - left) / 2;
             if (letters[mid] <= target)
@@ -84,6 +96,7 @@ public class NextGreatestLetter {
                 right = mid - 1;
         }
 
+          // If the search goes beyond the last element, return the first element
         return left < letters.length ? letters[left] : letters[0];
     }
 }
