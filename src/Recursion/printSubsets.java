@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Subsets {
+public class PrintSubsets {
     public static void main(String[] args) {
         int[] arr1 = {1, 2, 3};
         System.out.println("Subsets of " + Arrays.toString(arr1) + ":");
