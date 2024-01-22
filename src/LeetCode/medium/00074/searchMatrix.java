@@ -24,7 +24,6 @@ import java.util.Arrays;
 public class SearchMatrix {
     public static void main(String[] args) {
 
-
         // Test case 1
         int[][] grid1 = {{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}};
         int target1 = 3;
@@ -76,6 +75,33 @@ public class SearchMatrix {
         System.out.println("Test Case 5 - Expected result: " + expected5);
         System.out.println("Test Case 5 - Actual result: " + result5);
         System.out.println("Test Case 5 - Result matches expected: " + (result5 == expected5));
+
+
+        // Test case 6
+        int[][] grid6 =  {
+                {1, 2, 3, 4, 5},
+                {6, 7, 8, 9, 10},
+                {11, 12, 13, 14, 15},
+                {16, 17, 18, 19, 20},
+                {21, 22, 23, 24, 25}
+        };
+        int target6 = 24;
+        boolean expected6 = true;
+        boolean result6 = searchMatrix(grid5, target5);
+        System.out.println("Test Case 5 - Input: " + Arrays.deepToString(grid5));
+        System.out.println("Test Case 5 - Expected result: " + expected5);
+        System.out.println("Test Case 5 - Actual result: " + result5);
+        System.out.println("Test Case 5 - Result matches expected: " + (result5 == expected5));
+    }
+
+
+    public static void printTestCase(int testCaseNumber, int[][] grid, int target, boolean expected, boolean actual) {
+        System.out.println("Test Case " + testCaseNumber + " - Input: " + Arrays.deepToString(grid));
+        System.out.println("Test Case " + testCaseNumber + " - Target: " + target);
+        System.out.println("Test Case " + testCaseNumber + " - Expected result: " + expected);
+        System.out.println("Test Case " + testCaseNumber + " - Actual result: " + actual);
+        System.out.println("Test Case " + testCaseNumber + " - Result matches expected: " + (actual == expected));
+        System.out.println();
     }
 
 
@@ -121,28 +147,28 @@ public class SearchMatrix {
         }
 
         // Get the number of rows and columns in the matrix
-        int m = matrix.length;
-        int n = matrix[0].length;
-
+        int rowCount = matrix.length;
+        int colCount = matrix[0].length;
 
         // If the matrix has only one row or no columns, perform binary search on that row
-        if (m == 1 || n == 0) {
+        if (rowCount == 1 || colCount == 0) {
             int index = binarySearch(matrix[0], target, 0);
             return index != -1;
         }
 
-
         // Perform binary search to find the row that may contain the target
-        int left = 0, right = m - 1;
+        int left = 0, right = rowCount - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
+            int[] midRow = matrix[mid];
+            int midRowFirstValue = midRow[0];
+            int midRowLastValue = midRow[colCount - 1];
 
-            if (matrix[mid][0] <= target && matrix[mid][n - 1] >= target) {
+            if (midRowFirstValue <= target && midRowLastValue >= target) {
                 // If the target may be in this row, perform binary search on this row
-                int[] currentRow = matrix[mid];
-                int isFound = binarySearch(currentRow, target, 0);
+                int isFound = binarySearch(midRow, target, 0);
                 return isFound != -1;
-            } else if (matrix[mid][n - 1] < target) {
+            } else if (midRowLastValue < target) {
                 // If the last element of this row is smaller than the target, search in the rows below
                 left = mid + 1;
             } else {
@@ -207,6 +233,62 @@ public class SearchMatrix {
         return false;
     }
 
+
+    /**
+     * Binary search in a sorted 2D matrix.
+     *
+     * Algorithm Steps:
+     * 1. Check if the matrix is empty. If so, return false.
+     * 2. Get the number of rows (m) and columns (n) in the matrix.
+     * 3. If the matrix has only one row or no columns, perform binary search on that row.
+     * 4. Initialize row to 0 and col to the last column index (n-1).
+     * 5. Iterate while row is less than the number of rows (m) and col is greater than or equal to 0.
+     *    a. If matrix[row][col] is equal to the target, return true.
+     *    b. If matrix[row][col] is less than the target, increment row.
+     *    c. If matrix[row][col] is greater than the target, decrement col.
+     * 6. If we reach here, the target is not found in any row. Return false.
+     *
+     * Time Complexity: O(m + n) - Linear time where m is the number of rows and n is the number of columns.
+     * Space Complexity: O(1) - Constant space as we use a constant number of variables.
+     */
+
+    public static boolean searchMatrix3(int[][] matrix, int target) {
+
+        // Check if the matrix is empty
+        if (matrix.length == 0) {
+            return false;
+        }
+
+        // Get the number of rows and columns in the matrix
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        // If the matrix has only one row or no columns, perform binary search on that row
+        if (m == 1 || n == 0) {
+            int index = binarySearch(matrix[0], target, 0);
+            return index != -1;
+        }
+
+        // Initialize row to 0 and col to the last column index (n-1)
+        int row = 0;
+        int col = n - 1;
+
+        while (row < m && col >= 0) {
+            if (matrix[row][col] == target) {
+                // Target found, return true
+                return true;
+            } else if (matrix[row][col] < target) {
+                // Move to the next row
+                row++;
+            } else {
+                // Move to the previous column
+                col--;
+            }
+        }
+
+        // If we reach here, the target is not found in any row
+        return false;
+    }
 
     /**
      * Write a function that implements the binary search algorithm to search for a given key in a sorted array of
