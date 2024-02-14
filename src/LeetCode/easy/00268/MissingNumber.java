@@ -30,30 +30,54 @@ import java.util.HashMap;
 
 public class MissingNumber {
     public static void main(String[] args) {
-        int[] input1 = {3,0,1};
+        int[] input1 = {3, 0, 1};
         int expected1 = 2;
         int result1 = missingNumber(input1);
-        System.out.println("Test Case 1 - Input: " + Arrays.toString(input1));
-        System.out.println("Test Case 1 - Expected result: " + expected1);
-        System.out.println("Test Case 1 - Actual result: " + result1);
-        System.out.println("Test Case 1 - Result matches expected: " + (result1 == expected1));
+        printResult(input1, expected1, result1, 1);
 
         int[] input2 = {1, 2, 0};
         int expected2 = 3;
         int result2 = missingNumber(input2);
-        System.out.println("Test Case 2 - Input: " + Arrays.toString(input2));
-        System.out.println("Test Case 2 - Expected result: " + expected2);
-        System.out.println("Test Case 2 - Actual result: " + result2);
-        System.out.println("Test Case 2 - Result matches expected: " + (result2 == expected2));
+        printResult(input2, expected2, result2, 2);
 
         int[] input3 = {2, 1};
         int expected3 = 0;
         int result3 = missingNumber(input3);
-        System.out.println("Test Case 3 - Input: " + Arrays.toString(input3));
-        System.out.println("Test Case 3 - Expected result: " + expected3);
-        System.out.println("Test Case 3 - Actual result: " + result3);
-        System.out.println("Test Case 3 - Result matches expected: " + (result3 == expected3));
+        printResult(input3, expected3, result3, 3);
     }
+
+
+    /**
+     * 1: sort the array
+     * 2. Iterate over the given array and move all non-positive integers to the left of the array.
+     * 3. Set a variable "next" to 1, which represents the smallest positive integer we need to find.
+     * 4. Iterate over the remaining positive integers in the array.
+     * a. If the current number is equal to "next", increment "next" to the next smallest positive integer.
+     * b. If the current number is greater than "next", we have found our answer. Return "next".
+     * 5. If we have not found any missing positive integer in step 3, then the answer is "next".
+     * 6. Return "next"
+     * Time Complexity:
+     * Time Complexity: O(n), where n is the size of the given array. This is because we need to sort the array
+     * first, which has a time complexity of O(n), and then iterate over the array to find the smallest
+     * positive integer.
+     * Space Complexity:
+     * the Space Complexity: O(1), as we are not using any additional data structure to store the frequency or
+     * anything else.
+     */
+    public static int missingNumber(int[] nums) {
+        int n = nums.length;
+        cycleSort(nums);
+        int smallest = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == smallest) {
+                smallest++;
+            }
+        }
+
+        return smallest;
+    }
+
 
 
     /**
@@ -74,7 +98,7 @@ public class MissingNumber {
      * Space Complexity: O(1), as we are not using any additional data structure to store the frequency or anything
      * else.
      */
-    public static int missingNumber(int[] nums) {
+    public static int missingNumber2(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 1;
         }
@@ -108,7 +132,7 @@ public class MissingNumber {
 
     /**
      * Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range
-     * that is missing from the array.
+     * that is missing from the array..
      * Algorithm Steps:
      * 1: Create a HashMap to store the frequency of positive integers in the given array.
      * 2. Iterate over the array and for each positive integer, update its frequency in the HashMap.
@@ -122,12 +146,11 @@ public class MissingNumber {
      * the Space Complexity: O(n), where n is the size of the given array. We need to create a HashMap to store the
      * frequency of positive integers.
      */
-    public static int missingNumber2(int[] nums) {
+    public static int missingNumber3(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
 
-        int n = nums.length;
 
 
         HashMap<Integer, Integer> frequencyMap = new HashMap<>();
@@ -148,9 +171,6 @@ public class MissingNumber {
     }
 
     /**
-     * Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range
-     * that is missing from the array..
-     * Algorithm Steps:
      * 1: sort the array
      * 2. Iterate over the given array and move all non-positive integers to the left of the array.
      * 3. Set a variable "next" to 1, which represents the smallest positive integer we need to find.
@@ -167,11 +187,11 @@ public class MissingNumber {
      * the Space Complexity: O(1), as we are not using any additional data structure to store the frequency or
      * anything else.
      */
-    public static int missingNumber3(int[] nums) {
+    public static int missingNumber4(int[] nums) {
         int n = nums.length;
         Arrays.sort(nums);
 
-        int smallest = 1;
+        int smallest = 0;
 
         for (int i = 0; i < n; i++) {
             if (nums[i] == smallest) {
@@ -181,9 +201,53 @@ public class MissingNumber {
 
         return smallest;
     }
+
+
+    /**
+     * Cycle Sort Algorithm
+     * Algorithm Steps:
+     * 1. Traverse the array from the start.
+     * 2. For each element, find its correct position (index) in the sorted array.
+     * 3. Swap the current element with the element at its correct position.
+     * 4. Continue this process until the entire array is sorted.
+     *
+     * Time Complexity:
+     * - Worst Case Time Complexity: O(n).
+     * - Best Case Time Complexity: O(n).
+     * - Average Case Time Complexity: O(n).
+     *
+     * Space Complexity:
+     * - Space Complexity: O(1) - constant space is used for variables.
+     *
+     * @param array The array to be sorted.
+     */
+    public static void cycleSort(int[] array) {
+        int size = array.length;
+
+        for (int currentIndex = 0; currentIndex < size; currentIndex++) {
+            while (array[currentIndex] < size && array[currentIndex] != currentIndex) {
+                swap(array, currentIndex, array[currentIndex]);
+            }
+        }
+    }
+
+
+    /**
+     * Function to swap values of two variables (user should pass the array and
+     * indices as parameters)
+     */
+    private static void swap(int[] array, int a, int b) {
+        int temp = array[a];
+        array[a] = array[b];
+        array[b] = temp;
+    }
+
+
+    public static void printResult(int[] input, int expected, int result, int testCaseNumber) {
+        System.out.println("Test Case " + testCaseNumber + " - Input: " + Arrays.toString(input));
+        System.out.println("Test Case " + testCaseNumber + " - Expected result: " + expected);
+        System.out.println("Test Case " + testCaseNumber + " - Actual result: " + result);
+        System.out.println("Test Case " + testCaseNumber + " - Result matches expected: " + (result == expected));
+        System.out.println();
+    }
 }
-
-
-
-
-
