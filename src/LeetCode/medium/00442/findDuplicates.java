@@ -36,7 +36,7 @@ import java.util.List;
 public class FindDuplicates {
     public static void main(String[] args) {
         // Test Case 1 - No duplicates
-        int[] nums1 = {1, 2, 3, 4, 5};
+        int[] nums1 = {  1, 2, 3, 4,  5 };
         List<Integer> expected1 = new ArrayList<>();
         List<Integer> result1 = findDuplicates(nums1);
         System.out.println("Test Case 1 - Input: " + Arrays.toString(nums1));
@@ -45,7 +45,7 @@ public class FindDuplicates {
         System.out.println("Test Case 1 - Result matches expected: " + result1.equals(expected1));
 
         // Test Case 2 - Single duplicate
-        int[] nums2 = {1, 2, 2, 3, 4, 5};
+        int[] nums2 = {  1, 2, 2, 3, 4,  5 };
         List<Integer> expected2 = Arrays.asList(2);
         List<Integer> result2 = findDuplicates(nums2);
         System.out.println("Test Case 2 - Input: " + Arrays.toString(nums2));
@@ -54,15 +54,65 @@ public class FindDuplicates {
         System.out.println("Test Case 2 - Result matches expected: " + result2.equals(expected2));
 
         // Test Case 3 - Multiple duplicates
-        int[] nums3 = {1, 2, 2, 3, 4, 4, 5};
+        int[] nums3 = {  1, 2, 2, 3, 4, 4,  5 };
         List<Integer> expected3 = Arrays.asList(2, 4);
         List<Integer> result3 = findDuplicates(nums3);
         System.out.println("Test Case 3 - Input: " + Arrays.toString(nums3));
-        System.out.println("Test Case 3 - Expected result: " + expected3);   // The duplicate elements are 2 and 4
+        System.out.println("Test Case 3 - Expected result: " + expected3);  //The duplicate elements are 2 and 4
         System.out.println("Test Case 3 - Actual result: " + result3);
         System.out.println("Test Case 3 - Result matches expected: " + result3.equals(expected3));
 
     }
+    
+    
+    /**
+ * Algorithm:
+ * 1. Initialize an empty list to store duplicates.
+ * 2. Use cycle sort to arrange elements at their correct positions in the array.
+ * 3. Traverse the array and find elements that don't match their positions.
+ * 4. Add the elements to the list of duplicates.
+ * 5. Return the list of duplicates.
+ *
+ * Time Complexity: O(n)
+ * - The cycle sort step takes O(n) time.
+ * - The traversal to find duplicates takes O(n) time.
+ * - Overall, the time complexity is O(n).
+ *
+ * Space Complexity: O(1)
+ * - The algorithm uses a constant amount of space for variables and the list of duplicates.
+ * - The space complexity is O(1).
+ *
+ * @param nums The input array of integers.
+ * @return A list containing the integers that appear twice.
+ */
+public static List<Integer> findDuplicates(int[] nums) {
+    List<Integer> duplicates = new ArrayList<>();
+
+    int i = 0;
+    while (i < nums.length) {
+        int correctIndex = nums[i] - 1;
+
+        if (nums[i] != nums[correctIndex]) {
+            swap(nums, i, correctIndex);
+        } else {
+            i++;
+        }
+    }
+
+    for (int j = 0; j < nums.length; j++) {
+        if (nums[j] != j + 1) {
+            duplicates.add(nums[j]);
+        }
+    }
+
+    return duplicates;
+}
+
+private static void swap(int[] nums, int i, int j) {
+    int temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+}
 
     /*
      * This method finds and returns a list of duplicate numbers in the given array.
@@ -82,7 +132,7 @@ public class FindDuplicates {
      * Space Complexity: O(1), excluding the space required to store the output list.
      */
 
-    public static List<Integer> findDuplicates(int[] nums) {
+    public static List<Integer> findDuplicates2(int[] nums) {
         List<Integer> duplicates = new ArrayList<>();
         int length = nums.length;
 
