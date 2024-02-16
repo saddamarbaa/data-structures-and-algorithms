@@ -60,6 +60,43 @@ public class FirstMissingPositive {
 
 
     /**
+ * Finds the smallest missing positive integer in an unsorted array.
+ *
+ * Algorithm Steps:
+ * 1. Iterate through the array and move each element to its correct position.
+ * 2. After rearranging, iterate through the array again to find the first missing positive integer.
+ *
+ * @param nums - The input array of integers.
+ * @returns The smallest missing positive integer.
+ *
+ * Time Complexity: O(n) - Linear time complexity due to two passes through the array.
+ * Space Complexity: O(1) - Constant space is used.
+ */
+public static int firstMissingPositive(int[] nums) {
+       int n = nums.length;
+
+        // Step 1: Rearrange the array
+        for (int i = 0; i < n; i++) {
+            while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
+                // Swap nums[i] to its correct position
+                int temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
+            }
+        }
+
+        // Step 2: Find the smallest missing positive integer
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != i + 1) {
+                return i + 1; // Missing positive integer found
+            }
+        }
+
+        return n + 1; // All integers from 1 to n are present, return the next positive integer
+    }
+
+
+    /**
      * Given an unsorted integer array nums, return the smallest missing positive integer.
      * Algorithm Steps:
      * Handle the edge case when the input array is null or empty. Return 1 in this case.
@@ -76,7 +113,7 @@ public class FirstMissingPositive {
      * Space Complexity: O(1), as we are not using any additional data structure to store the frequency or anything
      * else.
      */
-    public static int firstMissingPositive(int[] nums) {
+    public static int firstMissingPositive2(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 1;
         }
@@ -123,7 +160,7 @@ public class FirstMissingPositive {
      * the Space Complexity: O(n), where n is the size of the given array. We need to create a HashMap to store the
      * frequency of positive integers.
      */
-    public static int firstMissingPositive2(int[] nums) {
+    public static int firstMissingPositive3(int[] nums) {
         HashMap<Integer, Integer> frequencyMap = new HashMap<>();
         int smallestPositive = 1;
 
@@ -160,7 +197,7 @@ public class FirstMissingPositive {
      * the Space Complexity: O(1), as we are not using any additional data structure to store the frequency or
      * anything else.
      */
-    public static int firstMissingPositive3(int[] nums) {
+    public static int firstMissingPositive4(int[] nums) {
         int n = nums.length;
         Arrays.sort(nums);
 
