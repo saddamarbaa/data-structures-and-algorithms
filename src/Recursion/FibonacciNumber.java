@@ -28,52 +28,53 @@ Constraints:
 0 <= n <= 30
  */
 
-public class Fib {
+public class FibonacciNumber {
     public static void main(String[] args) {
         // Test Case 1 - n = 0
         int n1 = 0;
         int expected1 = 0;
         int result1 = fib(n1);
-        System.out.println("Test Case 1 - Input: " + n1);
-        System.out.println("Test Case 1 - Expected result: " + expected1);
-        System.out.println("Test Case 1 - Actual result: " + result1);
-        System.out.println("Test Case 1 - Result matches expected: " + (result1 == expected1));
+        runTestCase(n1, expected1, result1);
 
         // Test Case 2 - n = 1
         int n2 = 1;
         int expected2 = 1;
         int result2 = fib(n2);
-        System.out.println("Test Case 2 - Input: " + n2);
-        System.out.println("Test Case 2 - Expected result: " + expected2);
-        System.out.println("Test Case 2 - Actual result: " + result2);
-        System.out.println("Test Case 2 - Result matches expected: " + (result2 == expected2));
+        runTestCase(n2, expected2, result2);
 
         // Test Case 3 - n = 5
         int n3 = 5;
         int expected3 = 5;
         int result3 = fib(n3);
-        System.out.println("Test Case 3 - Input: " + n3);
-        System.out.println("Test Case 3 - Expected result: " + expected3);
-        System.out.println("Test Case 3 - Actual result: " + result3);
-        System.out.println("Test Case 3 - Result matches expected: " + (result3 == expected3));
+        runTestCase(n3, expected3, result3);
 
         // Test Case 4 - n = 10
         int n4 = 10;
         int expected4 = 55;
         int result4 = fib(n4);
-        System.out.println("Test Case 4 - Input: " + n4);
-        System.out.println("Test Case 4 - Expected result: " + expected4);
-        System.out.println("Test Case 4 - Actual result: " + result4);
-        System.out.println("Test Case 4 - Result matches expected: " + (result4 == expected4));
+        runTestCase(n4, expected4, result4);
 
         // Test Case 5 - n = negative number
         int n5 = -3;
         int expected5 = -1;
         int result5 = fib(n5);
-        System.out.println("Test Case 5 - Input: " + n5);
-        System.out.println("Test Case 5 - Expected result: " + expected5);
-        System.out.println("Test Case 5 - Actual result: " + result5);
-        System.out.println("Test Case 5 - Result matches expected: " + (result5 == expected5));
+        runTestCase(n5, expected5, result5);
+
+
+
+
+        int n6 = 6;
+        int expected6 = 8;
+        int result6 = fib(n6);
+        runTestCase(n6, expected6, result6);
+    }
+
+    public static void runTestCase(int n, int expected, int result) {
+        System.out.println("Test Case - Input: " + n);
+        System.out.println("Test Case - Expected result: " + expected);
+        System.out.println("Test Case - Actual result: " + result);
+        System.out.println("Test Case - Result matches expected: " + (result == expected));
+        System.out.println();
     }
 
 
@@ -121,5 +122,10 @@ public class Fib {
         }
         return sum;
     }
-}
 
+
+    public static int fib3(int n) {
+        if (n <= 1) return n;
+      return  fib(n - 1) + fib(n - 2);
+    }
+}
