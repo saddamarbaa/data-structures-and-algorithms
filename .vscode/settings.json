@@ -2,10 +2,5 @@
   "files.associations": {
     "*html": "html",
     "*.php": "css",
-    "Search Binary Search Iterative Method l.C": "cpp",
-    "Search Binary Search Iterative Method.C": "cpp",
-    "Search Binary Search Recursive Method.C": "cpp",
-    "Search Linear (sequential)Search loop.C": "cpp",
-    "Search Linear (sequential)Search.C": "cpp"
   }
 }
