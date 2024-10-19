@@ -157,32 +157,4 @@ public class CountSort {
 
 
     }
-
-
-    public  static int searchRange(int[] nums, int target, int occ) {
-        int asn = -1;
-        int startIndex = 0;
-
-
-        int endIndex = nums.length - 1;
-        while (startIndex <= endIndex) {
-            int midIndex = startIndex + (endIndex - startIndex) / 2;
-            if (nums[midIndex] == target) {
-                asn =midIndex;
-                if (occ == 1) {
-                    startIndex = midIndex + 1;
-                } else if (occ == -1) {
-                    endIndex = midIndex - 1;
-                } else {
-                    return midIndex;
-                }
-            } else if (nums[midIndex] < target) {
-                startIndex = midIndex + 1;
-            } else {
-                endIndex = midIndex - 1;
-            }
-        }
-        return asn;
-    }
-
 }
