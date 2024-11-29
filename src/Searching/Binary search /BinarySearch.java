@@ -47,6 +47,34 @@ public class BinarySearch{
         int expectedIndex5 = binarySearchRecursive(vector5, low5, high5, key5, -1);
         int actualIndex5 = -1;
         testBinarySearch(vector5, expectedIndex5, actualIndex5, key5, 5);
+
+        // Test Case 6 - Search for the first element in the array
+        int[] vector6 = {7, 8, 9, 10, 11};
+        int low6 = 0;
+        int high6 = vector6.length - 1;
+        int key6 = 7; // Key to be searched (first element)
+        int expectedIndex6 = binarySearchRecursive(vector6, low6, high6, key6, -1);
+        int actualIndex6 = 0; // First element index
+        testBinarySearch(vector6, expectedIndex6, actualIndex6, key6, 6);
+
+        // Test Case 7 - Search for the last element in the array
+        int[] vector7 = {12, 13, 14, 15, 16};
+        int low7 = 0;
+        int high7 = vector7.length - 1;
+        int key7 = 16; // Key to be searched (last element)
+        int expectedIndex7 = recursiveBinarySearchPure(vector7, key7, 0, vector7.length-1);
+        int actualIndex7 = vector7.length - 1; // Last element index
+        testBinarySearch(vector7, expectedIndex7, actualIndex7, key7, 7);
+
+        // Test Case 8 - Search in an array with negative numbers
+        int[] vector8 = {-5, -3, -1, 0, 2, 4};
+        int low8 = 0;
+        int high8 = vector8.length - 1;
+        int key8 = -3; // Key to be searched (negative number)
+        int expectedIndex8 = recursiveBinarySearchPure(vector8,key8,0, vector8.length-1);
+        int actualIndex8 = 1; // Index of the negative number
+        testBinarySearch(vector8, expectedIndex8, actualIndex8, key8, 8);
+
     }
 
     public static int binarySearch(int[] nums, int target) {
@@ -283,6 +311,26 @@ public class BinarySearch{
         }
         return -1;
     }
+
+
+    public static int recursiveBinarySearchPure(int[] nums, int key,int low, int high) {
+
+        if (low > high) return -1;
+        int mid = low + (high - low) / 2;
+        if (key == nums[mid]) {
+            return mid;
+        } else if (key < nums[mid]) {
+            // search in left
+            high = mid - 1;
+
+            return recursiveBinarySearchPure(nums, key, low, high);
+        } else {
+            //search in right
+            low = mid + 1;
+            return recursiveBinarySearchPure(nums, key, low, high);
+        }
+    }
+
 
 
     private static void testBinarySearch(int[] input, int expectedIndex, int actualIndex, int key, int testCaseNumber) {
