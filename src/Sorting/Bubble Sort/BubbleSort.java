@@ -1,22 +1,8 @@
-import java.util.Scanner;
-
 public class BubbleSort {
-
-    // define the maximum Array size
-    private static final int MAXSIZE = 25;
-
-    // global array size which will be entered by user
-    private static int size;
-
-
     public static void main(String[] args) {
-        System.out.println("Bubble Sort Algorithm implementation \n");
+        int[] array = {5, 3, 8, 4, 2};
+        int n = array.length;
 
-        // array declaration
-        int[] array = new int[MAXSIZE];
-
-        /* traverse Array and insert All the values at once */
-        traverse(array);
 
         /* traverse Array and display all elements before Sort */
         System.out.println("\nElements in array before sorted are :");
@@ -25,45 +11,29 @@ public class BubbleSort {
         /* traverse Array and Sorted in ascending order using Bubble Sort*/
         bubbleSort(array);
 
-//        bubbleSort(array,false);
+        // bubbleSort(array,false);
         optimizedBubbleSort(array,false);
 
         /* traverse Array and display all elements after Sort */
         System.out.println("Elements in array after sorted are :");
         printArray(array);
+
+
+        // Call the recursive bubble sort function
+        recursiveBubbleSort(array, n - 1, 0);
+        System.out.println("Elements in array after sorted are with recursive sort :");
+        printArray(array);
+
     }
 
-    /**
-     * Function to traverse array and initialize its value by the value inserted by
-     * the user (take input from user and store it in an array) traversing means
-     * visiting every element in the array exactly once (user should pass the array
-     * as a parameter)
-     */
-    private static void traverse(int[] array) {
-        Scanner scanner = new Scanner(System.in);
 
-        do {
-
-            System.out.print("Enter the size of an array :\n(size must be bigger than zero and less than or equal to "
-                    + MAXSIZE + "): ");
-            size = scanner.nextInt();
-        } while (size <= 0 || size > MAXSIZE);
-
-        System.out.println("Enter the elements one by one " + size + " numbers \n");
-
-        for (int i = 0; i < size; i++) {
-            System.out.print("Enter Array[ " + (i + 1) + " ]: ");
-            array[i] = scanner.nextInt();
-        }
-
-        scanner.close();
-    }
 
     /**
      * Function to print elements of an array Accept one parameter (user should pass
      * the array as a parameter)
      */
     private static void printArray(int[] array) {
+        int size = array.length;
         if (size == 0) {
             System.out.println("Array is empty(no elements to print) !");
             return;
@@ -172,12 +142,33 @@ public class BubbleSort {
 
 
 
+    private static void recursiveBubbleSort(int[] array, int pass, int index) {
+        // Base case: If no more passes are needed, the array is sorted
+        if (pass == 0) {
+            return;
+        }
+
+        // Recursive case: Sorting current pass
+        if (index < pass) {
+            // Compare and swap if elements are out of order
+            if (array[index] > array[index + 1]) {
+                swap(array, index, index + 1);
+            }
+            // Recursively process the next element in the current pass
+            recursiveBubbleSort(array, pass, index + 1);
+        } else {
+            // After completing one pass, start a new pass from the beginning
+            recursiveBubbleSort(array, pass - 1, 0);
+        }
+    }
+
+
     /**
      * Function to swap values of two variables (user should pass the array and
      * indices as parameters)
      */
     private static void swap(int[] array, int a, int b) {
-       int temp = array[a];
+        int temp = array[a];
         array[a] = array[b];
         array[b] = temp;
     }
