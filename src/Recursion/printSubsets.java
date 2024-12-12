@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PrintSubsets {
+
     public static void main(String[] args) {
         int[] arr1 = {1, 2, 3};
         System.out.println("Subsets of " + Arrays.toString(arr1) + ":");
@@ -47,25 +48,53 @@ public class PrintSubsets {
      * depth of n, as we are calling the helper method n times recursively..
      */
     public static void printSubsets(int[] arr) {
+        List<List<Integer>> res = new ArrayList<>();
         List<Integer> subset = new ArrayList<>();
-        printSubsetsHelper(arr, 0, subset);
+        printSubsetsHelper(arr, 0, subset, res);
+        System.out.println(res);
     }
 
-    private static void printSubsetsHelper(int[] arr, int index, List<Integer> subset) {
+    private static void printSubsetsHelper(int[] arr, int index, List<Integer> subset,List<List<Integer>> res) {
         // Base case: If index equals the length of the array, we've reached the end and can print the subset
         if (index == arr.length) {
             System.out.println(subset);
+            res.add(new ArrayList<>(subset));
+//            System.out.println(res);
             return;
         }
 
         // Recursive case 1: Include the current element in the subset and move to the next index
         subset.add(arr[index]);
-        printSubsetsHelper(arr, index + 1, subset);
+        printSubsetsHelper(arr, index + 1, subset,res);
 
         // Recursive case 2: Exclude the current element from the subset and move to the next index
         subset.remove(subset.size() - 1);
-        printSubsetsHelper(arr, index + 1, subset);
+        printSubsetsHelper(arr, index + 1, subset,res);
     }
+
+    public static List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> subset = new ArrayList<>();
+        helper(nums, 0, subset, res);
+        return res;
+    }
+
+    private static void helper(int[] arr, int index, List<Integer> subset,List<List<Integer>> res) {
+
+        if (index == arr.length) {
+            // System.out.println(subset);
+            res.add(new ArrayList<>(subset));
+            return;
+        }
+
+
+        subset.add(arr[index]);
+        helper(arr, index + 1, subset,res);
+
+        subset.remove(subset.size() - 1);
+        helper(arr, index + 1, subset,res);
+    }
+
 
 
     public static void printSubsequencesWithSumK(int[] arr, int k) {
@@ -85,15 +114,61 @@ public class PrintSubsets {
 
         // Recursive case 1: Include the current element in the subset and move to the next index
         subset.add(arr[index]);
-        printSubsequencesWithSumKHelper(arr, index + 1, subset, k, sum + arr[index]);
+        sum = sum + arr[index];
+        printSubsequencesWithSumKHelper(arr, index + 1, subset, k, sum);
 
         // Recursive case 2: Exclude the current element from the subset and move to the next index
         subset.remove(subset.size() - 1);
+        sum = sum - arr[index];
         printSubsequencesWithSumKHelper(arr, index + 1, subset, k, sum);
     }
+    private static ArrayList<String> subsequencesList(String unprocess, String process) {
+        if(process.isEmpty()){
+            ArrayList<String>list = new ArrayList<>();
+            list.add(unprocess);
+            return  list;
+        }
+
+        char ch = process.charAt(0);
+
+        ArrayList<String> left = subsequencesList((unprocess+ch), process.substring(1));
+        ArrayList<String> right= subsequencesList(unprocess, process.substring(1));
+        left.addAll(right);
+        return  left;
+    }
+
+
+    private static void printSubsequences(String unprocess, String process) {
+        if(process.isEmpty()){
+            System.out.println(unprocess);
+            return;
+        }
+        char ch = process.charAt(0);
+
+         printSubsequences((unprocess+ch), process.substring(1));
+         printSubsequences(unprocess, process.substring(1));
+    }
+
+
+
+    // Method to count the total number of subsequences using recursive approach
+    static int countSubsequences(String str) {
+        return countSubsequencesHelper(str, 0);
+    }
+
+    // Helper method to count subsequences recursively
+    static int countSubsequencesHelper(String str, int index) {
+        // Base case: if we have reached the end of the string, return 1 (the empty subsequence)
+        if (index == str.length()) {
+            return 1;
+        }
+
+        // Recursive case: for each character, we have two choices - include or exclude
+        int exclude = countSubsequencesHelper(str, index + 1);    // Exclude the current character
+        int include = countSubsequencesHelper(str, index + 1);    // Include the current character
+
+        // Total subsequences = subsequences excluding current character + subsequences including current character
+        return exclude + include;
+    }
+
 }
-
-
-
-
-
