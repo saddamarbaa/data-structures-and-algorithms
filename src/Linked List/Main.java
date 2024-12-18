@@ -57,6 +57,34 @@ class SinglyLinkedList<T> {
         size++;
     }
 
+    // Recursive method to insert a node at a given index
+    public void insertAtIndex(int index, T data, Integer key) {
+        // Start the recursion from the head
+        head = insertAtIndexRecursive(head, index, data, key, 0);
+    }
+
+    // Helper recursive function
+    private Node<T> insertAtIndexRecursive(Node<T> current, int index, T data, Integer key, int currentIndex) {
+        // If we have reached the index where the new node should be inserted
+        if (currentIndex == index) {
+            Node<T> newNode = new Node<>(data, key);
+            newNode.next = current;
+            size++;
+            return newNode;
+        }
+
+        // If we reached the end of the list and haven't inserted yet, return current node (index out of bounds)
+        if (current == null) {
+            System.out.println("Index out of bounds.");
+            return current;
+        }
+
+        // Recursively call the function to move through the list
+        current.next = insertAtIndexRecursive(current.next, index, data, key, currentIndex + 1);
+
+        return current;
+    }
+
 
     // Method to node a node  with a specified key
     public void deleteNodeByKey(int key) {
@@ -396,7 +424,7 @@ class SinglyLinkedList<T> {
 
 
 
-// Method to traverse and print the linked list
+    // Method to traverse and print the linked list
     public void traverse() {
         Node<T> current = head;
 
@@ -611,7 +639,7 @@ public class Main {
         list.traverse();
         System.out.println("Current Size of the List: " + list.getSize());
 
-       // Try to insert before an invalid position
+        // Try to insert before an invalid position
         System.out.println("\nTry Inserting Before an Invalid Position:");
         list.insertNodeBeforePosition(15, node10);
         System.out.println("Current Size of the List: " + list.getSize());
@@ -623,13 +651,13 @@ public class Main {
         list.traverse();
         System.out.println("Current Size of the List: " + list.getSize());
 
-       // Insert node at position 1
+        // Insert node at position 1
         list.insertNodeAtPosition(1, node12);
         System.out.println("\nAfter Inserting Node at Position 1:");
         list.traverse();
         System.out.println("Current Size of the List: " + list.getSize());
 
-       // Try to insert at an invalid position
+        // Try to insert at an invalid position
         System.out.println("\nTry Inserting at an Invalid Position:");
         list.insertNodeAtPosition(15, node10);
         System.out.println("Current Size of the List: " + list.getSize());
@@ -644,13 +672,13 @@ public class Main {
         list.traverse();
         System.out.println("Current Size of the List: " + list.getSize());
 
-       // Insert node before key that doesn't exist
+        // Insert node before key that doesn't exist
         list.insertNodeBeforeKey(15, node13);
         System.out.println("\nAfter Inserting Node Before Key 15 (which doesn't exist):");
         list.traverse();
         System.out.println("Current Size of the List: " + list.getSize());
 
-       // Try to insert a node with a key that already exists
+        // Try to insert a node with a key that already exists
         list.insertNodeBeforeKey(6, node13);
         System.out.println("\nTry Inserting Node Before Key 6 (which already exists):");
         list.traverse();
@@ -670,13 +698,16 @@ public class Main {
         list.traverse();
         System.out.println("Current Size of the List: " + list.getSize());
 
-      // Try to insert a node with a key that already exists
+        // Try to insert a node with a key that already exists
         list.insertNodeAtKey(6, node14);
         System.out.println("\nTry Inserting Node At Key 6 (which already exists):");
         list.traverse();
         list.reversePrint();
         list.printRecursively();
         System.out.println("Current Size of the List: " + list.getSize());
+
+        list.insertAtIndex(2, 33, 100);
+        list.traverse();
 
     }
 }
