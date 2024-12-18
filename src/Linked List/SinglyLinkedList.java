@@ -527,7 +527,7 @@ class SinglyLinkedList<T> {
 
 }
 
-public class Main {
+public class LinkedList {
     public static void main(String[] args) {
 
         // Create a new singly linked list
