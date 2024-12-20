@@ -424,6 +424,39 @@ class SinglyLinkedList<T> {
 
 
 
+    // Method to recursively reverse the linked list
+    public void reverseUsingRecursionHelper(Node<T> current) {
+        if (head == null) {
+            System.out.println("linked list is empty");
+            return;
+        }
+
+        if (current.next == null) { // Exit condition: last node reached
+            // Update the tail to point to the original head before reversing
+            tail = head;
+
+            // Update the head to point to the last node (which will become the new head)
+            head = current;
+            return;
+        }
+
+        reverseUsingRecursionHelper(current.next); // Recursive call to move to next node  first
+        // until you reach last node
+
+
+        // link changes
+        Node<T> q = current.next;  // Reverse process
+        q.next = current;                // Reverse process
+        current.next = null;            // Reverse process
+
+    }
+    // Wrapper method to start printing from the head of the list
+    public void reverseRecursively() {
+        Node<T> current = head;
+        reverseUsingRecursionHelper(current);
+    }
+
+
     // Method to traverse and print the linked list
     public void traverse() {
         Node<T> current = head;
@@ -523,8 +556,6 @@ class SinglyLinkedList<T> {
         System.out.print(" -> TAIL -> NULL");  // After recursion, print the tail part
         System.out.println();  // Print a newline at the end
     }
-
-
 }
 
 public class LinkedList {
@@ -664,8 +695,6 @@ public class LinkedList {
 
 
 
-
-
         // Insert node before key
         list.insertNodeBeforeKey(5, node13);
         System.out.println("\nAfter Inserting Node Before Key 5:");
@@ -708,6 +737,8 @@ public class LinkedList {
 
         list.insertAtIndex(2, 33, 100);
         list.traverse();
-
+        list.reverseRecursively();
+        System.out.println("After recursive reverse");
+        list.traverse();
     }
 }
