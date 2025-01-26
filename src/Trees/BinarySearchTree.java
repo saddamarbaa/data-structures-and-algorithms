@@ -3,24 +3,22 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class BinarySearchTree {
-    private class Node {
+    private static class Node {
         int data;
-        Node left = null;
-        Node right = null;
-        int key;
-        static int nextKey = 1;
+        Node left;
+        Node right;
 
-        Node(int value, Integer key) {
-            this.data = value;
-            if (key != null) {
-                this.key = key;
-            } else {
-                this.key = generateUniqueKey();
-            }
+
+        Node() {
+            this.data = 0;
+            this.left = null;
+            this.right = null;
         }
 
-        private int generateUniqueKey() {
-            return (int) System.currentTimeMillis() + nextKey++;
+        Node(int value) {
+            this.data = value;
+            this.left = null;
+            this.right = null;
         }
     }
 
@@ -32,16 +30,22 @@ public class BinarySearchTree {
         this.size = 0;
     }
 
-    // Method to create a node with an optional key
-    public Node createNode(int data, Integer key) {
-        return new Node(data, key);
-    }
-
-    // Overloaded method to create a node without specifying a key (optional key)
     public Node createNode(int data) {
-        return new Node(data, null);
+        return new Node(data);
     }
 
+
+    public Node createNode() {
+        return new Node();
+    }
+
+    public  boolean isEmpty(){
+        return root == null;
+    }
+    public void clearTree() {
+        root = null;
+        System.out.println("Tree has been cleared.");
+    }
 
     // Preorder traversal
     public void display() {
@@ -96,6 +100,22 @@ public class BinarySearchTree {
         }
     }
 
+    // Print tree structure
+    public void printTree() {
+        printTreeHelper(root, 0);
+    }
+
+    private void printTreeHelper(Node node, int level) {
+        if (node != null) {
+            printTreeHelper(node.right, level + 1);
+            for (int i = 0; i < level; i++) {
+                System.out.print("    ");
+            }
+            System.out.println(node.data);
+            printTreeHelper(node.left, level + 1);
+        }
+    }
+
 
     // Search for a node
     public boolean search(int value) {
@@ -128,31 +148,31 @@ public class BinarySearchTree {
     }
 
     // Add a node to the tree using recursion
-    public void add(int data, Integer key) {
-        Node newNode = createNode(data, key);
+    public void add(int data) {
+        Node newNode = createNode(data);
         if (root == null) {
             root = newNode;
             size++;
             return;
         }
 
-        recursiveAddHelper(root, data, key);
+        recursiveAddHelper(root, data);
         size++;  // Increment the size after adding a node
     }
 
     // Helper method to add nodes recursively
-    public void recursiveAddHelper(Node temp, int data, int key) {
+    public void recursiveAddHelper(Node temp, int data) {
         if (data <= temp.data) {
             if (temp.left == null) {
-                temp.left = createNode(data, key);
+                temp.left = createNode(data);
             } else {
-                recursiveAddHelper(temp.left, data, key);
+                recursiveAddHelper(temp.left, data);
             }
         } else {
             if (temp.right == null) {
-                temp.right = createNode(data, key);
+                temp.right = createNode(data);
             } else {
-                recursiveAddHelper(temp.right, data, key);  // Corrected this line
+                recursiveAddHelper(temp.right, data);  // Corrected this line
             }
         }
     }
@@ -162,9 +182,7 @@ public class BinarySearchTree {
     // Insert a new node with the given value iteratively
     public void insertIterative(int value) {
 
-
-
-            // Create a new node with the value (without specifying the key)
+        // Create a new node with the value (without specifying the key)
         Node newNode = createNode(value);
 
         // If the tree is empty, the new node becomes the root
@@ -457,6 +475,8 @@ public class BinarySearchTree {
             System.out.println("16: Check if the tree is balanced");
             System.out.println("17: Count total nodes");
             System.out.println("18: Check if the tree is a valid BST");
+            System.out.println("19: Print tree structure");
+            System.out.println("20: Clear the tree");
             System.out.println("0: Quit");
             System.out.print("Enter your choice: ");
             option = sc.nextInt();
@@ -570,7 +590,19 @@ public class BinarySearchTree {
                     boolean validBST = bst.isBST();
                     System.out.println("The tree is " + (validBST ? "a valid BST." : "not a valid BST."));
                     break;
-
+                case 19:
+                    System.out.println("Displaying tree structure and traversal orders:");
+                    bst.printTree();
+                    System.out.println("Tree structure (Preorder Traversal):");
+                    bst.preorder();
+                    System.out.println("\nTree structure (Inorder Traversal):");
+                    bst.inorder();
+                    System.out.println("\nTree structure (Postorder Traversal):");
+                    bst.postorder();
+                    break;
+                case 20:
+                    bst.clearTree();
+                    break;
                 case 0:
                     System.out.println("Exiting...");
                     break;
