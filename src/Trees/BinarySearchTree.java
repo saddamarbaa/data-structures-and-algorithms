@@ -330,7 +330,12 @@ public class BinarySearchTree {
 
     // Method to delete a node
     public void delete(int value) {
+        if (!search(value)) {
+            System.out.println("Value " + value + " not found in the tree. Deletion aborted.");
+            return;
+        }
         root = deleteHelper(root, value);
+        System.out.println("Value " + value + " deleted successfully.");
     }
 
     private Node deleteHelper(Node root, int value) {
@@ -495,137 +500,137 @@ public class BinarySearchTree {
 
 
 
-        public static void main(String[] args) {
-            Scanner sc = new Scanner(System.in);
-            BinarySearchTree bst = new BinarySearchTree();
-            int option, element;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        BinarySearchTree bst = new BinarySearchTree();
+        int option, element;
 
-            do {
-                System.out.println("\nBinary Search Tree Implementation:");
-                System.out.println("1: Insert node (Recursive)");
-                System.out.println("2: Insert node (Iterative)");
-                System.out.println("3: Search for a value");
-                System.out.println("4: Get the height of the tree");
-                System.out.println("5: Get the maximum value (Iterative & Recursive)");
-                System.out.println("6: Get the minimum value (Iterative & Recursive)");
-                System.out.println("7: Display Traversals (Preorder, Inorder, Postorder, Level Order)");
-                System.out.println("8: Delete a node");
-                System.out.println("9: Find the inorder successor of a node");
-                System.out.println("10: Find the inorder predecessor of a node");
-                System.out.println("11: Check if the tree is balanced");
-                System.out.println("12: Count total nodes");
-                System.out.println("13: Check if the tree is a valid BST");
-                System.out.println("14: Clear the tree");
-                System.out.println("0: Quit");
-                System.out.print("Enter your choice: ");
-                option = sc.nextInt();
+        do {
+            System.out.println("\nBinary Search Tree Implementation:");
+            System.out.println("1: Insert node (Recursive)");
+            System.out.println("2: Insert node (Iterative)");
+            System.out.println("3: Search for a value");
+            System.out.println("4: Get the height of the tree");
+            System.out.println("5: Get the maximum value (Iterative & Recursive)");
+            System.out.println("6: Get the minimum value (Iterative & Recursive)");
+            System.out.println("7: Display Traversals (Preorder, Inorder, Postorder, Level Order)");
+            System.out.println("8: Delete a node");
+            System.out.println("9: Find the inorder successor of a node");
+            System.out.println("10: Find the inorder predecessor of a node");
+            System.out.println("11: Check if the tree is balanced");
+            System.out.println("12: Count total nodes");
+            System.out.println("13: Check if the tree is a valid BST");
+            System.out.println("14: Clear the tree");
+            System.out.println("0: Quit");
+            System.out.print("Enter your choice: ");
+            option = sc.nextInt();
 
-                switch (option) {
-                    case 1:
-                        System.out.print("Enter value to insert (Recursive): ");
-                        element = sc.nextInt();
-                        bst.insertRecursive(element);
-                        break;
+            switch (option) {
+                case 1:
+                    System.out.print("Enter value to insert (Recursive): ");
+                    element = sc.nextInt();
+                    bst.insertRecursive(element);
+                    break;
 
-                    case 2:
-                        System.out.print("Enter value to insert (Iterative): ");
-                        element = sc.nextInt();
-                        bst.insertIterative(element);
-                        break;
+                case 2:
+                    System.out.print("Enter value to insert (Iterative): ");
+                    element = sc.nextInt();
+                    bst.insertIterative(element);
+                    break;
 
-                    case 3:
-                        System.out.print("Enter value to search: ");
-                        element = sc.nextInt();
-                        boolean found = bst.search(element);
-                        System.out.println("Value " + element + (found ? " found in the tree." : " not found in the tree."));
-                        break;
+                case 3:
+                    System.out.print("Enter value to search: ");
+                    element = sc.nextInt();
+                    boolean found = bst.search(element);
+                    System.out.println("Value " + element + (found ? " found in the tree." : " not found in the tree."));
+                    break;
 
-                    case 4:
-                        System.out.println("Height of the tree: " + bst.getHeight());
-                        break;
+                case 4:
+                    System.out.println("Height of the tree: " + bst.getHeight());
+                    break;
 
-                    case 5:
-                        // Maximum value (Iterative and Recursive in one place)
-                        System.out.println("Maximum value (Iterative): " + bst.getMaxIterative());
-                        System.out.println("Maximum value (Recursive): " + bst.getMaxRecursive());
-                        break;
+                case 5:
+                    // Maximum value (Iterative and Recursive in one place)
+                    System.out.println("Maximum value (Iterative): " + bst.getMaxIterative());
+                    System.out.println("Maximum value (Recursive): " + bst.getMaxRecursive());
+                    break;
 
-                    case 6:
-                        // Minimum value (Iterative and Recursive in one place)
-                        System.out.println("Minimum value (Iterative): " + bst.getMinIterative());
-                        System.out.println("Minimum value (Recursive): " + bst.getMinRecursive());
-                        break;
+                case 6:
+                    // Minimum value (Iterative and Recursive in one place)
+                    System.out.println("Minimum value (Iterative): " + bst.getMinIterative());
+                    System.out.println("Minimum value (Recursive): " + bst.getMinRecursive());
+                    break;
 
-                    case 7:
-                        // Display tree structure and all traversals
-                        System.out.println("Displaying tree structure and traversal orders:");
-                        bst.printTree();
-                        System.out.print("Preorder traversal: ");
-                        bst.preorder();
-                        System.out.println();
+                case 7:
+                    // Display tree structure and all traversals
+                    System.out.println("Displaying tree structure and traversal orders:");
+                    bst.printTree();
+                    System.out.print("Preorder traversal: ");
+                    bst.preorder();
+                    System.out.println();
 
-                        System.out.print("Inorder traversal: ");
-                        bst.inorder();
-                        System.out.println();
+                    System.out.print("Inorder traversal: ");
+                    bst.inorder();
+                    System.out.println();
 
-                        System.out.print("Postorder traversal: ");
-                        bst.postorder();
-                        System.out.println();
+                    System.out.print("Postorder traversal: ");
+                    bst.postorder();
+                    System.out.println();
 
-                        System.out.print("Level order traversal: ");
-                        bst.levelOrderTraversal();
-                        System.out.println();
-                        break;
+                    System.out.print("Level order traversal: ");
+                    bst.levelOrderTraversal();
+                    System.out.println();
+                    break;
 
-                    case 8:
-                        System.out.print("Enter value to delete: ");
-                        element = sc.nextInt();
-                        bst.delete(element);
-                        System.out.println("Value " + element + " deleted (if it existed).");
-                        break;
+                case 8:
+                    System.out.print("Enter value to delete: ");
+                    element = sc.nextInt();
+                    bst.delete(element);
+                    System.out.println("Value " + element + " deleted (if it existed).");
+                    break;
 
-                    case 9:
-                        System.out.print("Enter value to find inorder successor: ");
-                        element = sc.nextInt();
-                        int successor = bst.getInorderSuccessor(element);
-                        System.out.println("Inorder successor of " + element + " is " + (successor != Integer.MIN_VALUE ? successor : "not found."));
-                        break;
+                case 9:
+                    System.out.print("Enter value to find inorder successor: ");
+                    element = sc.nextInt();
+                    int successor = bst.getInorderSuccessor(element);
+                    System.out.println("Inorder successor of " + element + " is " + (successor != Integer.MIN_VALUE ? successor : "not found."));
+                    break;
 
-                    case 10:
-                        System.out.print("Enter value to find inorder predecessor: ");
-                        element = sc.nextInt();
-                        int predecessor = bst.getInorderPredecessor(element);
-                        System.out.println("Inorder predecessor of " + element + " is " + (predecessor != Integer.MAX_VALUE ? predecessor : "not found."));
-                        break;
+                case 10:
+                    System.out.print("Enter value to find inorder predecessor: ");
+                    element = sc.nextInt();
+                    int predecessor = bst.getInorderPredecessor(element);
+                    System.out.println("Inorder predecessor of " + element + " is " + (predecessor != Integer.MAX_VALUE ? predecessor : "not found."));
+                    break;
 
-                    case 11:
-                        boolean balanced = bst.isBalanced();
-                        System.out.println("The tree is " + (balanced ? "balanced." : "not balanced."));
-                        break;
+                case 11:
+                    boolean balanced = bst.isBalanced();
+                    System.out.println("The tree is " + (balanced ? "balanced." : "not balanced."));
+                    break;
 
-                    case 12:
-                        System.out.println("Total number of nodes: " + bst.countNodes());
-                        break;
+                case 12:
+                    System.out.println("Total number of nodes: " + bst.countNodes());
+                    break;
 
-                    case 13:
-                        boolean validBST = bst.isBST();
-                        System.out.println("The tree is " + (validBST ? "a valid BST." : "not a valid BST."));
-                        break;
+                case 13:
+                    boolean validBST = bst.isBST();
+                    System.out.println("The tree is " + (validBST ? "a valid BST." : "not a valid BST."));
+                    break;
 
-                    case 14:
-                        bst.clearTree();
-                        System.out.println("Tree cleared.");
-                        break;
+                case 14:
+                    bst.clearTree();
+                    System.out.println("Tree cleared.");
+                    break;
 
-                    case 0:
-                        System.out.println("Exiting...");
-                        break;
+                case 0:
+                    System.out.println("Exiting...");
+                    break;
 
-                    default:
-                        System.out.println("Invalid option! Please try again.");
-                        break;
-                }
-            } while (option != 0);
-            sc.close();
+                default:
+                    System.out.println("Invalid option! Please try again.");
+                    break;
+            }
+        } while (option != 0);
+        sc.close();
     }
 }
