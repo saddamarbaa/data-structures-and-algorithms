@@ -110,4 +110,41 @@ public class Merge2DArraysBySummingValues {
         // Convert the list back to a 2D array
         return resultList.toArray(new int[resultList.size()][]);
     }
+
+    public int[][] mergeArrays2(int[][] nums1, int[][] nums2) {
+        // Initialize a map to store key-value pairs (key -> sum of values)
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // Traverse through nums1 and put key-value pairs into the map
+        for (int i = 0; i < nums1.length; i++) {
+            int[] arr = nums1[i];
+            int k = arr[0];
+            int v = arr[1];
+            map.put(k, v);
+        }
+
+        // Traverse through nums2 and add values to existing keys in the map
+        for (int i = 0; i < nums2.length; i++) {
+            int[] arr = nums2[i];
+            int k = arr[0];
+            int v = arr[1];
+            // Sum the values if the key already exists, or insert the new key-value pair
+            int updatedValue = map.getOrDefault(k, 0) + v;
+            map.put(k, updatedValue);
+        }
+
+        // Convert the map entries back into a 2D array
+        int[][] result = new int[map.size()][2];
+        int index = 0;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            result[index][0] = entry.getKey();  // Set key
+            result[index][1] = entry.getValue();  // Set summed value
+            index++;
+        }
+
+        // Sort the 2D array by the first column (key)
+        Arrays.sort(result, (arr1, arr2) -> Integer.compare(arr1[0], arr2[0]));
+
+        return result;
+    }
 }
